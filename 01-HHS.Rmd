@@ -31,8 +31,8 @@ to be added
 ```
 
 Here is the SPSS syntax file: 
-[RBDstandardized_spsssyntaxrCSI](https://www.dropbox.com/s/gsj4tvadww9v3q4/RBDstandardized_questionnairerCSI.xlsx?dl=0) 
 
+not done yet
 
 ### R Syntax
 
@@ -85,4 +85,10 @@ CH_HHS_table_wide <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
 
 
 Here is the R syntax file: 
-[RBDstandardized_RsyntaxHHS](https://www.dropbox.com/s/xnzi9vfsapakhvo/RBDstandardized_RsyntaxHHS.R?dl=0) 
+
+[RBDstandardized_RsyntaxHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxHHS.R) 
+
+
+## References / Resources
+
+

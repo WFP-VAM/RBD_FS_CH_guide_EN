@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version</title>
-  <meta name="description" content="A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
+  <title>Chapter 3 reduced Coping Strategy Index | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version</title>
+  <meta name="description" content="Chapter 3 reduced Coping Strategy Index | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
+  <meta property="og:title" content="Chapter 3 reduced Coping Strategy Index | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
+  <meta name="twitter:title" content="Chapter 3 reduced Coping Strategy Index | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="HHS.html"/>
+<link rel="prev" href="HHS.html"/>
+<link rel="next" href="methods.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -180,30 +180,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version</h1>
-<p class="author"><em>Research, Assesment and Monitoring (RAM) Team Regional Bureau Dakar World Food Programme <a href="mailto:rbd.vam@wfp.org" class="email">rbd.vam@wfp.org</a></em></p>
-<p class="date"><em>2021-01-30</em></p>
+<div id="rCSI" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> reduced Coping Strategy Index</h1>
+<div id="standardized-questionnaire-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> Standardized Questionnaire</h2>
+<table>
+<colgroup>
+<col width="23%" />
+<col width="76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable Name</th>
+<th>Question Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rCSILessQlty</td>
+<td>In the past 7 days, how many days has your household had to: <em>Rely on less preferred and less expensive food</em> because you did not have enough food or money to buy food?</td>
+</tr>
+<tr class="even">
+<td>rCSIBorrow</td>
+<td>In the past 7 days, how many days has your household had to: <em>Borrow food or rely on help from a relative or friend</em> because you did not have enough food or money to buy food?</td>
+</tr>
+<tr class="odd">
+<td>rCSIMealSize</td>
+<td>In the past 7 days, how many days has your household had to: <em>Limit portion size of meals</em> because you did not have enough food or money to buy food?</td>
+</tr>
+<tr class="even">
+<td>rCSIMealAdult</td>
+<td>In the past 7 days, how many days has your household had to: <em>Restrict consumption by adults in order for small children to eat</em> because you did not have enough food or money to buy food?</td>
+</tr>
+<tr class="odd">
+<td>rCSIMealNb</td>
+<td>In the past 7 days, how many days has your household had to: <em>Reduce the number of meals eaten per day</em> because you did not have enough food or money to buy food?</td>
+</tr>
+</tbody>
+</table>
+<p>Here is the standardized module in xlsform:</p>
+<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnairerCSI.xlsx">RBDstandardized_questionnaireCSI</a></p>
 </div>
-<div id="purpose-how-to-use-this-guide" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Purpose &amp; How to use this Guide</h1>
-<p>This guide proposes a uniform way of collecting and analyzing key food security indicators for the Cadre Harmonise process.</p>
-<p>Chapters are listed by indicator and include:</p>
-<ol style="list-style-type: decimal">
-<li>standardized data collection modules and ODK compliant xlsforms</li>
-<li>sample data set</li>
-<li>standardized syntax in SPSS and R</li>
-<li>references / official guidelines / source materials for the indicators</li>
-</ol>
+<div id="calculation-of-rcsi-indicator-ch" class="section level2">
+<h2><span class="header-section-number">3.2</span> Calculation of rCSI Indicator &amp; CH</h2>
+<div id="example-data-set-1" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Example data set</h3>
+<p>Here is the example data set:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataHHSEng.sav">datarCSIEng</a></p>
+</div>
+<div id="spss-syntax-1" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> SPSS Syntax</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rCSI.html#cb3-1"></a>to be added</span></code></pre></div>
+<p>Here is the SPSS syntax file:</p>
+<p>not done yet</p>
+</div>
+<div id="r-syntax-1" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> R Syntax</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rCSI.html#cb4-1"></a><span class="kw">library</span>(haven)</span>
+<span id="cb4-2"><a href="rCSI.html#cb4-2"></a><span class="kw">library</span>(labelled)</span>
+<span id="cb4-3"><a href="rCSI.html#cb4-3"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb4-4"><a href="rCSI.html#cb4-4"></a></span>
+<span id="cb4-5"><a href="rCSI.html#cb4-5"></a><span class="co">#import dataset</span></span>
+<span id="cb4-6"><a href="rCSI.html#cb4-6"></a>datarCSIEng &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;datarCSIEng.sav&quot;</span>)</span>
+<span id="cb4-7"><a href="rCSI.html#cb4-7"></a></span>
+<span id="cb4-8"><a href="rCSI.html#cb4-8"></a><span class="co">#Calculate HHS </span></span>
+<span id="cb4-9"><a href="rCSI.html#cb4-9"></a>datarCSIEng &lt;-<span class="st"> </span><span class="kw">to_factor</span>(datarCSIEng)</span>
+<span id="cb4-10"><a href="rCSI.html#cb4-10"></a></span>
+<span id="cb4-11"><a href="rCSI.html#cb4-11"></a><span class="co">#calculate rCSI Score</span></span>
+<span id="cb4-12"><a href="rCSI.html#cb4-12"></a>datarCSIEng &lt;-<span class="st"> </span>datarCSIEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">rCSI =</span> rCSILessQlty  <span class="op">+</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>rCSIBorrow) <span class="op">+</span><span class="st"> </span>rCSIMealSize <span class="op">+</span><span class="st"> </span>(<span class="dv">3</span> <span class="op">*</span><span class="st"> </span>rCSIMealAdult) <span class="op">+</span><span class="st"> </span>rCSIMealNb)</span>
+<span id="cb4-13"><a href="rCSI.html#cb4-13"></a></span>
+<span id="cb4-14"><a href="rCSI.html#cb4-14"></a><span class="co">#convert rCSI Score into thresholds </span></span>
+<span id="cb4-15"><a href="rCSI.html#cb4-15"></a>datarCSIEng &lt;-<span class="st"> </span>datarCSIEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">CH_rCSI =</span> <span class="kw">case_when</span>(</span>
+<span id="cb4-16"><a href="rCSI.html#cb4-16"></a>  rCSI <span class="op">&lt;=</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Phase1&quot;</span>, </span>
+<span id="cb4-17"><a href="rCSI.html#cb4-17"></a>  <span class="kw">between</span>(rCSI,<span class="dv">4</span>,<span class="dv">18</span>) <span class="op">~</span><span class="st"> &quot;Phase2&quot;</span>,       </span>
+<span id="cb4-18"><a href="rCSI.html#cb4-18"></a>  rCSI <span class="op">&gt;=</span><span class="st"> </span><span class="dv">19</span> <span class="op">~</span><span class="st"> &quot;Phase3&quot;</span>))</span>
+<span id="cb4-19"><a href="rCSI.html#cb4-19"></a></span>
+<span id="cb4-20"><a href="rCSI.html#cb4-20"></a><span class="co">#Generate table of proportion of households in CH rCSI phases by Adm1 and Adm2 using weights</span></span>
+<span id="cb4-21"><a href="rCSI.html#cb4-21"></a>CH_rCSI_table_wide &lt;-<span class="st"> </span>datarCSIEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(ADMIN1Name, ADMIN2Name) <span class="op">%&gt;%</span></span>
+<span id="cb4-22"><a href="rCSI.html#cb4-22"></a><span class="st">  </span><span class="kw">drop_na</span>(CH_rCSI) <span class="op">%&gt;%</span></span>
+<span id="cb4-23"><a href="rCSI.html#cb4-23"></a><span class="st">  </span><span class="kw">count</span>(CH_rCSI, <span class="dt">wt =</span> hh_weight) <span class="op">%&gt;%</span></span>
+<span id="cb4-24"><a href="rCSI.html#cb4-24"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span></span>
+<span id="cb4-25"><a href="rCSI.html#cb4-25"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n) <span class="op">%&gt;%</span></span>
+<span id="cb4-26"><a href="rCSI.html#cb4-26"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> CH_rCSI, <span class="dt">value =</span> perc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace</span>(., <span class="kw">is.na</span>(.), <span class="dv">0</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">1</span>)</span></code></pre></div>
+<p>Here is the R syntax file:</p>
+<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxrCSI.R">RBDstandardized_RsyntaxrCSI</a></p>
+</div>
+</div>
+<div id="references-resources-1" class="section level2">
+<h2><span class="header-section-number">3.3</span> References / Resources</h2>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="HHS.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="HHS.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -234,7 +308,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-rCSI.Rmd",
 "text": "Edit"
 },
 "history": {

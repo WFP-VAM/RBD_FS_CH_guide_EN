@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="literature.html"/>
+<link rel="next" href="rCSI.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -142,8 +142,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.2" data-path="HHS.html"><a href="HHS.html#spss-syntax"><i class="fa fa-check"></i><b>2.2.2</b> SPSS Syntax</a></li>
 <li class="chapter" data-level="2.2.3" data-path="HHS.html"><a href="HHS.html#r-syntax"><i class="fa fa-check"></i><b>2.2.3</b> R Syntax</a></li>
 </ul></li>
+<li class="chapter" data-level="2.3" data-path="HHS.html"><a href="HHS.html#references-resources"><i class="fa fa-check"></i><b>2.3</b> References / Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
+<li class="chapter" data-level="3" data-path="rCSI.html"><a href="rCSI.html"><i class="fa fa-check"></i><b>3</b> reduced Coping Strategy Index</a><ul>
+<li class="chapter" data-level="3.1" data-path="rCSI.html"><a href="rCSI.html#standardized-questionnaire-1"><i class="fa fa-check"></i><b>3.1</b> Standardized Questionnaire</a></li>
+<li class="chapter" data-level="3.2" data-path="rCSI.html"><a href="rCSI.html#calculation-of-rcsi-indicator-ch"><i class="fa fa-check"></i><b>3.2</b> Calculation of rCSI Indicator &amp; CH</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="rCSI.html"><a href="rCSI.html#example-data-set-1"><i class="fa fa-check"></i><b>3.2.1</b> Example data set</a></li>
+<li class="chapter" data-level="3.2.2" data-path="rCSI.html"><a href="rCSI.html#spss-syntax-1"><i class="fa fa-check"></i><b>3.2.2</b> SPSS Syntax</a></li>
+<li class="chapter" data-level="3.2.3" data-path="rCSI.html"><a href="rCSI.html#r-syntax-1"><i class="fa fa-check"></i><b>3.2.3</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="rCSI.html"><a href="rCSI.html#references-resources-1"><i class="fa fa-check"></i><b>3.3</b> References / Resources</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
 <li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
 <li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
@@ -222,20 +231,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Here is the standardized module in xlsform:</p>
-<p><a href="https://www.dropbox.com/s/a7e4ty3rvw19e89/RBDstandardized_questionnaireHHS.xlsx?dl=0">RBDstandardized_questionnairerHHS</a></p>
+<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.xlsx">RBDstandardized_questionnaireHHS</a></p>
 </div>
 <div id="calculation-of-hhs-indicator-ch" class="section level2">
 <h2><span class="header-section-number">2.2</span> Calculation of HHS Indicator &amp; CH</h2>
 <div id="example-data-set" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Example data set</h3>
 <p>Here is the example data set:
-<a href="https://www.dropbox.com/sh/g2s87u60cc0yx6v/AABdYDfCkJlyP1DlgRoEc0gDa?dl=0">dataHHSEng</a></p>
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataHHSEng.sav">dataHHSEng</a></p>
 </div>
 <div id="spss-syntax" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> SPSS Syntax</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="HHS.html#cb1-1"></a>to be added</span></code></pre></div>
-<p>Here is the SPSS syntax file:
-<a href="https://www.dropbox.com/s/gsj4tvadww9v3q4/RBDstandardized_questionnairerCSI.xlsx?dl=0">RBDstandardized_spsssyntaxrCSI</a></p>
+<p>Here is the SPSS syntax file:</p>
+<p>not done yet</p>
 </div>
 <div id="r-syntax" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> R Syntax</h3>
@@ -283,10 +292,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-42"><a href="HHS.html#cb2-42"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span></span>
 <span id="cb2-43"><a href="HHS.html#cb2-43"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n) <span class="op">%&gt;%</span></span>
 <span id="cb2-44"><a href="HHS.html#cb2-44"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> CH_HHS, <span class="dt">value =</span> perc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace</span>(., <span class="kw">is.na</span>(.), <span class="dv">0</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">1</span>)</span></code></pre></div>
-<p>Here is the R syntax file:
-<a href="https://www.dropbox.com/s/xnzi9vfsapakhvo/RBDstandardized_RsyntaxHHS.R?dl=0">RBDstandardized_RsyntaxHHS</a></p>
-
+<p>Here is the R syntax file:</p>
+<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxHHS.R">RBDstandardized_RsyntaxHHS</a></p>
 </div>
+</div>
+<div id="references-resources" class="section level2">
+<h2><span class="header-section-number">2.3</span> References / Resources</h2>
+
 </div>
 </div>
             </section>
@@ -295,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="literature.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rCSI.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -43,14 +43,14 @@ HHhSNotEat_FR | How often did this happen in the past [4 weeks/30 days]? | 1) Ra
 
 Here is the standardized module in xlsform:
 
-[RBDstandardized_questionnairerHHS](https://www.dropbox.com/s/a7e4ty3rvw19e89/RBDstandardized_questionnaireHHS.xlsx?dl=0) 
+[RBDstandardized_questionnaireHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.xlsx) 
 
 ## Calculation of HHS Indicator & CH 
 
 ### Example data set
 
 Here is the example data set:
-[dataHHSEng](https://www.dropbox.com/sh/g2s87u60cc0yx6v/AABdYDfCkJlyP1DlgRoEc0gDa?dl=0) 
+[dataHHSEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataHHSEng.sav) 
 
 ### SPSS Syntax
 
@@ -61,8 +61,8 @@ to be added
 ```
 
 Here is the SPSS syntax file: 
-[RBDstandardized_spsssyntaxrCSI](https://www.dropbox.com/s/gsj4tvadww9v3q4/RBDstandardized_questionnairerCSI.xlsx?dl=0) 
 
+not done yet
 
 ### R Syntax
 
@@ -115,15 +115,94 @@ CH_HHS_table_wide <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
 
 
 Here is the R syntax file: 
-[RBDstandardized_RsyntaxHHS](https://www.dropbox.com/s/xnzi9vfsapakhvo/RBDstandardized_RsyntaxHHS.R?dl=0) 
+
+[RBDstandardized_RsyntaxHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxHHS.R) 
+
+
+## References / Resources
+
+
 
 <!--chapter:end:01-HHS.Rmd-->
 
-# Literature
+# reduced Coping Strategy Index {#rCSI}
 
-Here is a review of existing methods.
+## Standardized Questionnaire
 
-<!--chapter:end:02-literature.Rmd-->
+Variable Name | Question Label 
+---- | ------------- 
+rCSILessQlty | In the past 7 days, how many days has your household had to: *Rely on less preferred and less expensive food* because you did not have enough food or money to buy food?
+rCSIBorrow | In the past 7 days, how many days has your household had to: *Borrow food or rely on help from a relative or friend* because you did not have enough food or money to buy food?
+rCSIMealSize | In the past 7 days, how many days has your household had to: *Limit portion size of meals* because you did not have enough food or money to buy food?
+rCSIMealAdult  | In the past 7 days, how many days has your household had to: *Restrict consumption by adults in order for small children to eat* because you did not have enough food or money to buy food?
+rCSIMealNb | In the past 7 days, how many days has your household had to: *Reduce the number of meals eaten per day* because you did not have enough food or money to buy food?
+
+Here is the standardized module in xlsform:
+
+[RBDstandardized_questionnaireCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnairerCSI.xlsx) 
+
+
+## Calculation of rCSI Indicator & CH 
+
+### Example data set
+
+Here is the example data set:
+[datarCSIEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataHHSEng.sav) 
+
+### SPSS Syntax
+
+```{r, eval = F}
+
+to be added
+
+```
+
+Here is the SPSS syntax file: 
+
+not done yet
+
+### R Syntax
+
+```{r, eval = F}
+library(haven)
+library(labelled)
+library(tidyverse)
+
+#import dataset
+datarCSIEng <- read_sav("datarCSIEng.sav")
+
+#Calculate HHS 
+datarCSIEng <- to_factor(datarCSIEng)
+
+#calculate rCSI Score
+datarCSIEng <- datarCSIEng %>% mutate(rCSI = rCSILessQlty  + (2 * rCSIBorrow) + rCSIMealSize + (3 * rCSIMealAdult) + rCSIMealNb)
+
+#convert rCSI Score into thresholds 
+datarCSIEng <- datarCSIEng %>% mutate(CH_rCSI = case_when(
+  rCSI <= 3 ~ "Phase1", 
+  between(rCSI,4,18) ~ "Phase2",       
+  rCSI >= 19 ~ "Phase3"))
+
+#Generate table of proportion of households in CH rCSI phases by Adm1 and Adm2 using weights
+CH_rCSI_table_wide <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+  drop_na(CH_rCSI) %>%
+  count(CH_rCSI, wt = hh_weight) %>%
+  mutate(perc = 100 * n / sum(n)) %>%
+  ungroup() %>% select(-n) %>%
+  spread(key = CH_rCSI, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
+```
+
+
+
+Here is the R syntax file: 
+
+[RBDstandardized_RsyntaxrCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxrCSI.R) 
+
+
+## References / Resources
+
+
+<!--chapter:end:02-rCSI.Rmd-->
 
 # Methods
 
