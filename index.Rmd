@@ -18,9 +18,10 @@ link-citations: yes
 This guide proposes a uniform way of collecting and analyzing key food security indicators for the Cadre Harmonise process.
 
 Chapters are listed by indicator and include:
-- standardized data collection modules and ODK compliant xlsforms
-- sample data set 
-- standardized syntax in SPSS and R
-- references / official guidelines / source materials for the indicators
+
+1. standardized data collection modules and ODK compliant xlsforms
+2. sample data set 
+3. standardized syntax in SPSS and R
+4. references / official guidelines / source materials for the indicators
 
 

@@ -1,33 +1,3 @@
---- 
-title: "A Guide to Collection & Calculation of Cadre Harmonise Food Security Indicators - beta version"
-author: "Research, Assesment and Monitoring (RAM) Team
-         Regional Bureau Dakar
-         World Food Programme
-         rbd.vam@wfp.org"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-output: bookdown::gitbook
-documentclass: book
-bibliography: [book.bib, packages.bib]
-biblio-style: apalike
-link-citations: yes
----
-
-# Purpose & How to use this Guide
-
-This guide proposes a uniform way of collecting and analyzing key food security indicators for the Cadre Harmonise process.
-
-Chapters are listed by indicator and include:
-
-1. standardized data collection modules and ODK compliant xlsforms
-2. sample data set 
-3. standardized syntax in SPSS and R
-4. references / official guidelines / source materials for the indicators
-
-
-
-<!--chapter:end:index.Rmd-->
-
 # Housedhould Hunger Scale {#HHS}
 
 # Household Hunger Score
@@ -121,40 +91,3 @@ CH_HHS_table_wide <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
 
 Here is the R syntax file: 
 [RBDstandardized_RsyntaxHHS](https://www.dropbox.com/s/xnzi9vfsapakhvo/RBDstandardized_RsyntaxHHS.R?dl=0) 
-
-<!--chapter:end:01-HHS.Rmd-->
-
-# Literature
-
-Here is a review of existing methods.
-
-<!--chapter:end:02-literature.Rmd-->
-
-# Methods
-
-We describe our methods in this chapter.
-
-<!--chapter:end:03-method.Rmd-->
-
-# Applications
-
-Some _significant_ applications are demonstrated in this chapter.
-
-## Example one
-
-## Example two
-
-<!--chapter:end:04-application.Rmd-->
-
-# Final Words
-
-We have finished a nice book.
-
-<!--chapter:end:05-summary.Rmd-->
-
-`r if (knitr:::is_html_output()) '
-# References {-}
-'`
-
-<!--chapter:end:06-references.Rmd-->
-
