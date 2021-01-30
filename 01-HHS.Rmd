@@ -13,14 +13,14 @@ HHhSNotEat_FR | How often did this happen in the past [4 weeks/30 days]? | 1) Ra
 
 Here is the standardized module in xlsform:
 
-[RBDstandardized_questionnairerHHS](https://www.dropbox.com/s/a7e4ty3rvw19e89/RBDstandardized_questionnaireHHS.xlsx?dl=0) 
+[RBDstandardized_questionnaireHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.xlsx) 
 
 ## Calculation of HHS Indicator & CH 
 
 ### Example data set
 
 Here is the example data set:
-[dataHHSEng](https://www.dropbox.com/sh/g2s87u60cc0yx6v/AABdYDfCkJlyP1DlgRoEc0gDa?dl=0) 
+[dataHHSEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataHHSEng.sav) 
 
 ### SPSS Syntax
 
