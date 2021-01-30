@@ -1,0 +1,13 @@
+--- 
+title: "Food Security Analysis for Cadre Harmonise"
+author: "WFP RBD VAM"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+biblio-style: apalike
+link-citations: yes
+description: "This is a minimal example of using R for food security analysis"
+---
+
+
+blah blah some text
