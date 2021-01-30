@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Livelihood Coping Strategies | Food Security Analysis for Cadre Harmonise</title>
+  <meta name="description" content="This is a minimal example of using R for food security analysis" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Livelihood Coping Strategies | Food Security Analysis for Cadre Harmonise" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using R for food security analysis" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Livelihood Coping Strategies | Food Security Analysis for Cadre Harmonise" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using R for food security analysis" />
+  
+
+<meta name="author" content="WFP RBD VAM" />
+
+
+<meta name="date" content="2021-01-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="household-dietary-diversity-score.html"/>
+<link rel="next" href="gecodes.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A brief reference for Cadre Harmonise Food Security variables</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="reduced-coping-strategy-index-rcsi.html"><a href="reduced-coping-strategy-index-rcsi.html"><i class="fa fa-check"></i><b>2</b> reduced Coping Strategy Index (rCSI)</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="reduced-coping-strategy-index-rcsi.html"><a href="reduced-coping-strategy-index-rcsi.html#standardized-module"><i class="fa fa-check"></i><b>2.0.1</b> Standardized Module</a></li>
+<li class="chapter" data-level="2.0.2" data-path="reduced-coping-strategy-index-rcsi.html"><a href="reduced-coping-strategy-index-rcsi.html#standardized-module---data-collection-form"><i class="fa fa-check"></i><b>2.0.2</b> Standardized Module - data collection form</a></li>
+<li class="chapter" data-level="2.0.3" data-path="reduced-coping-strategy-index-rcsi.html"><a href="reduced-coping-strategy-index-rcsi.html#analysis"><i class="fa fa-check"></i><b>2.0.3</b> Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="household-hunger-score.html"><a href="household-hunger-score.html"><i class="fa fa-check"></i><b>3</b> Household Hunger Score</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="household-hunger-score.html"><a href="household-hunger-score.html#standardized-module-1"><i class="fa fa-check"></i><b>3.0.1</b> Standardized Module</a></li>
+<li class="chapter" data-level="3.0.2" data-path="household-hunger-score.html"><a href="household-hunger-score.html#standardized-module---data-collection-form-1"><i class="fa fa-check"></i><b>3.0.2</b> Standardized Module - data collection form</a></li>
+<li class="chapter" data-level="3.0.3" data-path="household-hunger-score.html"><a href="household-hunger-score.html#analysis-1"><i class="fa fa-check"></i><b>3.0.3</b> Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="food-consumption-score.html"><a href="food-consumption-score.html"><i class="fa fa-check"></i><b>4</b> Food Consumption Score</a></li>
+<li class="chapter" data-level="5" data-path="household-dietary-diversity-score.html"><a href="household-dietary-diversity-score.html"><i class="fa fa-check"></i><b>5</b> Household Dietary Diversity Score</a><ul>
+<li class="chapter" data-level="5.1" data-path="household-dietary-diversity-score.html"><a href="household-dietary-diversity-score.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="household-dietary-diversity-score.html"><a href="household-dietary-diversity-score.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="livelihood-coping-strategies.html"><a href="livelihood-coping-strategies.html"><i class="fa fa-check"></i><b>6</b> Livelihood Coping Strategies</a><ul>
+<li class="chapter" data-level="6.1" data-path="livelihood-coping-strategies.html"><a href="livelihood-coping-strategies.html#standardized-module---light-preferred-version"><i class="fa fa-check"></i><b>6.1</b> Standardized Module - Light (Preferred Version)</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="livelihood-coping-strategies.html"><a href="livelihood-coping-strategies.html#standardized-module-light-module--data-collection-form"><i class="fa fa-check"></i><b>6.1.1</b> Standardized Module (light module- data collection form</a></li>
+<li class="chapter" data-level="6.1.2" data-path="livelihood-coping-strategies.html"><a href="livelihood-coping-strategies.html#analysis-2"><i class="fa fa-check"></i><b>6.1.2</b> Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="livelihood-coping-strategies.html"><a href="livelihood-coping-strategies.html#standard-version"><i class="fa fa-check"></i><b>6.2</b> Standard Version</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="livelihood-coping-strategies.html"><a href="livelihood-coping-strategies.html#standardized-module-light-module--data-collection-form-1"><i class="fa fa-check"></i><b>6.2.1</b> Standardized Module (light module- data collection form</a></li>
+<li class="chapter" data-level="6.2.2" data-path="livelihood-coping-strategies.html"><a href="livelihood-coping-strategies.html#analysis-3"><i class="fa fa-check"></i><b>6.2.2</b> Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="livelihood-coping-strategies.html"><a href="livelihood-coping-strategies.html#essential-needs-assesment-standardized-module"><i class="fa fa-check"></i><b>6.3</b> Essential Needs Assesment Standardized Module</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="gecodes.html"><a href="gecodes.html"><i class="fa fa-check"></i><b>7</b> Gecodes</a><ul>
+<li class="chapter" data-level="7.1" data-path="gecodes.html"><a href="gecodes.html#a-brief-example-of-the-problem"><i class="fa fa-check"></i><b>7.1</b> A brief example of the problem:</a></li>
+<li class="chapter" data-level="7.2" data-path="gecodes.html"><a href="gecodes.html#where-to-find-pcodes"><i class="fa fa-check"></i><b>7.2</b> Where to find Pcodes</a></li>
+<li class="chapter" data-level="7.3" data-path="gecodes.html"><a href="gecodes.html#example-data-set-of-the-data-collection-sheet-for-nigeria"><i class="fa fa-check"></i><b>7.3</b> Example data set of the data collection sheet for Nigeria:</a></li>
+<li class="chapter" data-level="7.4" data-path="gecodes.html"><a href="gecodes.html#caveats"><i class="fa fa-check"></i><b>7.4</b> 2 caveats</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Food Security Analysis for Cadre Harmonise</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="livelihood-coping-strategies" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Livelihood Coping Strategies</h1>
+<div id="standardized-module---light-preferred-version" class="section level2">
+<h2><span class="header-section-number">6.1</span> Standardized Module - Light (Preferred Version)</h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="54%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable Name</th>
+<th>Question Label</th>
+<th>Answer Choices</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LhCSIStress1_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Sell household assets/goods radio, furniture, refrigerator, television, jewelry etc..)</em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIStress2_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>sell more animals (non-productive) than usual</em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSIStress3_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>spend savings</em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIStress4_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Borrow money / food from a formal lender / bank</em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSICrisis1_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Reduce non-food expenses on health (including drugs) and education </em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSICrisis2_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>sell productive assets or means of transport (sewing machine, wheelbarrow, bicycle, car, etc..)</em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSICrisis3_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>withdraw children from school</em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIEmergency1_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>sell house or land</em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSIEmergency2_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>sell last female animals</em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIEmergency3_lt</td>
+<td>During the past 30 days, did anyone in your household have to: <em>beg </em> due to a lack of food or a lack of money to buy food?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+</tbody>
+</table>
+<div id="standardized-module-light-module--data-collection-form" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Standardized Module (light module- data collection form</h3>
+<p>Here is the standardized module in xlsform: <a href="https://www.dropbox.com/s/wfiuy5kn8yhd0ct/RBDstandardized_questionnaireLHCSI.xlsx?dl=0">RBDstandardized_questionnaireLHCSI</a></p>
+</div>
+<div id="analysis-2" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Analysis</h3>
+<div id="example-data-set-2" class="section level4">
+<h4><span class="header-section-number">6.1.2.1</span> Example data set</h4>
+<p><a href="https://www.dropbox.com/s/44f5or8njr1nlr8/dataLHCSLightEng.sav?dl=0">dataLHCSLightEng</a></p>
+<p>Here is the example data set:</p>
+</div>
+<div id="spss-syntax-2" class="section level4">
+<h4><span class="header-section-number">6.1.2.2</span> SPSS Syntax</h4>
+<p>Here is the SPSS syntax file:
+<a href="https://www.dropbox.com/s/gsj4tvadww9v3q4/RBDstandardized_questionnairerCSI.xlsx?dl=0">RBDstandardized_spsssyntaxrCSI</a></p>
+</div>
+<div id="r-syntax-2" class="section level4">
+<h4><span class="header-section-number">6.1.2.3</span> R Syntax</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="livelihood-coping-strategies.html#cb5-1"></a><span class="kw">library</span>(haven)</span>
+<span id="cb5-2"><a href="livelihood-coping-strategies.html#cb5-2"></a><span class="kw">library</span>(labelled)</span>
+<span id="cb5-3"><a href="livelihood-coping-strategies.html#cb5-3"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb5-4"><a href="livelihood-coping-strategies.html#cb5-4"></a></span>
+<span id="cb5-5"><a href="livelihood-coping-strategies.html#cb5-5"></a><span class="co">#import dataset</span></span>
+<span id="cb5-6"><a href="livelihood-coping-strategies.html#cb5-6"></a>dataLHCSLightEng &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;dataLHCSLightEng.sav&quot;</span>)</span>
+<span id="cb5-7"><a href="livelihood-coping-strategies.html#cb5-7"></a></span>
+<span id="cb5-8"><a href="livelihood-coping-strategies.html#cb5-8"></a><span class="co">#Calculate HHS </span></span>
+<span id="cb5-9"><a href="livelihood-coping-strategies.html#cb5-9"></a>dataLHCSLightEng &lt;-<span class="st"> </span><span class="kw">to_factor</span>(dataLHCSLightEng)</span>
+<span id="cb5-10"><a href="livelihood-coping-strategies.html#cb5-10"></a></span>
+<span id="cb5-11"><a href="livelihood-coping-strategies.html#cb5-11"></a><span class="co">#create a variable to specify if the household used any of the strategies by severity </span></span>
+<span id="cb5-12"><a href="livelihood-coping-strategies.html#cb5-12"></a><span class="co">#stress</span></span>
+<span id="cb5-13"><a href="livelihood-coping-strategies.html#cb5-13"></a>dataLHCSLightEng &lt;-<span class="st"> </span>dataLHCSLightEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">stress_coping =</span> <span class="kw">case_when</span>(</span>
+<span id="cb5-14"><a href="livelihood-coping-strategies.html#cb5-14"></a>LhCSIStress1_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
+<span id="cb5-15"><a href="livelihood-coping-strategies.html#cb5-15"></a>LhCSIStress2_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
+<span id="cb5-16"><a href="livelihood-coping-strategies.html#cb5-16"></a>LhCSIStress3_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
+<span id="cb5-17"><a href="livelihood-coping-strategies.html#cb5-17"></a>LhCSIStress4_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
+<span id="cb5-18"><a href="livelihood-coping-strategies.html#cb5-18"></a><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;notusedstress&quot;</span>))</span>
+<span id="cb5-19"><a href="livelihood-coping-strategies.html#cb5-19"></a><span class="co">#Crisis</span></span>
+<span id="cb5-20"><a href="livelihood-coping-strategies.html#cb5-20"></a>dataLHCSLightEng &lt;-<span class="st"> </span>dataLHCSLightEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">crisis_coping =</span> <span class="kw">case_when</span>(</span>
+<span id="cb5-21"><a href="livelihood-coping-strategies.html#cb5-21"></a>LhCSICrisis1_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedcrisis&quot;</span>,</span>
+<span id="cb5-22"><a href="livelihood-coping-strategies.html#cb5-22"></a>LhCSICrisis2_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedcrisis&quot;</span>,</span>
+<span id="cb5-23"><a href="livelihood-coping-strategies.html#cb5-23"></a>LhCSICrisis3_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedcrisis&quot;</span>,</span>
+<span id="cb5-24"><a href="livelihood-coping-strategies.html#cb5-24"></a><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;notusedcrisis&quot;</span>))</span>
+<span id="cb5-25"><a href="livelihood-coping-strategies.html#cb5-25"></a><span class="co">#Emergency</span></span>
+<span id="cb5-26"><a href="livelihood-coping-strategies.html#cb5-26"></a>dataLHCSLightEng &lt;-<span class="st"> </span>dataLHCSLightEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">emergency_coping =</span> <span class="kw">case_when</span>(</span>
+<span id="cb5-27"><a href="livelihood-coping-strategies.html#cb5-27"></a>LhCSIEmergency1_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedemergency&quot;</span>,</span>
+<span id="cb5-28"><a href="livelihood-coping-strategies.html#cb5-28"></a>LhCSIEmergency2_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedemergency&quot;</span>,</span>
+<span id="cb5-29"><a href="livelihood-coping-strategies.html#cb5-29"></a>LhCSIEmergency3_lt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedemergency&quot;</span>,</span>
+<span id="cb5-30"><a href="livelihood-coping-strategies.html#cb5-30"></a><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;noutusedemergency&quot;</span>))</span>
+<span id="cb5-31"><a href="livelihood-coping-strategies.html#cb5-31"></a></span>
+<span id="cb5-32"><a href="livelihood-coping-strategies.html#cb5-32"></a><span class="co">#calculate Max_coping_behaviour</span></span>
+<span id="cb5-33"><a href="livelihood-coping-strategies.html#cb5-33"></a>dataLHCSLightEng &lt;-<span class="st"> </span>dataLHCSLightEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">LhCSICat =</span> <span class="kw">case_when</span>(</span>
+<span id="cb5-34"><a href="livelihood-coping-strategies.html#cb5-34"></a>  emergency_coping <span class="op">==</span><span class="st"> &quot;usedemergency&quot;</span> <span class="op">~</span><span class="st"> &quot;EmergencyStrategies&quot;</span>,</span>
+<span id="cb5-35"><a href="livelihood-coping-strategies.html#cb5-35"></a>  crisis_coping <span class="op">==</span><span class="st"> &quot;usedcrisis&quot;</span> <span class="op">~</span><span class="st"> &quot;CrisisStrategies&quot;</span>,</span>
+<span id="cb5-36"><a href="livelihood-coping-strategies.html#cb5-36"></a>  stress_coping <span class="op">==</span><span class="st"> &quot;usedstress&quot;</span> <span class="op">~</span><span class="st"> &quot;StressStrategies&quot;</span>,</span>
+<span id="cb5-37"><a href="livelihood-coping-strategies.html#cb5-37"></a>  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;NoStrategies&quot;</span>))</span>
+<span id="cb5-38"><a href="livelihood-coping-strategies.html#cb5-38"></a></span>
+<span id="cb5-39"><a href="livelihood-coping-strategies.html#cb5-39"></a><span class="co">#Generate table of proportion of households in CH LhCHS phases by Adm1 and Adm2 using weights</span></span>
+<span id="cb5-40"><a href="livelihood-coping-strategies.html#cb5-40"></a><span class="co">#Livelihood Coping Strategies </span></span>
+<span id="cb5-41"><a href="livelihood-coping-strategies.html#cb5-41"></a>LhHCSCat_table_wide &lt;-<span class="st"> </span>dataLHCSLightEng <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-42"><a href="livelihood-coping-strategies.html#cb5-42"></a><span class="st">  </span><span class="kw">drop_na</span>(LhCSICat) <span class="op">%&gt;%</span></span>
+<span id="cb5-43"><a href="livelihood-coping-strategies.html#cb5-43"></a><span class="st">  </span><span class="kw">group_by</span>(ADMIN1Name, ADMIN2Name) <span class="op">%&gt;%</span></span>
+<span id="cb5-44"><a href="livelihood-coping-strategies.html#cb5-44"></a><span class="st">  </span><span class="kw">count</span>(LhCSICat, <span class="dt">wt =</span> WeightHH) <span class="op">%&gt;%</span></span>
+<span id="cb5-45"><a href="livelihood-coping-strategies.html#cb5-45"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span></span>
+<span id="cb5-46"><a href="livelihood-coping-strategies.html#cb5-46"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n) <span class="op">%&gt;%</span></span>
+<span id="cb5-47"><a href="livelihood-coping-strategies.html#cb5-47"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> LhCSICat, <span class="dt">value =</span> perc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace</span>(., <span class="kw">is.na</span>(.), <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">1</span>)</span></code></pre></div>
+<p>Here is the R syntax file:
+<a href="https://www.dropbox.com/s/w9ji722dlk6bugv/RBDstandardized_RsyntaxLHCSIlight.R?dl=0">Dstandardized_RsyntaxLHCSIlight</a></p>
+</div>
+</div>
+</div>
+<div id="standard-version" class="section level2">
+<h2><span class="header-section-number">6.2</span> Standard Version</h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="54%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable Name</th>
+<th>Question Label</th>
+<th>Answer Choices</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LhCSIStress1_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Sell household assets/goods radio, furniture, refrigerator, television, jewelry etc..)</em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSIStress1_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSIStress2_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>sell more animals (non-productive) than usual</em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSIStress2_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSIStress3_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>spend savings</em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSIStress3_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSIStress4_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Borrow money / food from a formal lender / bank</em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSIStress4_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSICrisis1_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Reduce non-food expenses on health (including drugs) and education </em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSICrisis1_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSICrisis2_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>sell productive assets or means of transport (sewing machine, wheelbarrow, bicycle, car, etc..)</em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSICrisis2_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSICrisis3_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>withdraw children from school</em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSICrisis3_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSIEmergency1_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>sell house or land</em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSIEmergency1_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSIEmergency2_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>sell last female animals</em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSIEmergency2_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+<tr class="odd">
+<td>LhCSIEmergency3_YN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>beg </em> due to a lack of food or a lack of money to buy food?</td>
+<td>0) No 1) Yes</td>
+</tr>
+<tr class="even">
+<td>LhCSIEmergency3_N</td>
+<td>If ‘No’, please clarify:</td>
+<td>1) No, because it wasn’t necessary 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Not applicable</td>
+</tr>
+</tbody>
+</table>
+<div id="standardized-module-light-module--data-collection-form-1" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Standardized Module (light module- data collection form</h3>
+<p>Here is the standardized module in xlsform: <a href="https://www.dropbox.com/s/wfiuy5kn8yhd0ct/RBDstandardized_questionnaireLHCSI.xlsx?dl=0">RBDstandardized_questionnaireLHCSI</a></p>
+</div>
+<div id="analysis-3" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Analysis</h3>
+<div id="example-data-set-3" class="section level4">
+<h4><span class="header-section-number">6.2.2.1</span> Example data set</h4>
+<p><a href="https://www.dropbox.com/s/3ua1zja0ln4ojsl/dataLHCSstandardEng.sav?dl=0">dataLHCSstandardEng</a></p>
+<p>Here is the example data set:</p>
+</div>
+<div id="spss-syntax-3" class="section level4">
+<h4><span class="header-section-number">6.2.2.2</span> SPSS Syntax</h4>
+<p>Here is the SPSS syntax file:
+<a href="https://www.dropbox.com/s/gsj4tvadww9v3q4/RBDstandardized_questionnairerCSI.xlsx?dl=0">RBDstandardized_spsssyntaxrCSI</a></p>
+</div>
+<div id="r-syntax-3" class="section level4">
+<h4><span class="header-section-number">6.2.2.3</span> R Syntax</h4>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="livelihood-coping-strategies.html#cb6-1"></a><span class="kw">library</span>(haven)</span>
+<span id="cb6-2"><a href="livelihood-coping-strategies.html#cb6-2"></a><span class="kw">library</span>(labelled)</span>
+<span id="cb6-3"><a href="livelihood-coping-strategies.html#cb6-3"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb6-4"><a href="livelihood-coping-strategies.html#cb6-4"></a></span>
+<span id="cb6-5"><a href="livelihood-coping-strategies.html#cb6-5"></a><span class="co">#import dataset</span></span>
+<span id="cb6-6"><a href="livelihood-coping-strategies.html#cb6-6"></a>dataLHCSstandardEng&lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;dataLHCSstandardEng.sav&quot;</span>)</span>
+<span id="cb6-7"><a href="livelihood-coping-strategies.html#cb6-7"></a></span>
+<span id="cb6-8"><a href="livelihood-coping-strategies.html#cb6-8"></a><span class="co">#Calculate HHS </span></span>
+<span id="cb6-9"><a href="livelihood-coping-strategies.html#cb6-9"></a>dataLHCSstandardEng &lt;-<span class="st"> </span><span class="kw">to_factor</span>(dataLHCSstandardEng)</span>
+<span id="cb6-10"><a href="livelihood-coping-strategies.html#cb6-10"></a></span>
+<span id="cb6-11"><a href="livelihood-coping-strategies.html#cb6-11"></a><span class="co">#create a variable to specify if the household used any of the strategies by severity </span></span>
+<span id="cb6-12"><a href="livelihood-coping-strategies.html#cb6-12"></a><span class="co">#stress</span></span>
+<span id="cb6-13"><a href="livelihood-coping-strategies.html#cb6-13"></a>dataLHCSstandardEng &lt;-<span class="st"> </span>dataLHCSstandardEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">stress_coping =</span> <span class="kw">case_when</span>(</span>
+<span id="cb6-14"><a href="livelihood-coping-strategies.html#cb6-14"></a>LhCSIStress1_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSIStress1_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
+<span id="cb6-15"><a href="livelihood-coping-strategies.html#cb6-15"></a>LhCSIStress2_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSIStress2_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>, </span>
+<span id="cb6-16"><a href="livelihood-coping-strategies.html#cb6-16"></a>LhCSIStress3_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSIStress3_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
+<span id="cb6-17"><a href="livelihood-coping-strategies.html#cb6-17"></a>LhCSIStress4_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSIStress4_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
+<span id="cb6-18"><a href="livelihood-coping-strategies.html#cb6-18"></a><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;notusedstress&quot;</span>))</span>
+<span id="cb6-19"><a href="livelihood-coping-strategies.html#cb6-19"></a><span class="co">#Crisis</span></span>
+<span id="cb6-20"><a href="livelihood-coping-strategies.html#cb6-20"></a>dataLHCSstandardEng &lt;-<span class="st"> </span>dataLHCSstandardEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">crisis_coping =</span> <span class="kw">case_when</span>(</span>
+<span id="cb6-21"><a href="livelihood-coping-strategies.html#cb6-21"></a>LhCSICrisis1_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSICrisis1_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedcrisis&quot;</span>,</span>
+<span id="cb6-22"><a href="livelihood-coping-strategies.html#cb6-22"></a>LhCSICrisis2_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSICrisis2_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedcrisis&quot;</span>,</span>
+<span id="cb6-23"><a href="livelihood-coping-strategies.html#cb6-23"></a>LhCSICrisis3_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSICrisis3_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedcrisis&quot;</span>,</span>
+<span id="cb6-24"><a href="livelihood-coping-strategies.html#cb6-24"></a><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;notusedcrisis&quot;</span>))</span>
+<span id="cb6-25"><a href="livelihood-coping-strategies.html#cb6-25"></a><span class="co">#Emergency</span></span>
+<span id="cb6-26"><a href="livelihood-coping-strategies.html#cb6-26"></a>dataLHCSstandardEng &lt;-<span class="st"> </span>dataLHCSstandardEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">emergency_coping =</span> <span class="kw">case_when</span>(</span>
+<span id="cb6-27"><a href="livelihood-coping-strategies.html#cb6-27"></a>LhCSIEmergency1_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSIEmergency1_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedemergency&quot;</span>,</span>
+<span id="cb6-28"><a href="livelihood-coping-strategies.html#cb6-28"></a>LhCSIEmergency2_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSIEmergency2_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedemergency&quot;</span>,</span>
+<span id="cb6-29"><a href="livelihood-coping-strategies.html#cb6-29"></a>LhCSIEmergency3_YN <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">|</span><span class="st"> </span>LhCSIEmergency3_N <span class="op">==</span><span class="st"> &quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span> <span class="op">~</span><span class="st"> &quot;usedemergency&quot;</span>,</span>
+<span id="cb6-30"><a href="livelihood-coping-strategies.html#cb6-30"></a><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;notusedemergency&quot;</span>))</span>
+<span id="cb6-31"><a href="livelihood-coping-strategies.html#cb6-31"></a></span>
+<span id="cb6-32"><a href="livelihood-coping-strategies.html#cb6-32"></a><span class="co">#calculate Max_coping_behaviour</span></span>
+<span id="cb6-33"><a href="livelihood-coping-strategies.html#cb6-33"></a>dataLHCSLightEng &lt;-<span class="st"> </span>dataLHCSLightEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">LhCSICat =</span> <span class="kw">case_when</span>(</span>
+<span id="cb6-34"><a href="livelihood-coping-strategies.html#cb6-34"></a>  emergency_coping <span class="op">==</span><span class="st"> &quot;usedemergency&quot;</span> <span class="op">~</span><span class="st"> &quot;EmergencyStrategies&quot;</span>,</span>
+<span id="cb6-35"><a href="livelihood-coping-strategies.html#cb6-35"></a>  crisis_coping <span class="op">==</span><span class="st"> &quot;usedcrisis&quot;</span> <span class="op">~</span><span class="st"> &quot;CrisisStrategies&quot;</span>,</span>
+<span id="cb6-36"><a href="livelihood-coping-strategies.html#cb6-36"></a>  stress_coping <span class="op">==</span><span class="st"> &quot;usedstress&quot;</span> <span class="op">~</span><span class="st"> &quot;StressStrategies&quot;</span>,</span>
+<span id="cb6-37"><a href="livelihood-coping-strategies.html#cb6-37"></a>  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;NoStrategies&quot;</span>))</span>
+<span id="cb6-38"><a href="livelihood-coping-strategies.html#cb6-38"></a></span>
+<span id="cb6-39"><a href="livelihood-coping-strategies.html#cb6-39"></a><span class="co">#Generate table of proportion of households in CH LhCHS phases by Adm1 and Adm2 using weights</span></span>
+<span id="cb6-40"><a href="livelihood-coping-strategies.html#cb6-40"></a><span class="co">#Livelihood Coping Strategies </span></span>
+<span id="cb6-41"><a href="livelihood-coping-strategies.html#cb6-41"></a>LhHCSCat_table_wide &lt;-<span class="st"> </span>dataLHCSLightEng <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-42"><a href="livelihood-coping-strategies.html#cb6-42"></a><span class="st">  </span><span class="kw">drop_na</span>(LhCSICat) <span class="op">%&gt;%</span></span>
+<span id="cb6-43"><a href="livelihood-coping-strategies.html#cb6-43"></a><span class="st">  </span><span class="kw">group_by</span>(ADMIN1Name, ADMIN2Name) <span class="op">%&gt;%</span></span>
+<span id="cb6-44"><a href="livelihood-coping-strategies.html#cb6-44"></a><span class="st">  </span><span class="kw">count</span>(LhCSICat, <span class="dt">wt =</span> WeightHH) <span class="op">%&gt;%</span></span>
+<span id="cb6-45"><a href="livelihood-coping-strategies.html#cb6-45"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span></span>
+<span id="cb6-46"><a href="livelihood-coping-strategies.html#cb6-46"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n) <span class="op">%&gt;%</span></span>
+<span id="cb6-47"><a href="livelihood-coping-strategies.html#cb6-47"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> LhCSICat, <span class="dt">value =</span> perc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace</span>(., <span class="kw">is.na</span>(.), <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">1</span>)</span></code></pre></div>
+<p>Here is the R syntax file:
+<a href="https://www.dropbox.com/s/2522nrx8wpf1vss/RBDstandardized_RsyntaxLHCSIStandard.R?dl=0">RBDstandardized_RsyntaxLHCSIStandard</a></p>
+</div>
+</div>
+</div>
+<div id="essential-needs-assesment-standardized-module" class="section level2">
+<h2><span class="header-section-number">6.3</span> Essential Needs Assesment Standardized Module</h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="54%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable Name</th>
+<th>Question Label</th>
+<th>Answer Choices</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LhCSIDomAsset_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Sell household assets/goods (radio, furniture, refrigerator, television, jewelry etc..)</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="household-dietary-diversity-score.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gecodes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-Livelihood-Coping-Strategies.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["FoodSecCHStandardization.pdf", "FoodSecCHStandardization.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
