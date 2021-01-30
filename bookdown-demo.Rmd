@@ -1,6 +1,9 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
+title: "A Guide to Collection & Calculation of Cadre Harmonise Food Security Indicators"
+author: "Research, Assesment and Monitoring (RAM) Team
+         Regional Bureau Dakar
+         World Food Programme
+         rbd.vam@wfp.org"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
