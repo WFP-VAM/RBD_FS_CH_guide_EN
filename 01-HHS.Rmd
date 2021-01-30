@@ -1,8 +1,6 @@
-# Housedhould Hunger Scale {#HHS}
+# Household Hunger Scale {#HHS}
 
-# Household Hunger Score
-
-### Standardized Module
+## Standardized Questionnaire
 
 Variable Name | Question Label | Answer Choices
 ---- | ------------- |---- 
@@ -13,25 +11,22 @@ HHhSBedHung_FR  | How often did this happen in the past [4 weeks/30 days]? | 1) 
 HHhSNotEat_YN | In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? | 1) Yes 0) No
 HHhSNotEat_FR | How often did this happen in the past [4 weeks/30 days]? | 1) Rarely (1–2 times) 2) Sometimes (3–10 times)  3) Often (more than 10 times)
 
-### Standardized Module - data collection form
+Here is the standardized module in xlsform:
 
-Here is the standardized module in xlsform: [RBDstandardized_questionnairerHHS](https://www.dropbox.com/s/a7e4ty3rvw19e89/RBDstandardized_questionnaireHHS.xlsx?dl=0) 
+[RBDstandardized_questionnairerHHS](https://www.dropbox.com/s/a7e4ty3rvw19e89/RBDstandardized_questionnaireHHS.xlsx?dl=0) 
 
-### Analysis 
+## Calculation of HHS Indicator & CH 
 
-#### Example data set
-[exampledatsetHHS](https://www.dropbox.com/sh/g2s87u60cc0yx6v/AABdYDfCkJlyP1DlgRoEc0gDa?dl=0) 
+### Example data set
 
 Here is the example data set:
+[dataHHSEng](https://www.dropbox.com/sh/g2s87u60cc0yx6v/AABdYDfCkJlyP1DlgRoEc0gDa?dl=0) 
 
-#### SPSS Syntax
+### SPSS Syntax
 
 ```{r, eval = F}
 
-COMPUTE rCSI = rCSILessQlty  + (2 * rCSIBorrow) + rCSIMealSize + (3 * rCSIMealAdult) + rCSIMealNb.
-EXECUTE .
-
-
+to be added
 
 ```
 
@@ -39,7 +34,7 @@ Here is the SPSS syntax file:
 [RBDstandardized_spsssyntaxrCSI](https://www.dropbox.com/s/gsj4tvadww9v3q4/RBDstandardized_questionnairerCSI.xlsx?dl=0) 
 
 
-#### R Syntax
+### R Syntax
 
 ```{r, eval = F}
 library(haven)
