@@ -3,7 +3,7 @@ library(labelled)
 library(tidyverse)
 
 #import dataset
-dataHHSEng <- read_sav("dataHHSEng.sav")
+dataHHSEng <- read_sav("example_datasets/dataHHSEng.sav")
 
 #Calculate HHS
 dataHHSEng <- to_factor(dataHHSEng)
@@ -31,7 +31,7 @@ dataHHSEng <- dataHHSEng %>% mutate(HHhS = HHhSNoFood_FR_r + HHhSBedHung_FR_r + 
 dataHHSEng <- dataHHSEng %>% mutate(CH_HHS = case_when(
   HHhS == 0 ~ "Phase1",
   HHhS == 1 ~ "Phase2",
-  HHhS %in% c(2,3,4) ~ "Phase3",
+  HHhS %in% c(2,3) ~ "Phase3",
   HHhS == 4 ~ "Phase4",
   HHhS >= 5 ~ "Phase5"))
 

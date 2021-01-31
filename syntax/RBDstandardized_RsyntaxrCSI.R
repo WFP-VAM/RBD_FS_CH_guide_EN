@@ -3,7 +3,7 @@ library(labelled)
 library(tidyverse)
 
 #import dataset
-datarCSIEng <- read_sav("datarCSIEng.sav")
+datarCSIEng <- read_sav("example_datasets/datarCSIEng.sav")
 
 #Calculate HHS
 datarCSIEng <- to_factor(datarCSIEng)

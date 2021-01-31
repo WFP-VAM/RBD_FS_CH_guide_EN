@@ -72,7 +72,7 @@ library(labelled)
 library(tidyverse)
 
 #import dataset
-dataHHSEng <- read_sav("dataHHSEng.sav")
+dataHHSEng <- read_sav("example_datasets/dataHHSEng.sav")
 
 #Calculate HHS 
 dataHHSEng <- to_factor(dataHHSEng)
@@ -100,7 +100,7 @@ dataHHSEng <- dataHHSEng %>% mutate(HHhS = HHhSNoFood_FR_r + HHhSBedHung_FR_r + 
 dataHHSEng <- dataHHSEng %>% mutate(CH_HHS = case_when(
     HHhS == 0 ~ "Phase1",
     HHhS == 1 ~ "Phase2",
-    HHhS %in% c(2,3,4) ~ "Phase3",
+    HHhS %in% c(2,3) ~ "Phase3",
     HHhS == 4 ~ "Phase4",  
     HHhS >= 5 ~ "Phase5"))
 
@@ -120,6 +120,8 @@ Here is the R syntax file:
 
 
 ## References / Resources
+
+1. https://www.fantaproject.org/monitoring-and-evaluation/household-hunger-scale-hhs
 
 
 
@@ -147,7 +149,7 @@ Here is the standardized module in xlsform:
 ### Example data set
 
 Here is the example data set:
-[datarCSIEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataHHSEng.sav) 
+[datarCSIEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/datarCSIEng.sav) 
 
 ### SPSS Syntax
 
@@ -169,7 +171,7 @@ library(labelled)
 library(tidyverse)
 
 #import dataset
-datarCSIEng <- read_sav("datarCSIEng.sav")
+datarCSIEng <- read_sav("example_datasets/datarCSIEng.sav")
 
 #Calculate HHS 
 datarCSIEng <- to_factor(datarCSIEng)
@@ -200,6 +202,10 @@ Here is the R syntax file:
 
 
 ## References / Resources
+
+1. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp211058.pdf
+
+2. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
 
 
 <!--chapter:end:02-rCSI.Rmd-->
@@ -265,7 +271,7 @@ Here is the standardized module in xlsform:
 [RBDstandardized_questionnaireFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.xlsx) 
 
 
-## Calculation of FCS & HDDS Indicators & CH 
+## Calculation of FCS & HDDS Indicators  
 
 ### Example data set
 
@@ -293,10 +299,53 @@ library(labelled)
 library(tidyverse)
 
 #import dataset
-dataFCSHDDSEng <- read_sav("dataFCSHDDSEng.sav")
-
-#Calculate HHS 
+dataFCSHDDSEng <- read_sav("example_datasets/dataFCSHDDSEng.sav")
+#convert to labels
 dataFCSHDDSEng <- to_factor(dataFCSHDDSEng)
+
+#calculate FCS
+dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(FCS = (2 * FCSStap) + (3 * FCSPulse)+ (4*FCSPr) +FCSVeg  +FCSFruit +(4*FCSDairy) + (0.5*FCSFat) + (0.5*FCSSugar))
+#create FCG groups based on 21/25 or 28/42 thresholds
+dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
+  FCSCat21 = case_when(
+  FCS <= 21 ~ "Poor", between(FCS, 21.5, 35) ~ "Borderline", FCS > 35 ~ "Acceptable"),
+  FCSCat28 = case_when(
+  FCS <= 28 ~ "Poor", between(FCS, 28.5, 42) ~ "Borderline", FCS > 42 ~ "Acceptable"))
+
+#calculate HDDS first by creating the 12 groups based on the 16 questions 
+dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
+    HDDSStapCer = case_when(HDDSStapCer == "Yes" ~ 1, TRUE ~ 0),
+    HDDSStapRoot = case_when(HDDSStapRoot  == "Yes" ~ 1, TRUE ~ 0),
+    HDDSVeg = case_when(HDDSVegOrg  == "Yes" | HDDSVegGre == "Yes" | HDDSVegOth == "Yes" ~ 1, TRUE ~ 0),
+    HDDSFruit = case_when(HDDSFruitOrg == "Yes" | HDDSFruitOth == "Yes" ~ 1, TRUE ~ 0),
+    HDDSPrMeat = case_when(HDDSPrMeatF == "Yes" | HDDSPrMeatO == "Yes" ~ 1, TRUE ~ 0),
+    HDDSPrEgg = case_when(HDDSPrEgg  == "Yes" ~ 1, TRUE ~ 0),
+    HDDSPrFish = case_when(HDDSPrFish == "Yes" ~ 1, TRUE ~ 0),
+    HDDSPulse = case_when(HDDSPulse == "Yes" ~ 1, TRUE ~ 0),
+    HDDSDairy = case_when(HDDSDairy == "Yes" ~ 1, TRUE ~ 0),
+    HDDSFat = case_when(HDDSFat == "Yes" ~ 1, TRUE ~ 0),
+    HDDSSugar = case_when(HDDSSugar == "Yes" ~ 1, TRUE ~ 0),
+    HDDSCond = case_when(HDDSCond == "Yes"~ 1, TRUE ~ 0))
+
+#Generate table of proportion of households in FCG by Adm1 and Adm2 using weights
+#Food Consumption Group 21/35 cutoff 
+FCSCat_table_wide <- dataFCSHDDSEng %>% 
+  drop_na(FCSCat21) %>%
+  group_by(ADMIN1Name, ADMIN2Name) %>%
+  count(FCSCat21, wt = WeightHH) %>%
+  mutate(perc = 100 * n / sum(n)) %>%
+  ungroup() %>% select(-n) %>%
+  spread(key = FCSCat21, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
+
+#Generate table of proportion of households by HDDS by Adm1 and Adm2 using weights
+#Food Consumption Group 21/35 cutoff 
+HDDS_table_wide <- dataFCSHDDSEng %>% 
+  drop_na(HDDS) %>%
+  group_by(ADMIN1Name, ADMIN2Name) %>%
+  count(HDDS, wt = WeightHH) %>%
+  mutate(perc = 100 * n / sum(n)) %>%
+  ungroup() %>% select(-n) %>%
+  spread(key = HDDS, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
 
 
 ```
@@ -305,9 +354,18 @@ dataFCSHDDSEng <- to_factor(dataFCSHDDSEng)
 
 Here is the R syntax file: 
 
-needs to be done
+[RBDstandardized_RsyntaxFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxFCSHDDS.R) 
+
 
 ## References / Resources
+
+1.  FCS - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+
+2.  FCS_N - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp277333.pdf
+
+3.  HDDS - http://www.fao.org/fileadmin/user_upload/wa_workshop/docs/FAO-guidelines-dietary-diversity2011.pdf
+
+
 
 
 <!--chapter:end:03-FCSHDDS.Rmd-->
@@ -358,7 +416,7 @@ library(labelled)
 library(tidyverse)
 
 #import dataset
-dataLHCSLightEng <- read_sav("dataLHCSLightEng.sav")
+dataLHCSLightEng <- read_sav("example_datasets/dataLHCSLightEng.sav")
 
 #Calculate HHS 
 dataLHCSLightEng <- to_factor(dataLHCSLightEng)
@@ -404,6 +462,7 @@ LhHCSCat_table_wide <- dataLHCSLightEng %>%
 
 
 Here is the R syntax file: 
+
 [RBDstandardized_RsyntaxLHCSIlight](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxLHCSIlight.R) 
 
 
@@ -432,14 +491,15 @@ LhCSIEmergency2_EN_why | What was the MAIN REASON you or other members in your h
 LhCSIEmergency3_EN| During the past 30 days, did anyone in your household have to: *Sell last female animals* because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)? | 1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable
 LhCSIEmergency3_EN_why | What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs? | 1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other
 
-### Standardized Module - data collection form
+## Standardized Module - Light - Essential Needs Assessment (ENA)
 
 Here is the standardized module in xlsform: [RBDstandardized_questionnaireLHCS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS.xlsx) 
 
 ### Analysis 
 
 #### Example data set
-[dataLHCSLightEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataLHCSLightEng.sav) 
+
+not availible yet
 
 Here is the example data set:
 
@@ -456,58 +516,29 @@ still need to do
 #### R Syntax
 
 ```{r, eval = F}
-library(haven)
-library(labelled)
-library(tidyverse)
+ 
+not availible yet
 
-#import dataset
-dataLHCSENAEng <- read_sav("dataLHCSENAEng.sav")
-
-#Calculate HHS 
-dataLHCSENAEng <- to_factor(dataLHCSENAEng)
-
-#create a variable to specify if the household used any of the strategies by severity 
-#stress
-dataLHCSENAEng <- dataLHCSENAEng %>% mutate(stress_coping = case_when(
-LhCSIStress1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
-LhCSIStress2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
-LhCSIStress3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
-LhCSIStress4 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
-TRUE ~ "notusedstress"))
-#Crisis
-dataLHCSLightEng <- dataLHCSLightEng %>% mutate(crisis_coping = case_when(
-LhCSICrisis1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedcrisis",
-LhCSICrisis2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedcrisis",
-LhCSICrisis3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedcrisis",
-TRUE ~ "notusedcrisis"))
-#Emergency
-dataLHCSLightEng <- dataLHCSLightEng %>% mutate(emergency_coping = case_when(
-LhCSIEmergency1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedemergency",
-LhCSIEmergency2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedemergency",
-LhCSIEmergency3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedemergency",
-TRUE ~ "noutusedemergency"))
-
-#calculate Max_coping_behaviour
-dataLHCSLightEng <- dataLHCSLightEng %>% mutate(LhCSICat = case_when(
-  emergency_coping == "usedemergency" ~ "EmergencyStrategies",
-  crisis_coping == "usedcrisis" ~ "CrisisStrategies",
-  stress_coping == "usedstress" ~ "StressStrategies",
-  TRUE ~ "NoStrategies"))
-
-#Generate table of proportion of households in CH LhCHS phases by Adm1 and Adm2 using weights
-#Livelihood Coping Strategies 
-LhHCSCat_table_wide <- dataLHCSLightEng %>% 
-  drop_na(LhCSICat) %>%
-  group_by(ADMIN1Name, ADMIN2Name) %>%
-  count(LhCSICat, wt = WeightHH) %>%
-  mutate(perc = 100 * n / sum(n)) %>%
-  ungroup() %>% select(-n) %>%
-  spread(key = LhCSICat, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
 ```
 
 
 Here is the R syntax file: 
-[RBDstandardized_RsyntaxLHCSIlight](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxLHCSIlight.R) 
+
+not avalible yet
+
+
+## References / Resources
+
+1.  Standard Livelihood Coping Strategies  - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+
+2.  ENA Livelihood Coping Strategies - 
+https://docs.wfp.org/api/documents/WFP-0000074197/download/?
+
+
+
+
+
+
 
 
 <!--chapter:end:04-LHCS.Rmd-->

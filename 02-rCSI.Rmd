@@ -20,7 +20,7 @@ Here is the standardized module in xlsform:
 ### Example data set
 
 Here is the example data set:
-[datarCSIEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataHHSEng.sav) 
+[datarCSIEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/datarCSIEng.sav) 
 
 ### SPSS Syntax
 
@@ -42,7 +42,7 @@ library(labelled)
 library(tidyverse)
 
 #import dataset
-datarCSIEng <- read_sav("datarCSIEng.sav")
+datarCSIEng <- read_sav("example_datasets/datarCSIEng.sav")
 
 #Calculate HHS 
 datarCSIEng <- to_factor(datarCSIEng)
@@ -73,4 +73,8 @@ Here is the R syntax file:
 
 
 ## References / Resources
+
+1. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp211058.pdf
+
+2. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
 
