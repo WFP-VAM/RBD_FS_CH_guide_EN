@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Household Hunger Scale | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version</title>
-  <meta name="description" content="Chapter 2 Household Hunger Scale | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
+  <title>Chapter 6 Gecodes | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version</title>
+  <meta name="description" content="Chapter 6 Gecodes | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Household Hunger Scale | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
+  <meta property="og:title" content="Chapter 6 Gecodes | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Household Hunger Scale | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
+  <meta name="twitter:title" content="Chapter 6 Gecodes | A Guide to Collection &amp; Calculation of Cadre Harmonise Food Security Indicators - beta version" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="rCSI.html"/>
+<link rel="prev" href="livelihood-coping-strategies.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -199,124 +199,128 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="HHS" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Household Hunger Scale</h1>
-<div id="standardized-questionnaire" class="section level2">
-<h2><span class="header-section-number">2.1</span> Standardized Questionnaire</h2>
+<div id="gecodes" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Gecodes</h1>
+<p>Using names as identifiers can easily lead to confusion over spelling and transliterations as well as alternative and duplicate names.</p>
+<p>As unique identifiers, P-Codes overcome the challenges of linking datasets and confirming locations.</p>
+<p>We recommend using Gecodes and Names from OCHA’s Common Operational Datasets:
+<a href="https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25" class="uri">https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25</a></p>
+<div id="a-brief-example-of-the-problem" class="section level2">
+<h2><span class="header-section-number">6.1</span> A brief example of the problem:</h2>
+<p>The geographic variables of the <em>choices</em> section of the xlsform typically look like this</p>
 <table>
-<colgroup>
-<col width="19%" />
-<col width="61%" />
-<col width="19%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th>Variable Name</th>
-<th>Question Label</th>
-<th>Answer Choices</th>
+<th>list_name</th>
+<th>name</th>
+<th>label</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>HHhSNoFood_YN</td>
-<td>In the past [4 weeks/30 days], was there ever no food to eat of any kind in your house because of lack of resources to get food?</td>
-<td>1) Yes 0) No</td>
+<td>cod_lga</td>
+<td>1</td>
+<td>ASKIRA/UBA</td>
 </tr>
 <tr class="even">
-<td>HHhSNoFood_FR</td>
-<td>How often did this happen in the past [4 weeks/30 days]?</td>
-<td>1) Rarely (1–2 times) 2) Sometimes (3–10 times) 3) Often (more than 10 times)</td>
+<td>cod_lga</td>
+<td>2</td>
+<td>BAYO</td>
 </tr>
 <tr class="odd">
-<td>HHhSBedHung_YN</td>
-<td>In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food?</td>
-<td>1) Yes 0) No</td>
+<td>cod_lga</td>
+<td>3</td>
+<td>CHIBOK</td>
 </tr>
 <tr class="even">
-<td>HHhSBedHung_FR</td>
-<td>How often did this happen in the past [4 weeks/30 days]?</td>
-<td>1) Rarely (1–2 times) 2) Sometimes (3–10 times) 3) Often (more than 10 times)</td>
-</tr>
-<tr class="odd">
-<td>HHhSNotEat_YN</td>
-<td>In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food?</td>
-<td>1) Yes 0) No</td>
-</tr>
-<tr class="even">
-<td>HHhSNotEat_FR</td>
-<td>How often did this happen in the past [4 weeks/30 days]?</td>
-<td>1) Rarely (1–2 times) 2) Sometimes (3–10 times) 3) Often (more than 10 times)</td>
+<td>cod_lga</td>
+<td>4</td>
+<td>KALABAGE</td>
 </tr>
 </tbody>
 </table>
-<p>Here is the standardized module in xlsform:</p>
-<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.xlsx">RBDstandardized_questionnaireHHS</a></p>
+<p>The geographic variables in corresponding GIS dataset look like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Shape</th>
+<th>admin2Pcode</th>
+<th>admin2RefName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Polygon</td>
+<td>NG008002</td>
+<td>Askira/Uba</td>
+</tr>
+<tr class="even">
+<td>Polygon</td>
+<td>NG008004</td>
+<td>Bayo</td>
+</tr>
+<tr class="odd">
+<td>Polygon</td>
+<td>NG008006</td>
+<td>Chibok</td>
+</tr>
+<tr class="even">
+<td>Polygon</td>
+<td>NG008015</td>
+<td>Kala/Balge</td>
+</tr>
+</tbody>
+</table>
+<p>Unfortunately, if we tried to merge the dataset and the GIS file by the name of the area, we would first have to fix the capitalization and punctuation of the names.</p>
+<p>To avoid unnecessary work, we recommend putting in the <em>Pcode</em> in the name column of the xlsform:</p>
+<table>
+<thead>
+<tr class="header">
+<th>list_name</th>
+<th>name</th>
+<th>label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cod_lga</td>
+<td>NG008002</td>
+<td>ASKIRA/UBA</td>
+</tr>
+<tr class="even">
+<td>cod_lga</td>
+<td>NG008004</td>
+<td>BAYO</td>
+</tr>
+<tr class="odd">
+<td>cod_lga</td>
+<td>NG008006</td>
+<td>CHIBOK</td>
+</tr>
+<tr class="even">
+<td>cod_lga</td>
+<td>NG008015</td>
+<td>KALABAGE</td>
+</tr>
+</tbody>
+</table>
+<p>With a common, simple variable to merge both datasets, mapping and data processing will be much easier!</p>
 </div>
-<div id="calculation-of-hhs-indicator-ch" class="section level2">
-<h2><span class="header-section-number">2.2</span> Calculation of HHS Indicator &amp; CH</h2>
-<div id="example-data-set" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Example data set</h3>
-<p>Here is the example data set:
-<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataHHSEng.sav">dataHHSEng</a></p>
+<div id="where-to-find-pcodes" class="section level2">
+<h2><span class="header-section-number">6.2</span> Where to find Pcodes</h2>
+<p>Geographic data can be found <a href="https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25" class="uri">https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25</a> and searching for the appropriate country.</p>
+<p>We recommend using the codes from the <em>admin1Pcode</em> and <em>admin2Pcode</em> columns in the <em>name</em> column of the xlsform. Using the <em>admin1RefName</em> and <em>admin2RefName</em></p>
 </div>
-<div id="spss-syntax" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> SPSS Syntax</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="HHS.html#cb1-1"></a>to be added</span></code></pre></div>
-<p>Here is the SPSS syntax file:</p>
-<p>not done yet</p>
+<div id="example-data-set-of-the-data-collection-sheet-for-nigeria" class="section level2">
+<h2><span class="header-section-number">6.3</span> Example data set of the data collection sheet for Nigeria:</h2>
+<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx">xlsformwithgeocodesexample</a></p>
 </div>
-<div id="r-syntax" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> R Syntax</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="HHS.html#cb2-1"></a><span class="kw">library</span>(haven)</span>
-<span id="cb2-2"><a href="HHS.html#cb2-2"></a><span class="kw">library</span>(labelled)</span>
-<span id="cb2-3"><a href="HHS.html#cb2-3"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb2-4"><a href="HHS.html#cb2-4"></a></span>
-<span id="cb2-5"><a href="HHS.html#cb2-5"></a><span class="co">#import dataset</span></span>
-<span id="cb2-6"><a href="HHS.html#cb2-6"></a>dataHHSEng &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;dataHHSEng.sav&quot;</span>)</span>
-<span id="cb2-7"><a href="HHS.html#cb2-7"></a></span>
-<span id="cb2-8"><a href="HHS.html#cb2-8"></a><span class="co">#Calculate HHS </span></span>
-<span id="cb2-9"><a href="HHS.html#cb2-9"></a>dataHHSEng &lt;-<span class="st"> </span><span class="kw">to_factor</span>(dataHHSEng)</span>
-<span id="cb2-10"><a href="HHS.html#cb2-10"></a></span>
-<span id="cb2-11"><a href="HHS.html#cb2-11"></a><span class="co">#Recode HHS questions into new variables with score </span></span>
-<span id="cb2-12"><a href="HHS.html#cb2-12"></a>dataHHSEng &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">HHhSNoFood_FR_r =</span> <span class="kw">case_when</span>(</span>
-<span id="cb2-13"><a href="HHS.html#cb2-13"></a>                                      HHhSNoFood_FR <span class="op">==</span><span class="st"> &quot;Rarely (1–2 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb2-14"><a href="HHS.html#cb2-14"></a>                                      HHhSNoFood_FR <span class="op">==</span><span class="st"> &quot;Sometimes (3–10 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb2-15"><a href="HHS.html#cb2-15"></a>                                      HHhSNoFood_FR <span class="op">==</span><span class="st"> &quot;Often (more than 10 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
-<span id="cb2-16"><a href="HHS.html#cb2-16"></a>                                      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>),</span>
-<span id="cb2-17"><a href="HHS.html#cb2-17"></a>                                    <span class="dt">HHhSBedHung_FR_r =</span> <span class="kw">case_when</span>(</span>
-<span id="cb2-18"><a href="HHS.html#cb2-18"></a>                                      HHhSBedHung_FR <span class="op">==</span><span class="st"> &quot;Rarely (1–2 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb2-19"><a href="HHS.html#cb2-19"></a>                                      HHhSBedHung_FR <span class="op">==</span><span class="st"> &quot;Sometimes (3–10 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb2-20"><a href="HHS.html#cb2-20"></a>                                      HHhSBedHung_FR <span class="op">==</span><span class="st"> &quot;Often (more than 10 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
-<span id="cb2-21"><a href="HHS.html#cb2-21"></a>                                      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>),</span>
-<span id="cb2-22"><a href="HHS.html#cb2-22"></a>                                    <span class="dt">HHhSNotEat_FR_r =</span> <span class="kw">case_when</span>(</span>
-<span id="cb2-23"><a href="HHS.html#cb2-23"></a>                                      HHhSNotEat_FR <span class="op">==</span><span class="st"> &quot;Rarely (1–2 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb2-24"><a href="HHS.html#cb2-24"></a>                                      HHhSNotEat_FR <span class="op">==</span><span class="st"> &quot;Sometimes (3–10 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb2-25"><a href="HHS.html#cb2-25"></a>                                      HHhSNotEat_FR <span class="op">==</span><span class="st"> &quot;Often (more than 10 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
-<span id="cb2-26"><a href="HHS.html#cb2-26"></a>                                      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>))</span>
-<span id="cb2-27"><a href="HHS.html#cb2-27"></a><span class="co">#Calculate HHS</span></span>
-<span id="cb2-28"><a href="HHS.html#cb2-28"></a>dataHHSEng &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">HHhS =</span> HHhSNoFood_FR_r <span class="op">+</span><span class="st"> </span>HHhSBedHung_FR_r <span class="op">+</span><span class="st"> </span>HHhSNotEat_FR_r)</span>
-<span id="cb2-29"><a href="HHS.html#cb2-29"></a></span>
-<span id="cb2-30"><a href="HHS.html#cb2-30"></a><span class="co">#Convert HH Scores to CH phases</span></span>
-<span id="cb2-31"><a href="HHS.html#cb2-31"></a>dataHHSEng &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">CH_HHS =</span> <span class="kw">case_when</span>(</span>
-<span id="cb2-32"><a href="HHS.html#cb2-32"></a>    HHhS <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">~</span><span class="st"> &quot;Phase1&quot;</span>,</span>
-<span id="cb2-33"><a href="HHS.html#cb2-33"></a>    HHhS <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Phase2&quot;</span>,</span>
-<span id="cb2-34"><a href="HHS.html#cb2-34"></a>    HHhS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>) <span class="op">~</span><span class="st"> &quot;Phase3&quot;</span>,</span>
-<span id="cb2-35"><a href="HHS.html#cb2-35"></a>    HHhS <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Phase4&quot;</span>,  </span>
-<span id="cb2-36"><a href="HHS.html#cb2-36"></a>    HHhS <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Phase5&quot;</span>))</span>
-<span id="cb2-37"><a href="HHS.html#cb2-37"></a></span>
-<span id="cb2-38"><a href="HHS.html#cb2-38"></a><span class="co">#Generate table of proportion of households in CH HHS phases by Adm1 and Adm2 using weights</span></span>
-<span id="cb2-39"><a href="HHS.html#cb2-39"></a>CH_HHS_table_wide &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(ADMIN1Name, ADMIN2Name) <span class="op">%&gt;%</span></span>
-<span id="cb2-40"><a href="HHS.html#cb2-40"></a><span class="st">  </span><span class="kw">drop_na</span>(CH_HHS) <span class="op">%&gt;%</span></span>
-<span id="cb2-41"><a href="HHS.html#cb2-41"></a><span class="st">  </span><span class="kw">count</span>(CH_HHS, <span class="dt">wt =</span> hh_weight) <span class="op">%&gt;%</span></span>
-<span id="cb2-42"><a href="HHS.html#cb2-42"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span></span>
-<span id="cb2-43"><a href="HHS.html#cb2-43"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n) <span class="op">%&gt;%</span></span>
-<span id="cb2-44"><a href="HHS.html#cb2-44"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> CH_HHS, <span class="dt">value =</span> perc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace</span>(., <span class="kw">is.na</span>(.), <span class="dv">0</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">1</span>)</span></code></pre></div>
-<p>Here is the R syntax file:</p>
-<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxHHS.R">RBDstandardized_RsyntaxHHS</a></p>
-</div>
-</div>
-<div id="references-resources" class="section level2">
-<h2><span class="header-section-number">2.3</span> References / Resources</h2>
+<div id="caveats" class="section level2">
+<h2><span class="header-section-number">6.4</span> 2 caveats</h2>
+<ol style="list-style-type: decimal">
+<li><p>In some countries, the boundaries in the CODS might not correspond with the latest boundaries used by the country. In this case, special development of a GIS boundary file and codes will need to be developed.</p></li>
+<li><p>Inserting the relevant pcodes in the <em>name</em> column will probably require some <em>vlookup</em> . This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated and difficult if cascading columns and the <em>choice_filter</em> option is used at the adm3, adm4 level.</p></li>
+</ol>
 
 </div>
 </div>
@@ -325,8 +329,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rCSI.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="livelihood-coping-strategies.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -357,7 +361,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-HHS.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-Geocodes.Rmd",
 "text": "Edit"
 },
 "history": {

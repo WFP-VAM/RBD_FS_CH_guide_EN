@@ -24,7 +24,7 @@
 <meta name="author" content="Research, Assesment and Monitoring (RAM) Team Regional Bureau Dakar World Food Programme rbd.vam@wfp.org" />
 
 
-<meta name="date" content="2021-01-30" />
+<meta name="date" content="2021-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="food-consumption-score-household-dietary-diversity.html"/>
-<link rel="next" href="final-words.html"/>
+<link rel="next" href="gecodes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -172,7 +172,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="livelihood-coping-strategies.html"><a href="livelihood-coping-strategies.html#analysis-1"><i class="fa fa-check"></i><b>5.2.2</b> Analysis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="6" data-path="gecodes.html"><a href="gecodes.html"><i class="fa fa-check"></i><b>6</b> Gecodes</a><ul>
+<li class="chapter" data-level="6.1" data-path="gecodes.html"><a href="gecodes.html#a-brief-example-of-the-problem"><i class="fa fa-check"></i><b>6.1</b> A brief example of the problem:</a></li>
+<li class="chapter" data-level="6.2" data-path="gecodes.html"><a href="gecodes.html#where-to-find-pcodes"><i class="fa fa-check"></i><b>6.2</b> Where to find Pcodes</a></li>
+<li class="chapter" data-level="6.3" data-path="gecodes.html"><a href="gecodes.html#example-data-set-of-the-data-collection-sheet-for-nigeria"><i class="fa fa-check"></i><b>6.3</b> Example data set of the data collection sheet for Nigeria:</a></li>
+<li class="chapter" data-level="6.4" data-path="gecodes.html"><a href="gecodes.html#caveats"><i class="fa fa-check"></i><b>6.4</b> 2 caveats</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -338,9 +343,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.2</span> Standardized Module - Light - Essential Needs Assessment (ENA)</h2>
 <table>
 <colgroup>
-<col width="16%" />
-<col width="54%" />
-<col width="29%" />
+<col width="12%" />
+<col width="40%" />
+<col width="46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -352,11 +357,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td>LhCSIStress1_EN</td>
-<td>During the past 30 days, did anyone in your household have to: Sell household assets/goods (radio, furniture, refrigerator, television, jewelry etc..) because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Sell household assets/goods (radio, furniture, refrigerator, television, jewelry etc..)</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
 <td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
 </tr>
 <tr class="even">
 <td>LhCSIStress1_EN_why</td>
+<td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
+<td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
+</tr>
+<tr class="odd">
+<td>LhCSIStress2_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Purchase food on credit or borrow food</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIStress2_EN_why</td>
+<td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
+<td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
+</tr>
+<tr class="odd">
+<td>LhCSIStress3_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>spend savings</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIStress3_EN_why</td>
+<td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
+<td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
+</tr>
+<tr class="odd">
+<td>LhCSIStress4_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Borrow money</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIStress4_EN_why</td>
+<td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
+<td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
+</tr>
+<tr class="odd">
+<td>LhCSICrisis1_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>sell productive assets or means of transport (sewing machine, wheelbarrow, bicycle, car, etc..)</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSICrisis1_EN_why</td>
+<td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
+<td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
+</tr>
+<tr class="odd">
+<td>LhCSICrisis2_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>consume seed stocks that were to be held/saved for the next season</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSICrisis2_EN_why</td>
+<td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
+<td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
+</tr>
+<tr class="odd">
+<td>LhCSICrisis3_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Withdraw children from school</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSICrisis3_EN_why</td>
+<td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
+<td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
+</tr>
+<tr class="odd">
+<td>LhCSIEmergency1_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Sell house or land because there was not enough resources (food, cash, else)</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIEmergency1_EN_why</td>
+<td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
+<td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
+</tr>
+<tr class="odd">
+<td>LhCSIEmergency2_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Beg</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIEmergency2_EN_why</td>
+<td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
+<td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
+</tr>
+<tr class="odd">
+<td>LhCSIEmergency3_EN</td>
+<td>During the past 30 days, did anyone in your household have to: <em>Sell last female animals</em> because there was not enough resources (food, cash, else) to meet essential needs (e.g. adequate shelter, education services, health services, food, etc)?</td>
+<td>1) No, because I did not face a shortage of food 2) No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it 3) Yes 4) Not applicable</td>
+</tr>
+<tr class="even">
+<td>LhCSIEmergency3_EN_why</td>
 <td>What was the MAIN REASON you or other members in your household adopted these coping strategies to access essential needs?</td>
 <td>1)To access food 2)To access education services/commodities (e.g. uniforms, books) 3)To access health services/medicines 4)To buy and repair cloths or shoes 5)To access adequate shelter 6)To access water/sanitation facilities 7)To access essential dwelling services (electricity, energy, waste disposal…) 8)To pay for existing debts 9)Other</td>
 </tr>
@@ -385,14 +480,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="livelihood-coping-strategies.html#cb8-3"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb8-4"><a href="livelihood-coping-strategies.html#cb8-4"></a></span>
 <span id="cb8-5"><a href="livelihood-coping-strategies.html#cb8-5"></a><span class="co">#import dataset</span></span>
-<span id="cb8-6"><a href="livelihood-coping-strategies.html#cb8-6"></a>dataLHCSLightEng &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;dataLHCSLightEng.sav&quot;</span>)</span>
+<span id="cb8-6"><a href="livelihood-coping-strategies.html#cb8-6"></a>dataLHCSENAEng &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;dataLHCSENAEng.sav&quot;</span>)</span>
 <span id="cb8-7"><a href="livelihood-coping-strategies.html#cb8-7"></a></span>
 <span id="cb8-8"><a href="livelihood-coping-strategies.html#cb8-8"></a><span class="co">#Calculate HHS </span></span>
-<span id="cb8-9"><a href="livelihood-coping-strategies.html#cb8-9"></a>dataLHCSLightEng &lt;-<span class="st"> </span><span class="kw">to_factor</span>(dataLHCSLightEng)</span>
+<span id="cb8-9"><a href="livelihood-coping-strategies.html#cb8-9"></a>dataLHCSENAEng &lt;-<span class="st"> </span><span class="kw">to_factor</span>(dataLHCSENAEng)</span>
 <span id="cb8-10"><a href="livelihood-coping-strategies.html#cb8-10"></a></span>
 <span id="cb8-11"><a href="livelihood-coping-strategies.html#cb8-11"></a><span class="co">#create a variable to specify if the household used any of the strategies by severity </span></span>
 <span id="cb8-12"><a href="livelihood-coping-strategies.html#cb8-12"></a><span class="co">#stress</span></span>
-<span id="cb8-13"><a href="livelihood-coping-strategies.html#cb8-13"></a>dataLHCSLightEng &lt;-<span class="st"> </span>dataLHCSLightEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">stress_coping =</span> <span class="kw">case_when</span>(</span>
+<span id="cb8-13"><a href="livelihood-coping-strategies.html#cb8-13"></a>dataLHCSENAEng &lt;-<span class="st"> </span>dataLHCSENAEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">stress_coping =</span> <span class="kw">case_when</span>(</span>
 <span id="cb8-14"><a href="livelihood-coping-strategies.html#cb8-14"></a>LhCSIStress1 <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
 <span id="cb8-15"><a href="livelihood-coping-strategies.html#cb8-15"></a>LhCSIStress2 <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
 <span id="cb8-16"><a href="livelihood-coping-strategies.html#cb8-16"></a>LhCSIStress3 <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it&quot;</span>) <span class="op">~</span><span class="st"> &quot;usedstress&quot;</span>,</span>
@@ -440,7 +535,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="food-consumption-score-household-dietary-diversity.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="gecodes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
