@@ -24,7 +24,7 @@
 <meta name="author" content="Research, Assesment and Monitoring (RAM) Team Regional Bureau Dakar World Food Programme rbd.vam@wfp.org" />
 
 
-<meta name="date" content="2021-01-31" />
+<meta name="date" content="2021-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,8 +136,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Purpose &amp; How to use this Guide</a></li>
 <li class="chapter" data-level="2" data-path="HHS.html"><a href="HHS.html"><i class="fa fa-check"></i><b>2</b> Household Hunger Scale</a><ul>
-<li class="chapter" data-level="2.1" data-path="HHS.html"><a href="HHS.html#standardized-questionnaire"><i class="fa fa-check"></i><b>2.1</b> Standardized Questionnaire</a></li>
-<li class="chapter" data-level="2.2" data-path="HHS.html"><a href="HHS.html#calculation-of-hhs-indicator-ch"><i class="fa fa-check"></i><b>2.2</b> Calculation of HHS Indicator &amp; CH</a><ul>
+<li class="chapter" data-level="2.1" data-path="HHS.html"><a href="HHS.html#standardized-questionnaire"><i class="fa fa-check"></i><b>2.1</b> Standardized Questionnaire</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="HHS.html"><a href="HHS.html#paper-version-of-questionnaire"><i class="fa fa-check"></i><b>2.1.1</b> Paper Version of Questionnaire</a></li>
+<li class="chapter" data-level="2.1.2" data-path="HHS.html"><a href="HHS.html#electronic-version-of-questionnaire"><i class="fa fa-check"></i><b>2.1.2</b> Electronic Version of Questionnaire</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="HHS.html"><a href="HHS.html#calculation-of-hhhs-indicators-ch-hhhs-indicators"><i class="fa fa-check"></i><b>2.2</b> Calculation of HHhS Indicators &amp; CH HHhs indicators</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="HHS.html"><a href="HHS.html#example-data-set"><i class="fa fa-check"></i><b>2.2.1</b> Example data set</a></li>
 <li class="chapter" data-level="2.2.2" data-path="HHS.html"><a href="HHS.html#spss-syntax"><i class="fa fa-check"></i><b>2.2.2</b> SPSS Syntax</a></li>
 <li class="chapter" data-level="2.2.3" data-path="HHS.html"><a href="HHS.html#r-syntax"><i class="fa fa-check"></i><b>2.2.3</b> R Syntax</a></li>
@@ -250,11 +253,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Here is the standardized module in xlsform:</p>
-<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.xlsx">RBDstandardized_questionnaireHHS</a></p>
+<div id="paper-version-of-questionnaire" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Paper Version of Questionnaire</h3>
+<p>Here is the standardized module in word format:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.xlsx">RBDstandardized_questionnaireHHS</a></p>
 </div>
-<div id="calculation-of-hhs-indicator-ch" class="section level2">
-<h2><span class="header-section-number">2.2</span> Calculation of HHS Indicator &amp; CH</h2>
+<div id="electronic-version-of-questionnaire" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Electronic Version of Questionnaire</h3>
+<p>Here is the standardized module in xlsform:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.docx">RBDstandardized_questionnaireHHS</a></p>
+</div>
+</div>
+<div id="calculation-of-hhhs-indicators-ch-hhhs-indicators" class="section level2">
+<h2><span class="header-section-number">2.2</span> Calculation of HHhS Indicators &amp; CH HHhs indicators</h2>
 <div id="example-data-set" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Example data set</h3>
 <p>Here is the example data set:
@@ -262,9 +273,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="spss-syntax" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> SPSS Syntax</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="HHS.html#cb1-1"></a>to be added</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="HHS.html#cb1-1"></a>GET  FILE=<span class="st">&#39;\dataHHSEng.sav&#39;</span>.</span>
+<span id="cb1-2"><a href="HHS.html#cb1-2"></a>DATASET NAME DataSet1 WINDOW=FRONT.</span>
+<span id="cb1-3"><a href="HHS.html#cb1-3"></a></span>
+<span id="cb1-4"><a href="HHS.html#cb1-4"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>recode the frequency questions to scores</span>
+<span id="cb1-5"><a href="HHS.html#cb1-5"></a></span>
+<span id="cb1-6"><a href="HHS.html#cb1-6"></a>Recode HHhSNoFood_FR HHhSBedHung_FR <span class="kw">HHhSNotEat_FR</span> (<span class="dv">1</span> =<span class="st"> </span><span class="dv">1</span>) (<span class="dv">2</span>=<span class="dv">1</span>) (<span class="dv">3</span>=<span class="dv">2</span>) (<span class="dt">ELSE=</span><span class="dv">0</span>) INTO HHhSNoFood_FR_r HHhSBedHung_FR_r HHhSNotEat_FR_r.</span>
+<span id="cb1-7"><a href="HHS.html#cb1-7"></a></span>
+<span id="cb1-8"><a href="HHS.html#cb1-8"></a>Variable labels HHhSNoFood_FR_r <span class="st">&quot;In the past [4 weeks/30 days], was there ever no food to eat of any kind in your house because of lack of resources to get food? - recoded&quot;</span></span>
+<span id="cb1-9"><a href="HHS.html#cb1-9"></a>HHhSBedHung_FR_r <span class="st">&quot;In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? - recoded&quot;</span></span>
+<span id="cb1-10"><a href="HHS.html#cb1-10"></a>HHhSNotEat_FR_r <span class="st">&quot;In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? - recoded&quot;</span>.</span>
+<span id="cb1-11"><a href="HHS.html#cb1-11"></a></span>
+<span id="cb1-12"><a href="HHS.html#cb1-12"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>sum the recoded questions to calculate the HHS</span>
+<span id="cb1-13"><a href="HHS.html#cb1-13"></a></span>
+<span id="cb1-14"><a href="HHS.html#cb1-14"></a>Compute HHhS =<span class="st"> </span>HHhSNoFood_FR_r <span class="op">+</span><span class="st"> </span>HHhSBedHung_FR_r <span class="op">+</span><span class="st"> </span>HHhSNotEat_FR_r.</span>
+<span id="cb1-15"><a href="HHS.html#cb1-15"></a>variable labels HHhS <span class="st">&quot;Household Hunger Scale&quot;</span>.</span>
+<span id="cb1-16"><a href="HHS.html#cb1-16"></a></span>
+<span id="cb1-17"><a href="HHS.html#cb1-17"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>each household should have an HHhS score between <span class="dv">0</span> <span class="op">-</span><span class="st"> </span><span class="fl">6.</span></span>
+<span id="cb1-18"><a href="HHS.html#cb1-18"></a></span>
+<span id="cb1-19"><a href="HHS.html#cb1-19"></a>FREQUENCIES VARIABLES =<span class="st"> </span>HHhS</span>
+<span id="cb1-20"><a href="HHS.html#cb1-20"></a><span class="op">/</span>STATISTICS=MEAN MEDIAN MINIMUM MAXIMUM</span>
+<span id="cb1-21"><a href="HHS.html#cb1-21"></a><span class="op">/</span>ORDER=ANALYSIS.</span>
+<span id="cb1-22"><a href="HHS.html#cb1-22"></a></span>
+<span id="cb1-23"><a href="HHS.html#cb1-23"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>Create Categorical HHhS</span>
+<span id="cb1-24"><a href="HHS.html#cb1-24"></a></span>
+<span id="cb1-25"><a href="HHS.html#cb1-25"></a>RECODE <span class="kw">HHhS</span> (<span class="dv">0</span> thru <span class="dv">1</span>=<span class="dv">1</span>) (<span class="dv">2</span> thru <span class="dv">3</span>=<span class="dv">2</span>) (<span class="dv">4</span> thru <span class="dt">Highest=</span><span class="dv">3</span>) INTO HHhSCat.</span>
+<span id="cb1-26"><a href="HHS.html#cb1-26"></a>variable labels HHhSCat <span class="st">&quot;Household Hunger Score Categories&quot;</span>.</span>
+<span id="cb1-27"><a href="HHS.html#cb1-27"></a>value labels HHhSCat </span>
+<span id="cb1-28"><a href="HHS.html#cb1-28"></a><span class="dv">1</span> <span class="st">`</span><span class="dt">No or little hunger in the household</span><span class="st">`</span></span>
+<span id="cb1-29"><a href="HHS.html#cb1-29"></a><span class="dv">2</span> <span class="st">`</span><span class="dt">Moderate hunger in the household</span><span class="st">`</span></span>
+<span id="cb1-30"><a href="HHS.html#cb1-30"></a><span class="dv">3</span> <span class="st">`</span><span class="dt">Severe hunger in the household</span><span class="st">`</span>.</span>
+<span id="cb1-31"><a href="HHS.html#cb1-31"></a></span>
+<span id="cb1-32"><a href="HHS.html#cb1-32"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>Create HHhS Cadre Harmonise Categories</span>
+<span id="cb1-33"><a href="HHS.html#cb1-33"></a></span>
+<span id="cb1-34"><a href="HHS.html#cb1-34"></a>RECODE <span class="kw">HHS</span> (<span class="dv">0</span>=<span class="dv">1</span>) (<span class="dv">1</span>=<span class="dv">2</span>) (<span class="dv">2</span> thru <span class="dv">3</span>=<span class="dv">3</span>) (<span class="dv">4</span>=<span class="dv">4</span>) (<span class="dv">5</span>=<span class="dv">5</span>) INTO HHhS_CH.</span>
+<span id="cb1-35"><a href="HHS.html#cb1-35"></a>variable labels HHhS_CH <span class="st">&quot;Household Hunger Score Categories - Cadre Harmonise&quot;</span>.</span>
+<span id="cb1-36"><a href="HHS.html#cb1-36"></a>value labels HHhS_CH</span>
+<span id="cb1-37"><a href="HHS.html#cb1-37"></a><span class="dv">1</span> <span class="st">`</span><span class="dt">Phase1</span><span class="st">`</span></span>
+<span id="cb1-38"><a href="HHS.html#cb1-38"></a><span class="dv">2</span> <span class="st">`</span><span class="dt">Phase2</span><span class="st">`</span></span>
+<span id="cb1-39"><a href="HHS.html#cb1-39"></a><span class="dv">3</span> <span class="st">`</span><span class="dt">Phase3</span><span class="st">`</span></span>
+<span id="cb1-40"><a href="HHS.html#cb1-40"></a><span class="dv">4</span> <span class="st">`</span><span class="dt">Phase4</span><span class="st">`</span></span>
+<span id="cb1-41"><a href="HHS.html#cb1-41"></a><span class="dv">5</span> <span class="st">`</span><span class="dt">Phase5</span><span class="st">`</span>.</span>
+<span id="cb1-42"><a href="HHS.html#cb1-42"></a></span>
+<span id="cb1-43"><a href="HHS.html#cb1-43"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>Generate table of proportion of households <span class="cf">in</span> CH HHS phases by Adm1 and Adm2 using weights</span>
+<span id="cb1-44"><a href="HHS.html#cb1-44"></a></span>
+<span id="cb1-45"><a href="HHS.html#cb1-45"></a>WEIGHT BY WeightHH.</span>
+<span id="cb1-46"><a href="HHS.html#cb1-46"></a></span>
+<span id="cb1-47"><a href="HHS.html#cb1-47"></a>CROSSTABS</span>
+<span id="cb1-48"><a href="HHS.html#cb1-48"></a>  <span class="op">/</span>TABLES=ADMIN2Name BY HHhS_CH BY ADMIN1Name</span>
+<span id="cb1-49"><a href="HHS.html#cb1-49"></a>  <span class="op">/</span>FORMAT=AVALUE TABLES</span>
+<span id="cb1-50"><a href="HHS.html#cb1-50"></a>  <span class="op">/</span>CELLS=ROW </span>
+<span id="cb1-51"><a href="HHS.html#cb1-51"></a>  <span class="op">/</span>COUNT ROUND CELL.</span></code></pre></div>
 <p>Here is the SPSS syntax file:</p>
-<p>not done yet</p>
+<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxHHS.sps">RBDstandardized_SPSSsyntaxHHS</a></p>
 </div>
 <div id="r-syntax" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> R Syntax</h3>
@@ -294,24 +355,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-24"><a href="HHS.html#cb2-24"></a>                                      HHhSNotEat_FR <span class="op">==</span><span class="st"> &quot;Sometimes (3–10 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
 <span id="cb2-25"><a href="HHS.html#cb2-25"></a>                                      HHhSNotEat_FR <span class="op">==</span><span class="st"> &quot;Often (more than 10 times)&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
 <span id="cb2-26"><a href="HHS.html#cb2-26"></a>                                      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>))</span>
-<span id="cb2-27"><a href="HHS.html#cb2-27"></a><span class="co">#Calculate HHS</span></span>
+<span id="cb2-27"><a href="HHS.html#cb2-27"></a><span class="co"># Calculate HHhS score</span></span>
 <span id="cb2-28"><a href="HHS.html#cb2-28"></a>dataHHSEng &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">HHhS =</span> HHhSNoFood_FR_r <span class="op">+</span><span class="st"> </span>HHhSBedHung_FR_r <span class="op">+</span><span class="st"> </span>HHhSNotEat_FR_r)</span>
-<span id="cb2-29"><a href="HHS.html#cb2-29"></a></span>
-<span id="cb2-30"><a href="HHS.html#cb2-30"></a><span class="co">#Convert HH Scores to CH phases</span></span>
-<span id="cb2-31"><a href="HHS.html#cb2-31"></a>dataHHSEng &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">CH_HHS =</span> <span class="kw">case_when</span>(</span>
-<span id="cb2-32"><a href="HHS.html#cb2-32"></a>    HHhS <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">~</span><span class="st"> &quot;Phase1&quot;</span>,</span>
-<span id="cb2-33"><a href="HHS.html#cb2-33"></a>    HHhS <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Phase2&quot;</span>,</span>
-<span id="cb2-34"><a href="HHS.html#cb2-34"></a>    HHhS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>) <span class="op">~</span><span class="st"> &quot;Phase3&quot;</span>,</span>
-<span id="cb2-35"><a href="HHS.html#cb2-35"></a>    HHhS <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Phase4&quot;</span>,  </span>
-<span id="cb2-36"><a href="HHS.html#cb2-36"></a>    HHhS <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Phase5&quot;</span>))</span>
-<span id="cb2-37"><a href="HHS.html#cb2-37"></a></span>
-<span id="cb2-38"><a href="HHS.html#cb2-38"></a><span class="co">#Generate table of proportion of households in CH HHS phases by Adm1 and Adm2 using weights</span></span>
-<span id="cb2-39"><a href="HHS.html#cb2-39"></a>CH_HHS_table_wide &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(ADMIN1Name, ADMIN2Name) <span class="op">%&gt;%</span></span>
-<span id="cb2-40"><a href="HHS.html#cb2-40"></a><span class="st">  </span><span class="kw">drop_na</span>(CH_HHS) <span class="op">%&gt;%</span></span>
-<span id="cb2-41"><a href="HHS.html#cb2-41"></a><span class="st">  </span><span class="kw">count</span>(CH_HHS, <span class="dt">wt =</span> hh_weight) <span class="op">%&gt;%</span></span>
-<span id="cb2-42"><a href="HHS.html#cb2-42"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span></span>
-<span id="cb2-43"><a href="HHS.html#cb2-43"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n) <span class="op">%&gt;%</span></span>
-<span id="cb2-44"><a href="HHS.html#cb2-44"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> CH_HHS, <span class="dt">value =</span> perc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace</span>(., <span class="kw">is.na</span>(.), <span class="dv">0</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">1</span>)</span></code></pre></div>
+<span id="cb2-29"><a href="HHS.html#cb2-29"></a><span class="kw">var_label</span>(dataHHSEng<span class="op">$</span>HHhS) &lt;-<span class="st"> &quot;Household Hunger Scale&quot;</span></span>
+<span id="cb2-30"><a href="HHS.html#cb2-30"></a></span>
+<span id="cb2-31"><a href="HHS.html#cb2-31"></a><span class="co">#each household should have an HHS score between 0 - 6</span></span>
+<span id="cb2-32"><a href="HHS.html#cb2-32"></a><span class="kw">summary</span>(dataHHSEng<span class="op">$</span>HHhS)</span>
+<span id="cb2-33"><a href="HHS.html#cb2-33"></a></span>
+<span id="cb2-34"><a href="HHS.html#cb2-34"></a><span class="co"># Create Categorical HHS</span></span>
+<span id="cb2-35"><a href="HHS.html#cb2-35"></a>dataHHSEng &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">HHhSCat =</span> <span class="kw">case_when</span>(</span>
+<span id="cb2-36"><a href="HHS.html#cb2-36"></a>    HHhS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="op">~</span><span class="st"> &quot;No or little hunger in the household&quot;</span>,</span>
+<span id="cb2-37"><a href="HHS.html#cb2-37"></a>    HHhS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>) <span class="op">~</span><span class="st"> &quot;Moderate hunger in the household&quot;</span>,</span>
+<span id="cb2-38"><a href="HHS.html#cb2-38"></a>    HHhS <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Severe hunger in the household&quot;</span> </span>
+<span id="cb2-39"><a href="HHS.html#cb2-39"></a>    ))</span>
+<span id="cb2-40"><a href="HHS.html#cb2-40"></a><span class="kw">var_label</span>(dataHHSEng<span class="op">$</span>HHhSCat) &lt;-<span class="st"> &quot;Household Hunger Score Categories&quot;</span></span>
+<span id="cb2-41"><a href="HHS.html#cb2-41"></a></span>
+<span id="cb2-42"><a href="HHS.html#cb2-42"></a><span class="co">#Convert HH Scores to CH phases</span></span>
+<span id="cb2-43"><a href="HHS.html#cb2-43"></a>dataHHSEng &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">HHhS_CH =</span> <span class="kw">case_when</span>(</span>
+<span id="cb2-44"><a href="HHS.html#cb2-44"></a>    HHhS <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">~</span><span class="st"> &quot;Phase1&quot;</span>,</span>
+<span id="cb2-45"><a href="HHS.html#cb2-45"></a>    HHhS <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Phase2&quot;</span>,</span>
+<span id="cb2-46"><a href="HHS.html#cb2-46"></a>    HHhS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>) <span class="op">~</span><span class="st"> &quot;Phase3&quot;</span>,</span>
+<span id="cb2-47"><a href="HHS.html#cb2-47"></a>    HHhS <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Phase4&quot;</span>,  </span>
+<span id="cb2-48"><a href="HHS.html#cb2-48"></a>    HHhS <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Phase5&quot;</span>))</span>
+<span id="cb2-49"><a href="HHS.html#cb2-49"></a><span class="kw">var_label</span>(dataHHSEng<span class="op">$</span>HHhS_CH) &lt;-<span class="st"> &quot;Household Hunger Score Categories - Cadre Harmonise&quot;</span></span>
+<span id="cb2-50"><a href="HHS.html#cb2-50"></a></span>
+<span id="cb2-51"><a href="HHS.html#cb2-51"></a><span class="co">#Generate table of proportion of households in CH HHS phases by Adm1 and Adm2 using weights</span></span>
+<span id="cb2-52"><a href="HHS.html#cb2-52"></a>CH_HHhS_table_wide &lt;-<span class="st"> </span>dataHHSEng <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(ADMIN1Name, ADMIN2Name) <span class="op">%&gt;%</span></span>
+<span id="cb2-53"><a href="HHS.html#cb2-53"></a><span class="st">  </span><span class="kw">drop_na</span>(HHhS_CH) <span class="op">%&gt;%</span></span>
+<span id="cb2-54"><a href="HHS.html#cb2-54"></a><span class="st">  </span><span class="kw">count</span>(HHhS_CH, <span class="dt">wt =</span> WeightHH) <span class="op">%&gt;%</span></span>
+<span id="cb2-55"><a href="HHS.html#cb2-55"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span></span>
+<span id="cb2-56"><a href="HHS.html#cb2-56"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n) <span class="op">%&gt;%</span></span>
+<span id="cb2-57"><a href="HHS.html#cb2-57"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> HHhS_CH, <span class="dt">value =</span> perc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace</span>(., <span class="kw">is.na</span>(.), <span class="dv">0</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">1</span>)</span></code></pre></div>
 <p>Here is the R syntax file:</p>
 <p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxHHS.R">RBDstandardized_RsyntaxHHS</a></p>
 </div>
