@@ -43,3 +43,6 @@ example-of-data-quality-report
 paper-version-of-questionnaire
 electronic-version-of-questionnaire
 calculation-of-hhhs-indicators-ch-hhhs-indicators
+household-hunger-scale
+paper-version-of-questionnaire-1
+electronic-version-of-questionnaire-1

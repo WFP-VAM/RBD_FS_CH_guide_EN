@@ -10,9 +10,16 @@ rCSIMealSize | In the past 7 days, how many days has your household had to: *Lim
 rCSIMealAdult  | In the past 7 days, how many days has your household had to: *Restrict consumption by adults in order for small children to eat* because you did not have enough food or money to buy food?
 rCSIMealNb | In the past 7 days, how many days has your household had to: *Reduce the number of meals eaten per day* because you did not have enough food or money to buy food?
 
-Here is the standardized module in xlsform:
 
-[RBDstandardized_questionnaireCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnairerCSI.xlsx) 
+### Paper Version of Questionnaire
+
+Here is the standardized module in word format:
+[RBDstandardized_questionnairerCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnairerCSI.docx) 
+
+### Electronic Version of Questionnaire
+
+Here is the standardized module in xlsform:
+[RBDstandardized_questionnairerCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnairerCSI.xslx) 
 
 
 ## Calculation of rCSI Indicator & CH 
@@ -26,13 +33,46 @@ Here is the example data set:
 
 ```{r, eval = F}
 
-to be added
+GET  FILE='datarCSIEng.sav'.
+DATASET NAME DataSet1 WINDOW=FRONT.
+
+*** caculate rCSI
+
+compute rCSI = sum(rCSILessQlty,rCSIBorrow*2,rCSIMealSize,rCSIMealAdult*3,rCSIMealNb).
+Variable labels rCSI "rCSI".
+
+*** each household should have a rCSI between 0 - 56
+
+FREQUENCIES VARIABLES =  rCSI
+/STATISTICS=MEAN MEDIAN MINIMUM MAXIMUM
+/ORDER=ANALYSIS.
+
+*** Create rCSI Cadre Harmonise Categories
+
+RECODE rCSI (0 thru 3=1) (4 thru 18=2) (19 thru 56=3) INTO rCSI_CH.
+variable labels rCSI_CH "rCSI categories - Cadre Harmonise ".
+value labels rCSI_CH
+1 `Phase1`
+2 `Phase2`
+3 `Phase3`.
+
+*** Generate table of proportion of households in CH HHhS phases by Adm1 and Adm2 using weights
+
+WEIGHT BY WeightHH.
+
+CROSSTABS
+  /TABLES=ADMIN2Name BY rCSI_CH BY ADMIN1Name
+  /FORMAT=AVALUE TABLES
+  /CELLS=ROW 
+  /COUNT ROUND CELL.
+
 
 ```
 
 Here is the SPSS syntax file: 
 
-not done yet
+[RBDstandardized_SPSSsyntaxrCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxrCSI.sps) 
+
 
 ### R Syntax
 
@@ -49,23 +89,27 @@ datarCSIEng <- to_factor(datarCSIEng)
 
 #calculate rCSI Score
 datarCSIEng <- datarCSIEng %>% mutate(rCSI = rCSILessQlty  + (2 * rCSIBorrow) + rCSIMealSize + (3 * rCSIMealAdult) + rCSIMealNb)
+var_label(datarCSIEng$rCSI) <- "rCSI"
 
-#convert rCSI Score into thresholds 
-datarCSIEng <- datarCSIEng %>% mutate(CH_rCSI = case_when(
+#each household should have a rCSI between 0 - 56
+
+summary(datarCSIEng$rCSI)
+
+#Create rCSI Cadre Harmonise Categories
+datarCSIEng <- datarCSIEng %>% mutate(rCSI_CH = case_when(
   rCSI <= 3 ~ "Phase1", 
   between(rCSI,4,18) ~ "Phase2",       
   rCSI >= 19 ~ "Phase3"))
+var_label(datarCSIEng$rCSI_CH) <- "rCSI categories - Cadre Harmonise "
 
 #Generate table of proportion of households in CH rCSI phases by Adm1 and Adm2 using weights
 CH_rCSI_table_wide <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
-  drop_na(CH_rCSI) %>%
-  count(CH_rCSI, wt = hh_weight) %>%
+  drop_na(rCSI_CH) %>%
+  count(rCSI_CH, wt = WeightHH) %>%
   mutate(perc = 100 * n / sum(n)) %>%
   ungroup() %>% select(-n) %>%
-  spread(key = CH_rCSI, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
+  spread(key = rCSI_CH, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
 ```
-
-
 
 Here is the R syntax file: 
 

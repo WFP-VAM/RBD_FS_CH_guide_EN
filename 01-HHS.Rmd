@@ -1,4 +1,4 @@
-# Household Hunger Scale {#HHS}
+# Household Hunger Scale 
 
 ## Standardized Questionnaire
 
@@ -32,7 +32,7 @@ Here is the example data set:
 
 ```{r, eval = F}
 
-GET  FILE='\dataHHSEng.sav'.
+GET  FILE='dataHHSEng.sav'.
 DATASET NAME DataSet1 WINDOW=FRONT.
 
 *** recode the frequency questions to scores

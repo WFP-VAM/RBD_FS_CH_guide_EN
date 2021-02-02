@@ -1,6 +1,6 @@
 
 
-GET  FILE='\dataHHSEng.sav'.
+GET  FILE='dataHHSEng.sav'.
 DATASET NAME DataSet1 WINDOW=FRONT.
 
 *** recode the frequency questions to scores
