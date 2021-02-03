@@ -10,7 +10,7 @@ Here is the standardized module in word format:
 ### Electronic Version of Questionnaire
 
 Here is the standardized module in xlsform:
-[RBDstandardized_questionnaireFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.xslx) 
+[RBDstandardized_questionnaireFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.xlsx) 
 
 
 ## Calculation of FCS & HDDS Indicators  
