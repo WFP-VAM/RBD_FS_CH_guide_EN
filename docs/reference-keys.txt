@@ -46,3 +46,5 @@ calculation-of-hhhs-indicators-ch-hhhs-indicators
 household-hunger-scale
 paper-version-of-questionnaire-1
 electronic-version-of-questionnaire-1
+paper-version-of-questionnaire-2
+electronic-version-of-questionnaire-2
