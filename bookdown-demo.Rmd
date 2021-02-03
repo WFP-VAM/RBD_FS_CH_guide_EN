@@ -577,14 +577,16 @@ Here is the standardized module in word format:
 
 Here is the standardized module in xlsform:
 
-[RBDstandardized_questionnaireLHCS_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_ENA.xlsx) 
+[RBDstandardized_questionnaireLHCSI_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCSI_ENA.xlsx) 
+
 ### Analysis 
 
 #### Example data set
 
-not availible yet
-
 Here is the example data set:
+
+not available yet
+
 
 #### SPSS Syntax
 
@@ -600,14 +602,14 @@ still need to do
 
 ```{r, eval = F}
  
-not availible yet
+not available yet
 
 ```
 
 
 Here is the R syntax file: 
 
-not avalible yet
+not available yet
 
 
 ## References / Resources
