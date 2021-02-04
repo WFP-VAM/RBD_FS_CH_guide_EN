@@ -24,7 +24,7 @@
 <meta name="author" content="Research, Assesment and Monitoring (RAM) Team Regional Bureau Dakar World Food Programme rbd.vam@wfp.org" />
 
 
-<meta name="date" content="2021-02-03" />
+<meta name="date" content="2021-02-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -131,7 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A living document</a></li>
+<li><a href="./"></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Purpose &amp; How to use this Guide</a></li>
@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.1" data-path="household-hunger-scale.html"><a href="household-hunger-scale.html#paper-version-of-questionnaire"><i class="fa fa-check"></i><b>2.1.1</b> Paper Version of Questionnaire</a></li>
 <li class="chapter" data-level="2.1.2" data-path="household-hunger-scale.html"><a href="household-hunger-scale.html#electronic-version-of-questionnaire"><i class="fa fa-check"></i><b>2.1.2</b> Electronic Version of Questionnaire</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="household-hunger-scale.html"><a href="household-hunger-scale.html#calculation-of-hhhs-indicators-ch-hhhs-indicators"><i class="fa fa-check"></i><b>2.2</b> Calculation of HHhS Indicators &amp; CH HHhs indicators</a><ul>
+<li class="chapter" data-level="2.2" data-path="household-hunger-scale.html"><a href="household-hunger-scale.html#calculation-of-household-hunger-scale-indicators-cadre-harmonise-phasing"><i class="fa fa-check"></i><b>2.2</b> Calculation of Household Hunger Scale Indicators &amp; Cadre Harmonise Phasing</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="household-hunger-scale.html"><a href="household-hunger-scale.html#example-data-set"><i class="fa fa-check"></i><b>2.2.1</b> Example data set</a></li>
 <li class="chapter" data-level="2.2.2" data-path="household-hunger-scale.html"><a href="household-hunger-scale.html#spss-syntax"><i class="fa fa-check"></i><b>2.2.2</b> SPSS Syntax</a></li>
 <li class="chapter" data-level="2.2.3" data-path="household-hunger-scale.html"><a href="household-hunger-scale.html#r-syntax"><i class="fa fa-check"></i><b>2.2.3</b> R Syntax</a></li>
@@ -269,12 +269,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="electronic-version-of-questionnaire" class="section level3">
 <h3><span class="header-section-number">2.1.2</span> Electronic Version of Questionnaire</h3>
-<p>Here is the standardized module in xlsform:
+<p>Here is the standardized module in xlsform format:
 <a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.docx">RBDstandardized_questionnaireHHS</a></p>
 </div>
 </div>
-<div id="calculation-of-hhhs-indicators-ch-hhhs-indicators" class="section level2">
-<h2><span class="header-section-number">2.2</span> Calculation of HHhS Indicators &amp; CH HHhs indicators</h2>
+<div id="calculation-of-household-hunger-scale-indicators-cadre-harmonise-phasing" class="section level2">
+<h2><span class="header-section-number">2.2</span> Calculation of Household Hunger Scale Indicators &amp; Cadre Harmonise Phasing</h2>
 <div id="example-data-set" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Example data set</h3>
 <p>Here is the example data set:
@@ -285,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="household-hunger-scale.html#cb1-1"></a>GET  FILE=<span class="st">&#39;dataHHSEng.sav&#39;</span>.</span>
 <span id="cb1-2"><a href="household-hunger-scale.html#cb1-2"></a>DATASET NAME DataSet1 WINDOW=FRONT.</span>
 <span id="cb1-3"><a href="household-hunger-scale.html#cb1-3"></a></span>
-<span id="cb1-4"><a href="household-hunger-scale.html#cb1-4"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>recode the frequency questions to scores</span>
+<span id="cb1-4"><a href="household-hunger-scale.html#cb1-4"></a><span class="op">**</span><span class="st"> </span>recode the frequency questions to scores</span>
 <span id="cb1-5"><a href="household-hunger-scale.html#cb1-5"></a></span>
 <span id="cb1-6"><a href="household-hunger-scale.html#cb1-6"></a>Recode HHhSNoFood_FR HHhSBedHung_FR <span class="kw">HHhSNotEat_FR</span> (<span class="dv">1</span> =<span class="st"> </span><span class="dv">1</span>) (<span class="dv">2</span>=<span class="dv">1</span>) (<span class="dv">3</span>=<span class="dv">2</span>) (<span class="dt">ELSE=</span><span class="dv">0</span>) INTO HHhSNoFood_FR_r HHhSBedHung_FR_r HHhSNotEat_FR_r.</span>
 <span id="cb1-7"><a href="household-hunger-scale.html#cb1-7"></a></span>
@@ -293,18 +293,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-9"><a href="household-hunger-scale.html#cb1-9"></a>HHhSBedHung_FR_r <span class="st">&quot;In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? - recoded&quot;</span></span>
 <span id="cb1-10"><a href="household-hunger-scale.html#cb1-10"></a>HHhSNotEat_FR_r <span class="st">&quot;In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? - recoded&quot;</span>.</span>
 <span id="cb1-11"><a href="household-hunger-scale.html#cb1-11"></a></span>
-<span id="cb1-12"><a href="household-hunger-scale.html#cb1-12"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>sum the recoded questions to calculate the HHS</span>
+<span id="cb1-12"><a href="household-hunger-scale.html#cb1-12"></a><span class="op">**</span><span class="st"> </span>sum the recoded questions to calculate the HHS</span>
 <span id="cb1-13"><a href="household-hunger-scale.html#cb1-13"></a></span>
 <span id="cb1-14"><a href="household-hunger-scale.html#cb1-14"></a>Compute HHhS =<span class="st"> </span>HHhSNoFood_FR_r <span class="op">+</span><span class="st"> </span>HHhSBedHung_FR_r <span class="op">+</span><span class="st"> </span>HHhSNotEat_FR_r.</span>
 <span id="cb1-15"><a href="household-hunger-scale.html#cb1-15"></a>variable labels HHhS <span class="st">&quot;Household Hunger Scale&quot;</span>.</span>
 <span id="cb1-16"><a href="household-hunger-scale.html#cb1-16"></a></span>
-<span id="cb1-17"><a href="household-hunger-scale.html#cb1-17"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>each household should have an HHhS score between <span class="dv">0</span> <span class="op">-</span><span class="st"> </span><span class="fl">6.</span></span>
+<span id="cb1-17"><a href="household-hunger-scale.html#cb1-17"></a><span class="op">**</span><span class="st"> </span>each household should have an HHhS score between <span class="dv">0</span> <span class="op">-</span><span class="st"> </span><span class="fl">6.</span></span>
 <span id="cb1-18"><a href="household-hunger-scale.html#cb1-18"></a></span>
 <span id="cb1-19"><a href="household-hunger-scale.html#cb1-19"></a>FREQUENCIES VARIABLES =<span class="st"> </span>HHhS</span>
 <span id="cb1-20"><a href="household-hunger-scale.html#cb1-20"></a><span class="op">/</span>STATISTICS=MEAN MEDIAN MINIMUM MAXIMUM</span>
 <span id="cb1-21"><a href="household-hunger-scale.html#cb1-21"></a><span class="op">/</span>ORDER=ANALYSIS.</span>
 <span id="cb1-22"><a href="household-hunger-scale.html#cb1-22"></a></span>
-<span id="cb1-23"><a href="household-hunger-scale.html#cb1-23"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>Create Categorical HHhS</span>
+<span id="cb1-23"><a href="household-hunger-scale.html#cb1-23"></a><span class="op">**</span><span class="st"> </span>Create Categorical HHhS</span>
 <span id="cb1-24"><a href="household-hunger-scale.html#cb1-24"></a></span>
 <span id="cb1-25"><a href="household-hunger-scale.html#cb1-25"></a>RECODE <span class="kw">HHhS</span> (<span class="dv">0</span> thru <span class="dv">1</span>=<span class="dv">1</span>) (<span class="dv">2</span> thru <span class="dv">3</span>=<span class="dv">2</span>) (<span class="dv">4</span> thru <span class="dt">Highest=</span><span class="dv">3</span>) INTO HHhSCat.</span>
 <span id="cb1-26"><a href="household-hunger-scale.html#cb1-26"></a>variable labels HHhSCat <span class="st">&quot;Household Hunger Score Categories&quot;</span>.</span>
@@ -313,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-29"><a href="household-hunger-scale.html#cb1-29"></a><span class="dv">2</span> <span class="st">`</span><span class="dt">Moderate hunger in the household</span><span class="st">`</span></span>
 <span id="cb1-30"><a href="household-hunger-scale.html#cb1-30"></a><span class="dv">3</span> <span class="st">`</span><span class="dt">Severe hunger in the household</span><span class="st">`</span>.</span>
 <span id="cb1-31"><a href="household-hunger-scale.html#cb1-31"></a></span>
-<span id="cb1-32"><a href="household-hunger-scale.html#cb1-32"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>Create HHhS Cadre Harmonise Categories</span>
+<span id="cb1-32"><a href="household-hunger-scale.html#cb1-32"></a><span class="op">**</span><span class="st"> </span>Create HHhS Cadre Harmonise Categories</span>
 <span id="cb1-33"><a href="household-hunger-scale.html#cb1-33"></a></span>
 <span id="cb1-34"><a href="household-hunger-scale.html#cb1-34"></a>RECODE <span class="kw">HHS</span> (<span class="dv">0</span>=<span class="dv">1</span>) (<span class="dv">1</span>=<span class="dv">2</span>) (<span class="dv">2</span> thru <span class="dv">3</span>=<span class="dv">3</span>) (<span class="dv">4</span>=<span class="dv">4</span>) (<span class="dv">5</span>=<span class="dv">5</span>) INTO HHhS_CH.</span>
 <span id="cb1-35"><a href="household-hunger-scale.html#cb1-35"></a>variable labels HHhS_CH <span class="st">&quot;Household Hunger Score Categories - Cadre Harmonise&quot;</span>.</span>
@@ -324,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-40"><a href="household-hunger-scale.html#cb1-40"></a><span class="dv">4</span> <span class="st">`</span><span class="dt">Phase4</span><span class="st">`</span></span>
 <span id="cb1-41"><a href="household-hunger-scale.html#cb1-41"></a><span class="dv">5</span> <span class="st">`</span><span class="dt">Phase5</span><span class="st">`</span>.</span>
 <span id="cb1-42"><a href="household-hunger-scale.html#cb1-42"></a></span>
-<span id="cb1-43"><a href="household-hunger-scale.html#cb1-43"></a><span class="op">**</span><span class="er">*</span><span class="st"> </span>Generate table of proportion of households <span class="cf">in</span> CH HHS phases by Adm1 and Adm2 using weights</span>
+<span id="cb1-43"><a href="household-hunger-scale.html#cb1-43"></a><span class="op">**</span><span class="st"> </span>Generate table of proportion of households <span class="cf">in</span> CH HHS phases by Adm1 and Adm2 using weights</span>
 <span id="cb1-44"><a href="household-hunger-scale.html#cb1-44"></a></span>
 <span id="cb1-45"><a href="household-hunger-scale.html#cb1-45"></a>WEIGHT BY WeightHH.</span>
 <span id="cb1-46"><a href="household-hunger-scale.html#cb1-46"></a></span>

@@ -48,10 +48,11 @@ Here is the standardized module in word format:
 
 ### Electronic Version of Questionnaire
 
-Here is the standardized module in xlsform:
+Here is the standardized module in xlsform format:
 [RBDstandardized_questionnaireHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.docx) 
 
-## Calculation of HHhS Indicators & CH HHhs indicators
+
+## Calculation of Household Hunger Scale Indicators & Cadre Harmonise Phasing
 
 ### Example data set
 
@@ -65,7 +66,7 @@ Here is the example data set:
 GET  FILE='dataHHSEng.sav'.
 DATASET NAME DataSet1 WINDOW=FRONT.
 
-*** recode the frequency questions to scores
+** recode the frequency questions to scores
 
 Recode HHhSNoFood_FR HHhSBedHung_FR HHhSNotEat_FR (1 = 1) (2=1) (3=2) (ELSE=0) INTO HHhSNoFood_FR_r HHhSBedHung_FR_r HHhSNotEat_FR_r.
 
@@ -73,18 +74,18 @@ Variable labels HHhSNoFood_FR_r "In the past [4 weeks/30 days], was there ever n
 HHhSBedHung_FR_r "In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? - recoded"
 HHhSNotEat_FR_r "In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? - recoded".
 
-*** sum the recoded questions to calculate the HHS
+** sum the recoded questions to calculate the HHS
 
 Compute HHhS = HHhSNoFood_FR_r + HHhSBedHung_FR_r + HHhSNotEat_FR_r.
 variable labels HHhS "Household Hunger Scale".
 
-*** each household should have an HHhS score between 0 - 6.
+** each household should have an HHhS score between 0 - 6.
 
 FREQUENCIES VARIABLES = HHhS
 /STATISTICS=MEAN MEDIAN MINIMUM MAXIMUM
 /ORDER=ANALYSIS.
 
-*** Create Categorical HHhS
+** Create Categorical HHhS
 
 RECODE HHhS (0 thru 1=1) (2 thru 3=2) (4 thru Highest=3) INTO HHhSCat.
 variable labels HHhSCat "Household Hunger Score Categories".
@@ -93,7 +94,7 @@ value labels HHhSCat
 2 `Moderate hunger in the household`
 3 `Severe hunger in the household`.
 
-*** Create HHhS Cadre Harmonise Categories
+** Create HHhS Cadre Harmonise Categories
 
 RECODE HHS (0=1) (1=2) (2 thru 3=3) (4=4) (5=5) INTO HHhS_CH.
 variable labels HHhS_CH "Household Hunger Score Categories - Cadre Harmonise".
@@ -104,7 +105,7 @@ value labels HHhS_CH
 4 `Phase4`
 5 `Phase5`.
 
-*** Generate table of proportion of households in CH HHS phases by Adm1 and Adm2 using weights
+** Generate table of proportion of households in CH HHS phases by Adm1 and Adm2 using weights
 
 WEIGHT BY WeightHH.
 
@@ -194,6 +195,8 @@ Here is the R syntax file:
 
 
 
+
+
 <!--chapter:end:01-HHS.Rmd-->
 
 # reduced Coping Strategy Index {#rCSI}
@@ -234,18 +237,18 @@ Here is the example data set:
 GET  FILE='datarCSIEng.sav'.
 DATASET NAME DataSet1 WINDOW=FRONT.
 
-*** caculate rCSI
+** caculate rCSI
 
 compute rCSI = sum(rCSILessQlty,rCSIBorrow*2,rCSIMealSize,rCSIMealAdult*3,rCSIMealNb).
 Variable labels rCSI "rCSI".
 
-*** each household should have a rCSI between 0 - 56
+** each household should have a rCSI between 0 - 56
 
 FREQUENCIES VARIABLES =  rCSI
 /STATISTICS=MEAN MEDIAN MINIMUM MAXIMUM
 /ORDER=ANALYSIS.
 
-*** Create rCSI Cadre Harmonise Categories
+** Create rCSI Cadre Harmonise Categories
 
 RECODE rCSI (0 thru 3=1) (4 thru 18=2) (19 thru 56=3) INTO rCSI_CH.
 variable labels rCSI_CH "rCSI categories - Cadre Harmonise ".
@@ -254,7 +257,7 @@ value labels rCSI_CH
 2 `Phase2`
 3 `Phase3`.
 
-*** Generate table of proportion of households in CH HHhS phases by Adm1 and Adm2 using weights
+** Generate table of proportion of households in CH HHhS phases by Adm1 and Adm2 using weights
 
 WEIGHT BY WeightHH.
 
@@ -325,18 +328,21 @@ Here is the R syntax file:
 
 # Food Consumption Score & Household Dietary Diversity
 
+The modules below allow you to collect and calculate FCS, FCS-N and HDDS indicators.
+
 ## Standardized Questionnaire
 
 ### Paper Version of Questionnaire
 
 Here is the standardized module in word format:
+
 [RBDstandardized_questionnaireFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.docx) 
 
 ### Electronic Version of Questionnaire
 
 Here is the standardized module in xlsform:
 
-[RBDstandardized_questionnaireFCSHDDS.](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.xlsx)
+[RBDstandardized_questionnaireFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.xlsx)
 
 ## Calculation of FCS & HDDS Indicators  
 
@@ -379,6 +385,10 @@ dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
   FCS <= 21 ~ "Poor", between(FCS, 21.5, 35) ~ "Borderline", FCS > 35 ~ "Acceptable"),
   FCSCat28 = case_when(
   FCS <= 28 ~ "Poor", between(FCS, 28.5, 42) ~ "Borderline", FCS > 42 ~ "Acceptable"))
+var_label(dataFCSHDDSEng$FCSCat21) <- "Food Consumption Group 21/35 thresholds"
+var_label(dataFCSHDDSEng$FCSCat28) <-  "Food Consumption Group 28/42 thresholds"
+
+
 
 #calculate HDDS first by creating the 12 groups based on the 16 questions 
 dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
@@ -395,7 +405,20 @@ dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
     HDDSSugar = case_when(HDDSSugar == "Yes" ~ 1, TRUE ~ 0),
     HDDSCond = case_when(HDDSCond == "Yes"~ 1, TRUE ~ 0))
 
-#Generate table of proportion of households in FCG by Adm1 and Adm2 using weights
+#Calculate HDDS and Cadre Harmonise Phases
+dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(HDDS = HDDSStapCer +HDDSStapRoot +HDDSVeg +HDDSFruit +HDDSPrMeat +HDDSPrEgg +HDDSPrFish +HDDSPulse +HDDSDairy +HDDSFat +HDDSSugar +HDDSCond)
+var_label(dataFCSHDDSEng$HDDS) <- "Hosehold Dietary Diversity Score"
+
+#Calucate Cadre Harmonise HDDS phasing categories 
+dataFCSHDDSEng <- dataFCSHDDSEng %>%  mutate(HDDS_CH = case_when(
+    HDDS >= 5 ~ "Phase1", 
+    HDDS == 4 ~ "Phase2",       
+    HDDS == 3 ~ "Phase3",
+    HDDS == 2 ~ "Phase4",
+    HDDS < 2 ~ "Phase5"))
+var_label(dataFCSHDDSEng$HDDS_CH) <- "Hosehold Dietary Diversity Score - CH phasing"
+
+#Generate table of proportion of households in FCG by Adm1 and Adm2 using weights 
 #Food Consumption Group 21/35 cutoff 
 FCSCat_table_wide <- dataFCSHDDSEng %>% 
   drop_na(FCSCat21) %>%
@@ -407,15 +430,13 @@ FCSCat_table_wide <- dataFCSHDDSEng %>%
 
 #Generate table of proportion of households by HDDS by Adm1 and Adm2 using weights
 #Food Consumption Group 21/35 cutoff 
-HDDS_table_wide <- dataFCSHDDSEng %>% 
-  drop_na(HDDS) %>%
+CH_HDDS_table_wide <- dataFCSHDDSEng %>% 
+  drop_na(HDDS_CH) %>%
   group_by(ADMIN1Name, ADMIN2Name) %>%
-  count(HDDS, wt = WeightHH) %>%
+  count(HDDS_CH, wt = WeightHH) %>%
   mutate(perc = 100 * n / sum(n)) %>%
   ungroup() %>% select(-n) %>%
-  spread(key = HDDS, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
-
-
+  spread(key = HDDS_CH, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
 ```
 
 
@@ -468,7 +489,7 @@ Here is the standardized module in xlsform:
 ### Analysis 
 
 #### Example data set
-[dataLHCSLightEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataLHCSLightEng.sav) 
+[dataLHCS_CARIEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataLHCS_CARIEng.sav) 
 
 Here is the example data set:
 
@@ -491,42 +512,45 @@ library(labelled)
 library(tidyverse)
 
 #import dataset
-dataLHCSLightEng <- read_sav("example_datasets/dataLHCSLightEng.sav")
+dataLHCS_CARIEng <- read_sav("example_datasets/dataLHCS_CARIEng.sav")
 
 #Calculate HHS 
-dataLHCSLightEng <- to_factor(dataLHCSLightEng)
+dataLHCS_CARIEng<- to_factor(dataLHCS_CARIEng)
 
 #create a variable to specify if the household used any of the strategies by severity 
 #stress
-dataLHCSLightEng <- dataLHCSLightEng %>% mutate(stress_coping = case_when(
+dataLHCS_CARIEng <- dataLHCS_CARIEng %>% mutate(stress_coping = case_when(
 LhCSIStress1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
 LhCSIStress2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
 LhCSIStress3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
 LhCSIStress4 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
 TRUE ~ "notusedstress"))
 #Crisis
-dataLHCSLightEng <- dataLHCSLightEng %>% mutate(crisis_coping = case_when(
+dataLHCS_CARIEng <- dataLHCS_CARIEng %>% mutate(crisis_coping = case_when(
 LhCSICrisis1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedcrisis",
 LhCSICrisis2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedcrisis",
 LhCSICrisis3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedcrisis",
 TRUE ~ "notusedcrisis"))
 #Emergency
-dataLHCSLightEng <- dataLHCSLightEng %>% mutate(emergency_coping = case_when(
+dataLHCS_CARIEng <- dataLHCS_CARIEng %>% mutate(emergency_coping = case_when(
 LhCSIEmergency1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedemergency",
 LhCSIEmergency2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedemergency",
 LhCSIEmergency3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedemergency",
 TRUE ~ "noutusedemergency"))
 
 #calculate Max_coping_behaviour
-dataLHCSLightEng <- dataLHCSLightEng %>% mutate(LhCSICat = case_when(
+dataLHCS_CARIEng <- dataLHCS_CARIEng %>% mutate(LhCSICat = case_when(
   emergency_coping == "usedemergency" ~ "EmergencyStrategies",
   crisis_coping == "usedcrisis" ~ "CrisisStrategies",
   stress_coping == "usedstress" ~ "StressStrategies",
   TRUE ~ "NoStrategies"))
+var_label(dataLHCS_CARIEng$LhCSICat) <- "Livelihood Coping Strategy categories - CARI light version"
+
+
 
 #Generate table of proportion of households in CH LhCHS phases by Adm1 and Adm2 using weights
 #Livelihood Coping Strategies 
-LhHCSCat_table_wide <- dataLHCSLightEng %>% 
+LhHCSCat_table_wide <- dataLHCS_CARIEng %>% 
   drop_na(LhCSICat) %>%
   group_by(ADMIN1Name, ADMIN2Name) %>%
   count(LhCSICat, wt = WeightHH) %>%
@@ -538,7 +562,7 @@ LhHCSCat_table_wide <- dataLHCSLightEng %>%
 
 Here is the R syntax file: 
 
-[RBDstandardized_RsyntaxLHCSIlight](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxLHCSIlight.R) 
+[RBDstandardized_RsyntaxLHCSI_light_CARI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxLHCSI_CARI.R) 
 
 
 ## Standardized Module - Essential Needs Assessment (ENA)
@@ -577,7 +601,7 @@ Here is the standardized module in word format:
 
 Here is the standardized module in xlsform:
 
-[RBDstandardized_questionnaireLHCSI_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCSI_ENA.xlsx) 
+[RBDstandardized_questionnaireLHCS_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_ENA.xlsx) 
 
 ### Analysis 
 
@@ -601,9 +625,64 @@ still need to do
 #### R Syntax
 
 ```{r, eval = F}
- 
-not available yet
+library(haven)
+library(labelled)
+library(tidyverse)
 
+#import dataset
+dataLHCS_ENAEng <- read_sav("example_datasets/dataLHCS_ENAEng.sav")
+
+#Calculate HHS 
+dataLHCS_ENAEng<- to_factor(dataLHCS_ENAEng)
+
+#create a variable to specify if the household used any of the strategies by severity 
+#stress
+dataLHCS_ENAEng <- dataLHCS_ENAEng %>% mutate(stress_coping = case_when(
+LhCSIStress1_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") & 
+LhCSIStress1_EN_why == "To buy food" ~ "usedstress",
+LhCSIStress2_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") &
+LhCSIStress2_EN_why == "To buy food" ~ "usedstress",
+LhCSIStress3_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") &
+LhCSIStress3_EN_why == "To buy food" ~ "usedstress",
+LhCSIStress4_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") &
+LhCSIStress4_EN_why == "To buy food" ~ "usedstress",
+TRUE ~ "notusedstress"))
+#Crisis
+dataLHCS_ENAEng <- dataLHCS_ENAEng %>% mutate(crisis_coping = case_when(
+LhCSICrisis1_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") & 
+LhCSICrisis1_EN_why == "To buy food" ~ "usedcrisis",
+LhCSICrisis2_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") & 
+LhCSICrisis2_EN_why == "To buy food" ~ "usedcrisis",
+LhCSICrisis3_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") &
+LhCSICrisis3_EN_why == "To buy food" ~ "usedcrisis",
+TRUE ~ "notusedcrisis"))
+#Emergency
+dataLHCS_ENAEng <- dataLHCS_ENAEng %>% mutate(emergency_coping = case_when(
+LhCSIEmergency1_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") & 
+LhCSIEmergency1_EN_why == "To buy food" ~ "usedemergency",
+LhCSIEmergency2_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") & 
+LhCSIEmergency2_EN_why == "To buy food" ~ "usedemergency",
+LhCSIEmergency3_EN %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") & 
+LhCSIEmergency3_EN_why == "To buy food" ~ "usedemergency",
+TRUE ~ "noutusedemergency"))
+
+#calculate Max_coping_behaviour
+dataLHCS_ENAEng <- dataLHCS_ENAEng %>% mutate(LhCSICat_ENA = case_when(
+  emergency_coping == "usedemergency" ~ "EmergencyStrategies",
+  crisis_coping == "usedcrisis" ~ "CrisisStrategies",
+  stress_coping == "usedstress" ~ "StressStrategies",
+  TRUE ~ "NoStrategies"))
+var_label(dataLHCS_ENAEng$LhCSICat_ENA) <- "Livelihood Coping Strategy categories - ENA version"
+
+#Generate table of proportion of households in LhCHS  phases by Adm1 and Adm2 using weights
+#Livelihood Coping Strategies 
+LhHCSCat_table_wide <- dataLHCS_ENAEng %>% 
+  drop_na(LhCSICat_ENA) %>%
+  group_by(ADMIN1Name, ADMIN2Name) %>%
+  count(LhCSICat_ENA , wt = WeightHH) %>%
+  mutate(perc = 100 * n / sum(n)) %>%
+  ungroup() %>% select(-n) %>%
+  spread(key = LhCSICat_ENA, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
 ```
 
 
@@ -616,8 +695,7 @@ not available yet
 
 1.  Standard Livelihood Coping Strategies  - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
 
-2.  ENA Livelihood Coping Strategies - 
-https://docs.wfp.org/api/documents/WFP-0000074197/download/?
+2.  ENA Livelihood Coping Strategies - https://docs.wfp.org/api/documents/WFP-0000074197/download/?
 
 
 

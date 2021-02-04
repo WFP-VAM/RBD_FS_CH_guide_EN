@@ -15,6 +15,10 @@ dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
     FCS <= 21 ~ "Poor", between(FCS, 21.5, 35) ~ "Borderline", FCS > 35 ~ "Acceptable"),
   FCSCat28 = case_when(
     FCS <= 28 ~ "Poor", between(FCS, 28.5, 42) ~ "Borderline", FCS > 42 ~ "Acceptable"))
+var_label(dataFCSHDDSEng$FCSCat21) <- "Food Consumption Group 21/35 thresholds"
+var_label(dataFCSHDDSEng$FCSCat28) <-  "Food Consumption Group 28/42 thresholds"
+
+
 
 #calculate HDDS first by creating the 12 groups based on the 16 questions
 dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
@@ -31,6 +35,19 @@ dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
   HDDSSugar = case_when(HDDSSugar == "Yes" ~ 1, TRUE ~ 0),
   HDDSCond = case_when(HDDSCond == "Yes"~ 1, TRUE ~ 0))
 
+#Calculate HDDS and Cadre Harmonise Phases
+dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(HDDS = HDDSStapCer +HDDSStapRoot +HDDSVeg +HDDSFruit +HDDSPrMeat +HDDSPrEgg +HDDSPrFish +HDDSPulse +HDDSDairy +HDDSFat +HDDSSugar +HDDSCond)
+var_label(dataFCSHDDSEng$HDDS) <- "Hosehold Dietary Diversity Score"
+
+#Calucate Cadre Harmonise HDDS phasing categories
+dataFCSHDDSEng <- dataFCSHDDSEng %>%  mutate(HDDS_CH = case_when(
+  HDDS >= 5 ~ "Phase1",
+  HDDS == 4 ~ "Phase2",
+  HDDS == 3 ~ "Phase3",
+  HDDS == 2 ~ "Phase4",
+  HDDS < 2 ~ "Phase5"))
+var_label(dataFCSHDDSEng$HDDS_CH) <- "Hosehold Dietary Diversity Score - CH phasing"
+
 #Generate table of proportion of households in FCG by Adm1 and Adm2 using weights
 #Food Consumption Group 21/35 cutoff
 FCSCat_table_wide <- dataFCSHDDSEng %>%
@@ -43,10 +60,11 @@ FCSCat_table_wide <- dataFCSHDDSEng %>%
 
 #Generate table of proportion of households by HDDS by Adm1 and Adm2 using weights
 #Food Consumption Group 21/35 cutoff
-HDDS_table_wide <- dataFCSHDDSEng %>%
-  drop_na(HDDS) %>%
+CH_HDDS_table_wide <- dataFCSHDDSEng %>%
+  drop_na(HDDS_CH) %>%
   group_by(ADMIN1Name, ADMIN2Name) %>%
-  count(HDDS, wt = WeightHH) %>%
+  count(HDDS_CH, wt = WeightHH) %>%
   mutate(perc = 100 * n / sum(n)) %>%
   ungroup() %>% select(-n) %>%
-  spread(key = HDDS, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
+  spread(key = HDDS_CH, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
+
