@@ -1,0 +1,252 @@
+# Household Hunger Scale 
+
+## References / Resources
+
+1. https://www.fantaproject.org/monitoring-and-evaluation/household-hunger-scale-hhs
+
+
+## Standardized Questionnaire
+
+Variable Name | Question Label | Answer Choices
+---- | ------------- |---- 
+HHhSNoFood_YN | In the past [4 weeks/30 days], was there ever no food to eat of any kind in your house because of lack of resources to get food? | 1) Yes 0) No
+HHhSNoFood_FR | How often did this happen in the past [4 weeks/30 days]? | 1) Rarely (1–2 times) 2) Sometimes (3–10 times)  3) Often (more than 10 times)
+HHhSBedHung_YN | In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? | 1) Yes 0) No
+HHhSBedHung_FR  | How often did this happen in the past [4 weeks/30 days]? | 1) Rarely (1–2 times) 2) Sometimes (3–10 times)  3) Often (more than 10 times)
+HHhSNotEat_YN | In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? | 1) Yes 0) No
+HHhSNotEat_FR | How often did this happen in the past [4 weeks/30 days]? | 1) Rarely (1–2 times) 2) Sometimes (3–10 times)  3) Often (more than 10 times)
+
+### Paper Version of Questionnaire
+
+Here is the standardized module in word format:
+[RBDstandardized_questionnaireHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.xlsx) 
+
+### Electronic Version of Questionnaire
+
+Here is the standardized module in xlsform format:
+[RBDstandardized_questionnaireHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireHHS.docx) 
+
+
+## Calculation of Household Hunger Scale Indicators & Cadre Harmonise Phasing
+
+### Example data set
+
+Here is the example data set:
+[dataHHSEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataHHSEng.sav) 
+
+### SPSS Syntax
+
+```{r, eval = F}
+
+GET  FILE='dataHHSEng.sav'.
+DATASET NAME DataSet1 WINDOW=FRONT.
+
+** recode the frequency questions to scores
+
+Recode HHhSNoFood_FR HHhSBedHung_FR HHhSNotEat_FR (1 = 1) (2=1) (3=2) (ELSE=0) INTO HHhSNoFood_FR_r HHhSBedHung_FR_r HHhSNotEat_FR_r.
+
+Variable labels HHhSNoFood_FR_r "In the past [4 weeks/30 days], was there ever no food to eat of any kind in your house because of lack of resources to get food? - recoded"
+HHhSBedHung_FR_r "In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? - recoded"
+HHhSNotEat_FR_r "In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? - recoded".
+
+** sum the recoded questions to calculate the HHS
+
+Compute HHhS = HHhSNoFood_FR_r + HHhSBedHung_FR_r + HHhSNotEat_FR_r.
+variable labels HHhS "Household Hunger Scale".
+
+** each household should have an HHhS score between 0 - 6.
+
+FREQUENCIES VARIABLES = HHhS
+/STATISTICS=MEAN MEDIAN MINIMUM MAXIMUM
+/ORDER=ANALYSIS.
+
+** Create Categorical HHhS
+
+RECODE HHhS (0 thru 1=1) (2 thru 3=2) (4 thru Highest=3) INTO HHhSCat.
+variable labels HHhSCat "Household Hunger Score Categories".
+value labels HHhSCat 
+1 `No or little hunger in the household`
+2 `Moderate hunger in the household`
+3 `Severe hunger in the household`.
+
+** Create HHhS Cadre Harmonise Categories
+
+RECODE HHS (0=1) (1=2) (2 thru 3=3) (4=4) (5=5) INTO HHhS_CH.
+variable labels HHhS_CH "Household Hunger Score Categories - Cadre Harmonise".
+value labels HHhS_CH
+1 `Phase1`
+2 `Phase2`
+3 `Phase3`
+4 `Phase4`
+5 `Phase5`.
+
+** Generate table of proportion of households in CH HHS phases by Adm1 and Adm2 using weights
+
+WEIGHT BY WeightHH.
+
+CROSSTABS
+  /TABLES=ADMIN2Name BY HHhS_CH BY ADMIN1Name
+  /FORMAT=AVALUE TABLES
+  /CELLS=ROW 
+  /COUNT ROUND CELL.
+
+```
+
+Here is the SPSS syntax file: 
+
+[RBDstandardized_SPSSsyntaxHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxHHS.sps) 
+
+### R Syntax
+
+```{r, eval = T, message = F}
+library(haven)
+library(labelled)
+library(tidyverse)
+
+#import dataset
+dataHHSEng <- read_sav("example_datasets/dataHHSEng.sav")
+
+#Calculate HHS 
+dataHHSEng <- to_factor(dataHHSEng)
+
+#Recode HHS questions into new variables with score 
+dataHHSEng <- dataHHSEng %>% mutate(HHhSNoFood_FR_r = case_when(
+                                      HHhSNoFood_FR == "Rarely (1–2 times)" ~ 1,
+                                      HHhSNoFood_FR == "Sometimes (3–10 times)" ~ 1,
+                                      HHhSNoFood_FR == "Often (more than 10 times)" ~ 2,
+                                      TRUE ~ 0),
+                                    HHhSBedHung_FR_r = case_when(
+                                      HHhSBedHung_FR == "Rarely (1–2 times)" ~ 1,
+                                      HHhSBedHung_FR == "Sometimes (3–10 times)" ~ 1,
+                                      HHhSBedHung_FR == "Often (more than 10 times)" ~ 2,
+                                      TRUE ~ 0),
+                                    HHhSNotEat_FR_r = case_when(
+                                      HHhSNotEat_FR == "Rarely (1–2 times)" ~ 1,
+                                      HHhSNotEat_FR == "Sometimes (3–10 times)" ~ 1,
+                                      HHhSNotEat_FR == "Often (more than 10 times)" ~ 2,
+                                      TRUE ~ 0))
+# Calculate HHhS score
+dataHHSEng <- dataHHSEng %>% mutate(HHhS = HHhSNoFood_FR_r + HHhSBedHung_FR_r + HHhSNotEat_FR_r)
+var_label(dataHHSEng$HHhS) <- "Household Hunger Scale"
+
+#each household should have an HHS score between 0 - 6
+summary(dataHHSEng$HHhS)
+
+# Create Categorical HHS
+dataHHSEng <- dataHHSEng %>% mutate(HHhSCat = case_when(
+    HHhS %in% c(0,1) ~ "No or little hunger in the household",
+    HHhS %in% c(2,3) ~ "Moderate hunger in the household",
+    HHhS >= 4 ~ "Severe hunger in the household" 
+    ))
+var_label(dataHHSEng$HHhSCat) <- "Household Hunger Score Categories"
+
+#Convert HH Scores to CH phases
+dataHHSEng <- dataHHSEng %>% mutate(HHhS_CH = case_when(
+    HHhS == 0 ~ "Phase1",
+    HHhS == 1 ~ "Phase2",
+    HHhS %in% c(2,3) ~ "Phase3",
+    HHhS == 4 ~ "Phase4",  
+    HHhS >= 5 ~ "Phase5"))
+var_label(dataHHSEng$HHhS_CH) <- "Household Hunger Score Categories - Cadre Harmonise"
+
+#Generate table of proportion of households in CH HHS phases by Adm1 and Adm2 using weights
+CH_HHhS_table_wide <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name, ADMIN2Code) %>%
+  drop_na(HHhS_CH) %>%
+  count(HHhS_CH, wt = WeightHH) %>%
+  mutate(perc = 100 * n / sum(n)) %>%
+  ungroup() %>% select(-n) %>%
+  spread(key = HHhS_CH, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
+
+#Calculate phasing of CH HHS indicator for area (applying CH 20% rules)
+CH_HHhS_table_wide <- CH_HHhS_table_wide %>% mutate(phase2345 = `Phase2` + `Phase3` + `Phase4` + `Phase5`,phase345 = `Phase3` + `Phase4` + `Phase5`, phase45 = `Phase4` + `Phase5`,
+      HHS_finalphase = case_when(
+      Phase5 >= 20 ~ 5,
+      Phase4 >= 20 | phase45 >= 20 ~ 4,
+      Phase3 >= 20 | phase345 >= 20 ~ 3,
+      Phase2 >= 20 | phase2345 >= 20 ~ 2,
+      TRUE ~ 1)) %>% 
+  select(ADMIN1Name, ADMIN2Name, ADMIN2Code, HHS_Phase1 = Phase1, HHS_Phase2 = Phase2, HHS_Phase3 = Phase3, HHS_Phase4 = Phase4, HHS_Phase5 = Phase5, HHS_finalphase)
+```
+
+Here is the R syntax file: 
+
+[RBDstandardized_RsyntaxHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxHHS.R) 
+
+
+## Data Quality Monitoring & Visualisation of HHS Indicator
+
+### Mapping HHS final phasing
+
+```{r, eval = T, message = F}
+library(sf)
+
+#import shapefile of Nigeria
+NGA_shp2 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm2_osgof_20190417.shp") %>% filter(ADM1_EN %in% c("Adamawa","Borno","Yobe"))
+NGA_shp1 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm1_osgof_20190417.shp") %>% filter(ADM1_REF %in% c("Adamawa","Borno","Yobe"))
+#rename 
+NGA_shp2 <- NGA_shp2 %>% rename("ADMIN2Code" = "ADM2_PCODE")
+#join shapefile to table of HHS phases
+CH_HHhS_shp <- left_join(NGA_shp2, CH_HHhS_table_wide, by = "ADMIN2Code")
+
+#CH color codes
+CH_colors = c("1" = "#c6ffc7", "2" = "#ffe718", "3" = "#e88400", "4" = "#e02d00", "5" = "#5e0803")
+
+mapHHS <- CH_HHhS_shp %>% ggplot()  +geom_sf(aes(fill = as.factor(HHS_finalphase))) +theme_void() +coord_sf(datum=NA) +labs(fill="HHS phasing") +scale_fill_manual(values = CH_colors) +ggtitle(label= "phasing of HHS") +geom_sf(data=NGA_shp1,  lwd=1.5, fill=NA) 
+
+mapHHS
+
+```
+
+### Data Quality Monitoring
+
+1. Compare HHS CH phasing by admin1 and admin2 areas
+
+```{r, eval = T, message = F}
+library(plotly)
+
+#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 not using weights
+CH_HHhS_table_long <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+  drop_na(HHhS_CH) %>%
+  count(HHhS_CH) 
+
+#make graph
+CH_HHhS_admin2_bargraph <- CH_HHhS_table_long %>% ggplot(aes(fill=HHhS_CH, y=n, x=ADMIN2Name)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN1Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_y_continuous(labels = scales::percent)+ theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
+
+#add title
+CH_HHhS_admin2_bargraph <- CH_HHhS_admin2_bargraph +ggtitle("CH Phasing of HHS Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
+
+ggplotly(CH_HHhS_admin2_bargraph)
+```
+
+
+2. Examine HHS CH phasing by admin2 areas and enumerators 
+
+```{r, eval = T, message = F}
+library(plotly)
+
+#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 and Operator - not using survey weights 
+CH_HHhS_enumerators_tablelong <- dataHHSEng  %>% 
+  group_by(ADMIN2Name, enum_cod) %>%
+  count(HHhS_CH) 
+
+
+#make graph
+CH_HHhS_admin2enumerators_bargraph <- CH_HHhS_enumerators_tablelong %>% ggplot(aes(fill=HHhS_CH, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_void()
+
+#add title
+CH_HHhS_admin2enumerators_bargraph  <- CH_HHhS_admin2enumerators_bargraph +ggtitle("CH Phasing of HHS of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
+
+ggplotly(CH_HHhS_admin2enumerators_bargraph)
+
+```
+
+
+
+
+
+
+
+
+
+
+

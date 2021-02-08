@@ -49,9 +49,19 @@ dataHHSEng <- dataHHSEng %>% mutate(HHhS_CH = case_when(
 var_label(dataHHSEng$HHhS_CH) <- "Household Hunger Score Categories - Cadre Harmonise"
 
 #Generate table of proportion of households in CH HHS phases by Adm1 and Adm2 using weights
-CH_HHhS_table_wide <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+CH_HHhS_table_wide <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name, ADMIN2Code) %>%
   drop_na(HHhS_CH) %>%
   count(HHhS_CH, wt = WeightHH) %>%
   mutate(perc = 100 * n / sum(n)) %>%
   ungroup() %>% select(-n) %>%
   spread(key = HHhS_CH, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
+
+#Calculate phasing of CH HHS indicator for area (applying CH 20% rules)
+CH_HHhS_table_wide <- CH_HHhS_table_wide %>% mutate(phase2345 = `Phase2` + `Phase3` + `Phase4` + `Phase5`,phase345 = `Phase3` + `Phase4` + `Phase5`, phase45 = `Phase4` + `Phase5`,
+                                                    HHS_finalphase = case_when(
+                                                      Phase5 >= 20 ~ 5,
+                                                      Phase4 >= 20 | phase45 >= 20 ~ 4,
+                                                      Phase3 >= 20 | phase345 >= 20 ~ 3,
+                                                      Phase2 >= 20 | phase2345 >= 20 ~ 2,
+                                                      TRUE ~ 1)) %>%
+  select(ADMIN1Name, ADMIN2Name, ADMIN2Code, HHS_Phase1 = Phase1, HHS_Phase2 = Phase2, HHS_Phase3 = Phase3, HHS_Phase4 = Phase4, HHS_Phase5 = Phase5, HHS_finalphase)

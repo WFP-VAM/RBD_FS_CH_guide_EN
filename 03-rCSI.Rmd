@@ -1,0 +1,184 @@
+# reduced Coping Strategy Index 
+
+## References / Resources
+
+1. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp211058.pdf
+
+2. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+
+## Standardized Questionnaire
+
+Variable Name | Question Label 
+---- | ------------- 
+rCSILessQlty | In the past 7 days, how many days has your household had to: *Rely on less preferred and less expensive food* because you did not have enough food or money to buy food?
+rCSIBorrow | In the past 7 days, how many days has your household had to: *Borrow food or rely on help from a relative or friend* because you did not have enough food or money to buy food?
+rCSIMealSize | In the past 7 days, how many days has your household had to: *Limit portion size of meals* because you did not have enough food or money to buy food?
+rCSIMealAdult  | In the past 7 days, how many days has your household had to: *Restrict consumption by adults in order for small children to eat* because you did not have enough food or money to buy food?
+rCSIMealNb | In the past 7 days, how many days has your household had to: *Reduce the number of meals eaten per day* because you did not have enough food or money to buy food?
+
+
+### Paper Version of Questionnaire
+
+Here is the standardized module in word format:
+[RBDstandardized_questionnairerCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnairerCSI.docx) 
+
+### Electronic Version of Questionnaire
+
+Here is the standardized module in xlsform:
+[RBDstandardized_questionnairerCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnairerCSI.xlsx) 
+
+
+## Calculation of rCSI Indicator & CH 
+
+### Example data set
+
+Here is the example data set:
+[datarCSIEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/datarCSIEng.sav) 
+
+### SPSS Syntax
+
+```{r, eval = F}
+
+GET  FILE='datarCSIEng.sav'.
+DATASET NAME DataSet1 WINDOW=FRONT.
+
+** caculate rCSI
+
+compute rCSI = sum(rCSILessQlty,rCSIBorrow*2,rCSIMealSize,rCSIMealAdult*3,rCSIMealNb).
+Variable labels rCSI "rCSI".
+
+** each household should have a rCSI between 0 - 56
+
+FREQUENCIES VARIABLES =  rCSI
+/STATISTICS=MEAN MEDIAN MINIMUM MAXIMUM
+/ORDER=ANALYSIS.
+
+** Create rCSI Cadre Harmonise Categories
+
+RECODE rCSI (0 thru 3=1) (4 thru 18=2) (19 thru 56=3) INTO rCSI_CH.
+variable labels rCSI_CH "rCSI categories - Cadre Harmonise ".
+value labels rCSI_CH
+1 `Phase1`
+2 `Phase2`
+3 `Phase3`.
+
+** Generate table of proportion of households in CH HHhS phases by Adm1 and Adm2 using weights
+
+WEIGHT BY WeightHH.
+
+CROSSTABS
+  /TABLES=ADMIN2Name BY rCSI_CH BY ADMIN1Name
+  /FORMAT=AVALUE TABLES
+  /CELLS=ROW 
+  /COUNT ROUND CELL.
+
+
+```
+
+Here is the SPSS syntax file: 
+
+[RBDstandardized_SPSSsyntaxrCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxrCSI.sps) 
+
+
+### R Syntax
+
+```{r, eval = T, message = F}
+library(haven)
+library(labelled)
+library(tidyverse)
+
+#import dataset
+datarCSIEng <- read_sav("example_datasets/datarCSIEng.sav")
+
+#Calculate HHS 
+datarCSIEng <- to_factor(datarCSIEng)
+
+#calculate rCSI Score
+datarCSIEng <- datarCSIEng %>% mutate(rCSI = rCSILessQlty  + (2 * rCSIBorrow) + rCSIMealSize + (3 * rCSIMealAdult) + rCSIMealNb)
+var_label(datarCSIEng$rCSI) <- "rCSI"
+
+#each household should have a rCSI between 0 - 56
+
+summary(datarCSIEng$rCSI)
+
+#Create rCSI Cadre Harmonise Categories
+datarCSIEng <- datarCSIEng %>% mutate(rCSI_CH = case_when(
+  rCSI <= 3 ~ "Phase1", 
+  between(rCSI,4,18) ~ "Phase2",       
+  rCSI >= 19 ~ "Phase3"))
+var_label(datarCSIEng$rCSI_CH) <- "rCSI categories - Cadre Harmonise "
+
+#Generate table of proportion of households in CH rCSI phases by Adm1 and Adm2 using weights
+CH_rCSI_table_wide <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+  drop_na(rCSI_CH) %>%
+  count(rCSI_CH, wt = WeightHH) %>%
+  mutate(perc = 100 * n / sum(n)) %>%
+  ungroup() %>% select(-n) %>%
+  spread(key = rCSI_CH, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
+
+
+
+
+```
+
+Here is the R syntax file: 
+
+[RBDstandardized_RsyntaxrCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxrCSI.R) 
+
+
+## Data Quality Monitoring & Visualisation of HHS Indicator
+
+### Calculating & Visualizing CH finali phasing HHS Indicator for an Area 
+
+
+
+
+
+
+
+
+
+
+
+### Monitoring 
+
+1. Compare HHS CH phasing by admin1 and admin2 areas
+
+```{r, eval = T, message = F}
+library(plotly)
+
+#Generate longtable of proportion of households in CH rCSI phases by Adm1 and Adm2 not using weights
+CH_rCSI_table_long <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+  drop_na(rCSI_CH) %>%
+  count(rCSI_CH) 
+
+#make graph
+CH_rCSI_admin2_bargraph <- CH_rCSI_table_long %>% ggplot(aes(fill=rCSI_CH, y=n, x=ADMIN2Name)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN1Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_y_continuous(labels = scales::percent)+ theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
+
+#add title
+CH_rCSI_admin2_bargraph <- CH_rCSI_admin2_bargraph +ggtitle("CH Phasing of rCSI Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
+
+ggplotly(CH_rCSI_admin2_bargraph)
+```
+
+
+2. Examine HHS CH phasing by admin2 areas and enumerators 
+
+```{r, eval = T, message = F}
+library(plotly)
+
+#Generate longtable of proportion of households in CH rCSI phases by Adm1 and Adm2 and Operator - not using survey weights 
+CH_rCSI_enumerators_tablelong <- datarCSIEng   %>% 
+  group_by(ADMIN2Name, enum_cod) %>%
+  count(rCSI_CH) 
+
+
+#make graph
+CH_rCSI_admin2enumerators_bargraph <- CH_rCSI_enumerators_tablelong %>% ggplot(aes(fill=rCSI_CH, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_void()
+
+#add title
+CH_rCSI_admin2enumerators_bargraph  <- CH_rCSI_admin2enumerators_bargraph +ggtitle("CH Phasing of HHS of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
+
+ggplotly(CH_rCSI_admin2enumerators_bargraph)
+
+```

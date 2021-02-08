@@ -28,6 +28,70 @@ Chapters are listed by indicator and include:
 
 <!--chapter:end:index.Rmd-->
 
+# Gecodes
+
+Using names as identifiers can easily lead to confusion over spelling and transliterations as well as alternative and duplicate names.
+
+As unique identifiers, P-Codes overcome the challenges of linking datasets and confirming locations.
+
+We recommend using Gecodes and Names from OCHA's Common Operational Datasets: 
+https://data.humdata.org/dashboards/cod?ext_geodata=1&q=&ext_page_size=25
+
+## A brief example of the problem:
+
+The geographic variables of the *choices* section of the  xlsform typically look like this
+
+list_name | name | label
+---- | --- |---- 
+cod_lga | 1 | ASKIRA/UBA
+cod_lga | 2 | BAYO
+cod_lga | 3 | CHIBOK
+cod_lga | 4 | KALABAGE
+
+The geographic variables in corresponding GIS dataset look like this:
+
+Shape | admin2Pcode | admin2RefName
+---- | --- |---- 
+Polygon |NG008002 | Askira/Uba
+Polygon |NG008004 | Bayo
+Polygon |NG008006 | Chibok
+Polygon |NG008015 | Kala/Balge
+
+Unfortunately, if we tried to merge the dataset and the GIS file by the name of the area, we would first have to fix the capitalization and punctuation of the names.
+
+To avoid unnecessary work, we recommend putting in the *Pcode* in the name column of the xlsform:
+
+list_name | name | label
+---- | --- |---- 
+cod_lga | NG008002 | ASKIRA/UBA
+cod_lga | NG008004 | BAYO
+cod_lga | NG008006 | CHIBOK
+cod_lga | NG008015 | KALABAGE
+
+With a common, simple variable to merge both datasets, mapping and data processing will be much easier!
+
+## Where to find Pcodes
+
+Geographic data can be found https://data.humdata.org/dashboards/cod?ext_geodata=1&q=&ext_page_size=25 and searching for the appropriate country.
+
+We recommend using the codes from the *admin1Pcode* and *admin2Pcode* columns in the *name* column of the xlsform.  Using the *admin1RefName* and *admin2RefName*
+
+## Example data set of the data collection sheet for Nigeria:
+[xlsformwithgeocodesexample](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx) 
+
+
+
+## 2 caveats
+
+1. In some countries, the boundaries in the CODS might not correspond with the latest boundaries used by the country.  In this case, special development of a GIS boundary file and codes will need to be developed.
+
+2. Inserting the relevant pcodes in the *name* column will probably require some *vlookup* .  This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated and difficult if cascading columns and the *choice_filter* option is used at the adm3, adm4 level. 
+
+
+
+
+<!--chapter:end:01-Geocodes.Rmd-->
+
 # Household Hunger Scale 
 
 ## References / Resources
@@ -180,12 +244,22 @@ dataHHSEng <- dataHHSEng %>% mutate(HHhS_CH = case_when(
 var_label(dataHHSEng$HHhS_CH) <- "Household Hunger Score Categories - Cadre Harmonise"
 
 #Generate table of proportion of households in CH HHS phases by Adm1 and Adm2 using weights
-CH_HHhS_table_wide <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+CH_HHhS_table_wide <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name, ADMIN2Code) %>%
   drop_na(HHhS_CH) %>%
   count(HHhS_CH, wt = WeightHH) %>%
   mutate(perc = 100 * n / sum(n)) %>%
   ungroup() %>% select(-n) %>%
   spread(key = HHhS_CH, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
+
+#Calculate phasing of CH HHS indicator for area (applying CH 20% rules)
+CH_HHhS_table_wide <- CH_HHhS_table_wide %>% mutate(phase2345 = `Phase2` + `Phase3` + `Phase4` + `Phase5`,phase345 = `Phase3` + `Phase4` + `Phase5`, phase45 = `Phase4` + `Phase5`,
+      HHS_finalphase = case_when(
+      Phase5 >= 20 ~ 5,
+      Phase4 >= 20 | phase45 >= 20 ~ 4,
+      Phase3 >= 20 | phase345 >= 20 ~ 3,
+      Phase2 >= 20 | phase2345 >= 20 ~ 2,
+      TRUE ~ 1)) %>% 
+  select(ADMIN1Name, ADMIN2Name, ADMIN2Code, HHS_Phase1 = Phase1, HHS_Phase2 = Phase2, HHS_Phase3 = Phase3, HHS_Phase4 = Phase4, HHS_Phase5 = Phase5, HHS_finalphase)
 ```
 
 Here is the R syntax file: 
@@ -193,11 +267,37 @@ Here is the R syntax file:
 [RBDstandardized_RsyntaxHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxHHS.R) 
 
 
-## Visualisation & Data Quality Monitoring of HHS Indicator
+## Data Quality Monitoring & Visualisation of HHS Indicator
+
+### Mapping HHS final phasing
+
+```{r, eval = T, message = F}
+library(sf)
+
+#import shapefile of Nigeria
+NGA_shp2 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm2_osgof_20190417.shp") %>% filter(ADM1_EN %in% c("Adamawa","Borno","Yobe"))
+NGA_shp1 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm1_osgof_20190417.shp") %>% filter(ADM1_REF %in% c("Adamawa","Borno","Yobe"))
+#rename 
+NGA_shp2 <- NGA_shp2 %>% rename("ADMIN2Code" = "ADM2_PCODE")
+#join shapefile to table of HHS phases
+CH_HHhS_shp <- left_join(NGA_shp2, CH_HHhS_table_wide, by = "ADMIN2Code")
+
+#CH color codes
+CH_colors = c("1" = "#c6ffc7", "2" = "#ffe718", "3" = "#e88400", "4" = "#e02d00", "5" = "#5e0803")
+
+mapHHS <- CH_HHhS_shp %>% ggplot()  +geom_sf(aes(fill = as.factor(HHS_finalphase))) +theme_void() +coord_sf(datum=NA) +labs(fill="HHS phasing") +scale_fill_manual(values = CH_colors) +ggtitle(label= "phasing of HHS") +geom_sf(data=NGA_shp1,  lwd=1.5, fill=NA) 
+
+mapHHS
+
+```
+
+### Data Quality Monitoring
 
 1. Compare HHS CH phasing by admin1 and admin2 areas
 
 ```{r, eval = T, message = F}
+library(plotly)
+
 #Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 not using weights
 CH_HHhS_table_long <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
   drop_na(HHhS_CH) %>%
@@ -208,11 +308,6 @@ CH_HHhS_admin2_bargraph <- CH_HHhS_table_long %>% ggplot(aes(fill=HHhS_CH, y=n, 
 
 #add title
 CH_HHhS_admin2_bargraph <- CH_HHhS_admin2_bargraph +ggtitle("CH Phasing of HHS Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
-```
-
-
-```{r, eval = T, message = F}
-library(plotly)
 
 ggplotly(CH_HHhS_admin2_bargraph)
 ```
@@ -221,6 +316,8 @@ ggplotly(CH_HHhS_admin2_bargraph)
 2. Examine HHS CH phasing by admin2 areas and enumerators 
 
 ```{r, eval = T, message = F}
+library(plotly)
+
 #Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 and Operator - not using survey weights 
 CH_HHhS_enumerators_tablelong <- dataHHSEng  %>% 
   group_by(ADMIN2Name, enum_cod) %>%
@@ -231,17 +328,10 @@ CH_HHhS_enumerators_tablelong <- dataHHSEng  %>%
 CH_HHhS_admin2enumerators_bargraph <- CH_HHhS_enumerators_tablelong %>% ggplot(aes(fill=HHhS_CH, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_void()
 
 #add title
-CH_HHhS_admin2enumerators_bargraph  <- CH_HHhS_admin2enumerators_bargraph +ggtitle("CH Phasing of HHS Groups of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
-
-```
-
-
-
-
-```{r, eval = T, message = F}
-library(plotly)
+CH_HHhS_admin2enumerators_bargraph  <- CH_HHhS_admin2enumerators_bargraph +ggtitle("CH Phasing of HHS of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
 
 ggplotly(CH_HHhS_admin2enumerators_bargraph)
+
 ```
 
 
@@ -252,9 +342,18 @@ ggplotly(CH_HHhS_admin2enumerators_bargraph)
 
 
 
-<!--chapter:end:01-HHS.Rmd-->
 
-# reduced Coping Strategy Index {#rCSI}
+
+
+<!--chapter:end:02-HHS.Rmd-->
+
+# reduced Coping Strategy Index 
+
+## References / Resources
+
+1. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp211058.pdf
+
+2. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
 
 ## Standardized Questionnaire
 
@@ -332,7 +431,7 @@ Here is the SPSS syntax file:
 
 ### R Syntax
 
-```{r, eval = F}
+```{r, eval = T, message = F}
 library(haven)
 library(labelled)
 library(tidyverse)
@@ -365,6 +464,10 @@ CH_rCSI_table_wide <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
   mutate(perc = 100 * n / sum(n)) %>%
   ungroup() %>% select(-n) %>%
   spread(key = rCSI_CH, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
+
+
+
+
 ```
 
 Here is the R syntax file: 
@@ -372,14 +475,64 @@ Here is the R syntax file:
 [RBDstandardized_RsyntaxrCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxrCSI.R) 
 
 
-## References / Resources
+## Data Quality Monitoring & Visualisation of HHS Indicator
 
-1. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp211058.pdf
-
-2. https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+### Calculating & Visualizing CH finali phasing HHS Indicator for an Area 
 
 
-<!--chapter:end:02-rCSI.Rmd-->
+
+
+
+
+
+
+
+
+
+### Monitoring 
+
+1. Compare HHS CH phasing by admin1 and admin2 areas
+
+```{r, eval = T, message = F}
+library(plotly)
+
+#Generate longtable of proportion of households in CH rCSI phases by Adm1 and Adm2 not using weights
+CH_rCSI_table_long <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+  drop_na(rCSI_CH) %>%
+  count(rCSI_CH) 
+
+#make graph
+CH_rCSI_admin2_bargraph <- CH_rCSI_table_long %>% ggplot(aes(fill=rCSI_CH, y=n, x=ADMIN2Name)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN1Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_y_continuous(labels = scales::percent)+ theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
+
+#add title
+CH_rCSI_admin2_bargraph <- CH_rCSI_admin2_bargraph +ggtitle("CH Phasing of rCSI Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
+
+ggplotly(CH_rCSI_admin2_bargraph)
+```
+
+
+2. Examine HHS CH phasing by admin2 areas and enumerators 
+
+```{r, eval = T, message = F}
+library(plotly)
+
+#Generate longtable of proportion of households in CH rCSI phases by Adm1 and Adm2 and Operator - not using survey weights 
+CH_rCSI_enumerators_tablelong <- datarCSIEng   %>% 
+  group_by(ADMIN2Name, enum_cod) %>%
+  count(rCSI_CH) 
+
+
+#make graph
+CH_rCSI_admin2enumerators_bargraph <- CH_rCSI_enumerators_tablelong %>% ggplot(aes(fill=rCSI_CH, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_void()
+
+#add title
+CH_rCSI_admin2enumerators_bargraph  <- CH_rCSI_admin2enumerators_bargraph +ggtitle("CH Phasing of HHS of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
+
+ggplotly(CH_rCSI_admin2enumerators_bargraph)
+
+```
+
+<!--chapter:end:03-rCSI.Rmd-->
 
 # Food Consumption Score & Household Dietary Diversity
 
@@ -511,7 +664,7 @@ Here is the R syntax file:
 
 
 
-<!--chapter:end:03-FCSHDDS.Rmd-->
+<!--chapter:end:04-FCSHDDS.Rmd-->
 
 # Livelihood Coping Strategies
 
@@ -759,71 +912,7 @@ not available yet
 
 
 
-<!--chapter:end:04-LHCS.Rmd-->
-
-# Gecodes
-
-Using names as identifiers can easily lead to confusion over spelling and transliterations as well as alternative and duplicate names.
-
-As unique identifiers, P-Codes overcome the challenges of linking datasets and confirming locations.
-
-We recommend using Gecodes and Names from OCHA's Common Operational Datasets: 
-https://data.humdata.org/dashboards/cod?ext_geodata=1&q=&ext_page_size=25
-
-## A brief example of the problem:
-
-The geographic variables of the *choices* section of the  xlsform typically look like this
-
-list_name | name | label
----- | --- |---- 
-cod_lga | 1 | ASKIRA/UBA
-cod_lga | 2 | BAYO
-cod_lga | 3 | CHIBOK
-cod_lga | 4 | KALABAGE
-
-The geographic variables in corresponding GIS dataset look like this:
-
-Shape | admin2Pcode | admin2RefName
----- | --- |---- 
-Polygon |NG008002 | Askira/Uba
-Polygon |NG008004 | Bayo
-Polygon |NG008006 | Chibok
-Polygon |NG008015 | Kala/Balge
-
-Unfortunately, if we tried to merge the dataset and the GIS file by the name of the area, we would first have to fix the capitalization and punctuation of the names.
-
-To avoid unnecessary work, we recommend putting in the *Pcode* in the name column of the xlsform:
-
-list_name | name | label
----- | --- |---- 
-cod_lga | NG008002 | ASKIRA/UBA
-cod_lga | NG008004 | BAYO
-cod_lga | NG008006 | CHIBOK
-cod_lga | NG008015 | KALABAGE
-
-With a common, simple variable to merge both datasets, mapping and data processing will be much easier!
-
-## Where to find Pcodes
-
-Geographic data can be found https://data.humdata.org/dashboards/cod?ext_geodata=1&q=&ext_page_size=25 and searching for the appropriate country.
-
-We recommend using the codes from the *admin1Pcode* and *admin2Pcode* columns in the *name* column of the xlsform.  Using the *admin1RefName* and *admin2RefName*
-
-## Example data set of the data collection sheet for Nigeria:
-[xlsformwithgeocodesexample](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx) 
-
-
-
-## 2 caveats
-
-1. In some countries, the boundaries in the CODS might not correspond with the latest boundaries used by the country.  In this case, special development of a GIS boundary file and codes will need to be developed.
-
-2. Inserting the relevant pcodes in the *name* column will probably require some *vlookup* .  This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated and difficult if cascading columns and the *choice_filter* option is used at the adm3, adm4 level. 
-
-
-
-
-<!--chapter:end:05-Geocodes.Rmd-->
+<!--chapter:end:05-LHCS.Rmd-->
 
 # Example of Data Quality Report
 
