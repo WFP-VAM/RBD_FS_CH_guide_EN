@@ -109,7 +109,7 @@ datarCSIEng <- datarCSIEng %>% mutate(rCSI_CH = case_when(
 var_label(datarCSIEng$rCSI_CH) <- "rCSI categories - Cadre Harmonise "
 
 #Generate table of proportion of households in CH rCSI phases by Adm1 and Adm2 using weights
-CH_rCSI_table_wide <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+CH_rCSI_table_wide <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name, ADMIN2Code) %>%
   drop_na(rCSI_CH) %>%
   count(rCSI_CH, wt = WeightHH) %>%
   mutate(perc = 100 * n / sum(n)) %>%
@@ -117,7 +117,13 @@ CH_rCSI_table_wide <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
   spread(key = rCSI_CH, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
 
 
-
+#Calculate phasing of CH rCSI indicator for area (applying CH 20% rules)
+CH_rCSI_table_wide <- CH_rCSI_table_wide  %>%  mutate(rcsi23 = Phase2 + Phase3,
+         rCSI_finalphase =
+           case_when(
+             Phase3 >= 20 ~ 3, 
+             Phase2 >= 20 | rcsi23 >= 20 ~ 2,
+             TRUE ~ 1)) %>% select(ADMIN1Name, ADMIN2Name, ADMIN2Code, rCSI_Phase1 = Phase1, rCSI_Phase2 = Phase2, rCSI_Phase3 = Phase3, rCSI_finalphase)
 
 ```
 
@@ -126,23 +132,34 @@ Here is the R syntax file:
 [RBDstandardized_RsyntaxrCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxrCSI.R) 
 
 
-## Data Quality Monitoring & Visualisation of HHS Indicator
+## Data Quality Monitoring & Visualisation of rCSI Indicator
 
-### Calculating & Visualizing CH finali phasing HHS Indicator for an Area 
+### Mapping rCSI final phasing
+
+```{r, eval = T, message = F}
+library(sf)
+
+#import shapefile of Nigeria
+NGA_shp2 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm2_osgof_20190417.shp") %>% filter(ADM1_EN %in% c("Adamawa","Borno","Yobe"))
+NGA_shp1 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm1_osgof_20190417.shp") %>% filter(ADM1_REF %in% c("Adamawa","Borno","Yobe"))
+#rename 
+NGA_shp2 <- NGA_shp2 %>% rename("ADMIN2Code" = "ADM2_PCODE")
+#join shapefile to table of HHS phases
+CH_rCSI_shp <- left_join(NGA_shp2, CH_rCSI_table_wide, by = "ADMIN2Code")
+
+#CH color codes
+CH_colors = c("1" = "#c6ffc7", "2" = "#ffe718", "3" = "#e88400", "4" = "#e02d00", "5" = "#5e0803")
+
+maprCSI <- CH_rCSI_shp %>% ggplot()  +geom_sf(aes(fill = as.factor(rCSI_finalphase))) +theme_void() +coord_sf(datum=NA) +labs(fill="rCSI phasing") +scale_fill_manual(values = CH_colors) +ggtitle(label= "phasing of rCSI") +geom_sf(data=NGA_shp1,  lwd=1.5, fill=NA) 
+
+maprCSI
+
+```
 
 
+### Data Quality Monitoring
 
-
-
-
-
-
-
-
-
-### Monitoring 
-
-1. Compare HHS CH phasing by admin1 and admin2 areas
+1. Compare rCSI CH phasing by admin1 and admin2 areas
 
 ```{r, eval = T, message = F}
 library(plotly)
@@ -171,7 +188,6 @@ library(plotly)
 CH_rCSI_enumerators_tablelong <- datarCSIEng   %>% 
   group_by(ADMIN2Name, enum_cod) %>%
   count(rCSI_CH) 
-
 
 #make graph
 CH_rCSI_admin2enumerators_bargraph <- CH_rCSI_enumerators_tablelong %>% ggplot(aes(fill=rCSI_CH, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_void()

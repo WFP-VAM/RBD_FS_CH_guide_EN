@@ -2,6 +2,14 @@
 
 The modules below allow you to collect and calculate FCS, FCS-N and HDDS indicators.
 
+## References / Resources
+
+1.  FCS - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+
+2.  FCS_N - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp277333.pdf
+
+3.  HDDS - http://www.fao.org/fileadmin/user_upload/wa_workshop/docs/FAO-guidelines-dietary-diversity2011.pdf
+
 ## Standardized Questionnaire
 
 ### Paper Version of Questionnaire
@@ -94,21 +102,47 @@ var_label(dataFCSHDDSEng$HDDS_CH) <- "Hosehold Dietary Diversity Score - CH phas
 #Food Consumption Group 21/35 cutoff 
 FCSCat_table_wide <- dataFCSHDDSEng %>% 
   drop_na(FCSCat21) %>%
-  group_by(ADMIN1Name, ADMIN2Name) %>%
+  group_by(ADMIN1Name, ADMIN2Name, ADMIN2Code) %>%
   count(FCSCat21, wt = WeightHH) %>%
   mutate(perc = 100 * n / sum(n)) %>%
   ungroup() %>% select(-n) %>%
   spread(key = FCSCat21, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
 
+#Calculate phasing of FCG indicator for area (applying CH 20% rules)
+FCSCat_table_wide <- FCSCat_table_wide %>%
+  mutate(PoorBorderline = Poor + Borderline, FCG_finalphase = case_when(
+  Poor < 5 ~ 1,  #if less than 5% are in the poor food group then phase 1
+  Poor >= 20 ~ 4, #if 20% or more are in the poor food group then phase 4
+  between(Poor,5,10) ~ 2, #if % of people are between 5 and 10%  then phase2
+  between(Poor,10,20) & PoorBorderline < 30 ~ 2, #if % of people in poor food group are between 20 and 20% and the % of people who are in poor and borderline is less than 30 % then phase2
+  between(Poor,10,20) & PoorBorderline >= 30 ~ 3)) %>% #if % of people in poor food group are between 20 and 20% and the % of people who are in poor and borderline is less than 30 % then phase2
+  select(ADMIN1Name, ADMIN2Name, ADMIN2Code, FCG_Poor = Poor, FCG_Borderline = Borderline, FCG_Acceptable = Acceptable, FCG_finalphase) #select only relevant variables and order in proper sequence
+
 #Generate table of proportion of households by HDDS by Adm1 and Adm2 using weights
-#Food Consumption Group 21/35 cutoff 
 CH_HDDS_table_wide <- dataFCSHDDSEng %>% 
   drop_na(HDDS_CH) %>%
-  group_by(ADMIN1Name, ADMIN2Name) %>%
+  group_by(ADMIN1Name, ADMIN2Name, ADMIN2Code) %>%
   count(HDDS_CH, wt = WeightHH) %>%
   mutate(perc = 100 * n / sum(n)) %>%
   ungroup() %>% select(-n) %>%
   spread(key = HDDS_CH, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
+
+#Calculate phasing of HDDS indicator for area (applying CH 20% rules)
+
+
+#Apply the 20% rule (if it is 20% in that phase or the sum of higher phases equals 20%) 
+CH_HDDS_table_wide <- CH_HDDS_table_wide %>% 
+    mutate(
+    phase2345 = `Phase2` + `Phase3` + `Phase4` + `Phase5`, 
+    phase345 = `Phase3` + `Phase4` + `Phase5`,
+    phase45 = `Phase4` + `Phase5`, 
+    HDDS_finalphase = case_when(
+    `Phase5` >= 20 ~ 5, 
+    `Phase4` >= 20 | phase45 >= 20 ~ 4, 
+    `Phase3` >= 20 | phase345 >= 20 ~ 3, 
+    `Phase2` >= 20 | phase2345 >= 20 ~ 2,
+     TRUE ~ 1)) %>% 
+  select(ADMIN1Name, ADMIN2Name, ADMIN2Code, HDDS_Phase1 = Phase1, HDDS_Phase2 = Phase2, HDDS_Phase3 = Phase3, HDDS_Phase4 = Phase4, HDDS_Phase5 = Phase5, HDDS_finalphase) 
 ```
 
 
@@ -117,13 +151,31 @@ Here is the R syntax file:
 [RBDstandardized_RsyntaxFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxFCSHDDS.R) 
 
 
-## References / Resources
+## Data Quality Monitoring & Visualisation of FCS Indicator
 
-1.  FCS - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+### Mapping FCS final phasing
 
-2.  FCS_N - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp277333.pdf
+```{r, eval = T, message = F}
+library(sf)
 
-3.  HDDS - http://www.fao.org/fileadmin/user_upload/wa_workshop/docs/FAO-guidelines-dietary-diversity2011.pdf
+#import shapefile of Nigeria
+NGA_shp2 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm2_osgof_20190417.shp") %>% filter(ADM1_EN %in% c("Adamawa","Borno","Yobe"))
+NGA_shp1 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm1_osgof_20190417.shp") %>% filter(ADM1_REF %in% c("Adamawa","Borno","Yobe"))
+#rename 
+NGA_shp2 <- NGA_shp2 %>% rename("ADMIN2Code" = "ADM2_PCODE")
+#join shapefile to table of HHS phases
+CH_FCG_shp <- left_join(NGA_shp2, FCSCat_table_wide, by = "ADMIN2Code")
+
+#CH color codes
+CH_colors = c("1" = "#c6ffc7", "2" = "#ffe718", "3" = "#e88400", "4" = "#e02d00", "5" = "#5e0803")
+
+mapFCG <- CH_FCG_shp %>% ggplot()  +geom_sf(aes(fill = as.factor(FCG_finalphase))) +theme_void() +coord_sf(datum=NA) +labs(fill="FCG phasing") +scale_fill_manual(values = CH_colors) +ggtitle(label= "phasing of FCG") +geom_sf(data=NGA_shp1,  lwd=1.5, fill=NA) 
+
+mapFCG
+```
+
+
+
 
 
 
