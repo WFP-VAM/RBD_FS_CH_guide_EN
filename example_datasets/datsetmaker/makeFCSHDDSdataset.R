@@ -127,7 +127,8 @@ dataFCSHDDSEng <- sample_frac(dataFCSHDDSEng, size = .5)
 
 #select only variables
 dataFCSHDDSEng <- dataFCSHDDSEng %>%
-  select(ADMIN1Name, ADMIN2Name, enum_cod, WeightHH,
+  select(uuid = `@_uuid`,
+         ADMIN1Name, ADMIN2Name, enum_cod, WeightHH,
          FCSStap,
          HDDSStapCer,
          FCSStapCerSRf,

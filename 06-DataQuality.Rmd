@@ -1,3 +1,9 @@
 # Example of Data Quality Report
 
-*coming real soon!*
+```{r, eval = F}
+library(haven)
+library(tidyverse)
+library(labelled)
+
+dataHHSEng <- read_sav("example_datasets\\data4dataqreport.sav")
+``

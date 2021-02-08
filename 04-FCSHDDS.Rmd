@@ -179,3 +179,50 @@ mapFCG
 
 
 
+
+### Data Quality Monitoring - FCS
+
+1. Compare HHS FCG phasing by admin1 and admin2 areas
+
+```{r, eval = T, message = F}
+library(plotly)
+
+#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 not using weights
+CH_FCG_table_long <- dataFCSHDDSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+  drop_na(FCSCat21) %>%
+  count(FCSCat21) 
+
+#make graph
+CH_FCG_admin2_bargraph <- CH_FCG_table_long %>% ggplot(aes(fill=FCSCat21, y=n, x=ADMIN2Name)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN1Name, scales = "free")  +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_y_continuous(labels = scales::percent)+ theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
+
+#add title
+CH_FCG_admin2_bargraph <- CH_FCG_admin2_bargraph +ggtitle("Food Consumption Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
+
+ggplotly(CH_FCG_admin2_bargraph)
+```
+
+
+2. Examine FCS distribution by admin2 areas and enumerators 
+
+```{r, eval = T, message = F}
+library(plotly)
+
+#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 and Operator - not using survey weights 
+CH_FCG_enumerators_tablelong <- dataFCSHDDSEng  %>% 
+  group_by(ADMIN2Name, enum_cod) %>%
+  count(FCSCat21) 
+
+
+#make graph
+CH_FCG_admin2enumerators_bargraph <- CH_FCG_enumerators_tablelong %>% ggplot(aes(fill=FCSCat21, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free")  +theme_void()
+
+#add title
+CH_FCG_admin2enumerators_bargraph  <- CH_FCG_admin2enumerators_bargraph +ggtitle("Food Consumption Groups of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
+
+ggplotly(CH_FCG_admin2enumerators_bargraph)
+
+```
+
+
+
+

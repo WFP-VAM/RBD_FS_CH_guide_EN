@@ -179,7 +179,7 @@ ggplotly(CH_rCSI_admin2_bargraph)
 ```
 
 
-2. Examine HHS CH phasing by admin2 areas and enumerators 
+2. Examine rCSI CH phasing by admin2 areas and enumerators 
 
 ```{r, eval = T, message = F}
 library(plotly)

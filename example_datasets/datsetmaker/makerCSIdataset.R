@@ -34,7 +34,7 @@ var_label(datarCSIEng$WeightHH) <- "Survey Weights"
 datarCSIEng <- sample_frac(datarCSIEng, size = .5)
 
 #select only variables
-datarCSIEng <- datarCSIEng %>% select(ADMIN1Name, ADMIN2Name, enum_cod,
+datarCSIEng <- datarCSIEng %>% select(uuid = `@_uuid`, ADMIN1Name, ADMIN2Name, enum_cod,
                                       rCSILessQlty, rCSIBorrow, rCSIMealSize, rCSIMealAdult, rCSIMealNb,
                                       WeightHH)
 
