@@ -1,5 +1,10 @@
 # Household Hunger Scale 
 
+## References / Resources
+
+1. https://www.fantaproject.org/monitoring-and-evaluation/household-hunger-scale-hhs
+
+
 ## Standardized Questionnaire
 
 Variable Name | Question Label | Answer Choices
@@ -93,7 +98,7 @@ Here is the SPSS syntax file:
 
 ### R Syntax
 
-```{r, eval = F}
+```{r, eval = T, message = F}
 library(haven)
 library(labelled)
 library(tidyverse)
@@ -153,15 +158,65 @@ CH_HHhS_table_wide <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
   spread(key = HHhS_CH, value = perc) %>% replace(., is.na(.), 0)  %>% mutate_if(is.numeric, round, 1)
 ```
 
-
 Here is the R syntax file: 
 
 [RBDstandardized_RsyntaxHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxHHS.R) 
 
 
-## References / Resources
+## Visualisation & Data Quality Monitoring of HHS Indicator
 
-1. https://www.fantaproject.org/monitoring-and-evaluation/household-hunger-scale-hhs
+1. Compare HHS CH phasing by admin1 and admin2 areas
+
+```{r, eval = T, message = F}
+#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 not using weights
+CH_HHhS_table_long <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
+  drop_na(HHhS_CH) %>%
+  count(HHhS_CH) 
+
+#make graph
+CH_HHhS_admin2_bargraph <- CH_HHhS_table_long %>% ggplot(aes(fill=HHhS_CH, y=n, x=ADMIN2Name)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN1Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_y_continuous(labels = scales::percent)+ theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
+
+#add title
+CH_HHhS_admin2_bargraph <- CH_HHhS_admin2_bargraph +ggtitle("CH Phasing of HHS Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+```{r, eval = T, message = F}
+library(plotly)
+
+ggplotly(CH_HHhS_admin2_bargraph)
+```
+
+
+2. Examine HHS CH phasing by admin2 areas and enumerators 
+
+```{r, eval = T, message = F}
+#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 and Operator - not using survey weights 
+CH_HHhS_enumerators_tablelong <- dataHHSEng  %>% 
+  group_by(ADMIN2Name, enum_cod) %>%
+  count(HHhS_CH) 
+
+
+#make graph
+CH_HHhS_admin2enumerators_bargraph <- CH_HHhS_enumerators_tablelong %>% ggplot(aes(fill=HHhS_CH, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_void()
+
+#add title
+CH_HHhS_admin2enumerators_bargraph  <- CH_HHhS_admin2enumerators_bargraph +ggtitle("CH Phasing of HHS Groups of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+
+
+
+```{r, eval = T, message = F}
+library(plotly)
+
+ggplotly(CH_HHhS_admin2enumerators_bargraph)
+```
+
+
+
+
 
 
 
