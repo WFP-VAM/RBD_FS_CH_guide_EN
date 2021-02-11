@@ -589,13 +589,39 @@ still need to create
 
 ```{r, eval = F}
 
-to be added
+GET
+  FILE='E:\example_datasets\dataFCSHDDSEng.sav'.
+DATASET NAME DataSet1 WINDOW=FRONT.
+
+** calculate Food Consumption Score 
+
+compute FCS = sum(FCSStap*2, FCSPulse*3, FCSDairy*4, FCSPr*4, FCSVeg, FCSFruit, FCSFat*0.5, FCSSugar*0.5).
+variable labels FCS "Food Consumption Score".
+
+** create food consumption groups from food consumption score - 21/35 and 28/42 thresholds
+
+recode FCS (0 thru 21 = 1) (21 thru 35 = 2) (35 thru highest = 3) into FCSCat21.
+variable labels FCSCat21 "Food Consumption Groups - 21/35 thresholds".
+recode FCS (0 thru 28 = 1) (28 thru 42 = 2) (42 thru highest = 3) into FCSCat28.
+variable labels FCSCat28  "Food Consumption Groups - 28/42 thresholds".
+
+VALUE LABELS FCSCat21 FCSCat28 
+1 "Poor"
+2 "Borderline"
+3 "Acceptable".
+
+** calculate Household Dietary Diversity Score
+
+compute HDDS = sum(HDDSStapCer,HDDSStapRoot,HDDSPulse,HDDSDairy,HDDSPrMeatF,HDDSPrMeatO,HDDSPrFish,
+HDDSPrEgg,HDDSVegOrg,HDDSVegGre,HDDSVegOth,HDDSFruitOrg,HDDSFruitOth,HDDSFat,HDDSSugar,HDDSCond).
+variable labels HDDS "Household Dietary Diversity Score".
+
 
 ```
 
 Here is the SPSS syntax file: 
 
-not done yet
+[RBDstandardized_SPSSsyntaxFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxFCSHDDS.sav) 
 
 ### R Syntax
 
@@ -701,83 +727,6 @@ CH_HDDS_table_wide <- CH_HDDS_table_wide %>%
 Here is the R syntax file: 
 
 [RBDstandardized_RsyntaxFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxFCSHDDS.R) 
-
-
-## Data Quality Monitoring & Visualisation of FCS Indicator
-
-### Mapping FCS final phasing
-
-```{r, eval = T, message = F}
-library(sf)
-
-#import shapefile of Nigeria
-NGA_shp2 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm2_osgof_20190417.shp") %>% filter(ADM1_EN %in% c("Adamawa","Borno","Yobe"))
-NGA_shp1 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm1_osgof_20190417.shp") %>% filter(ADM1_REF %in% c("Adamawa","Borno","Yobe"))
-#rename 
-NGA_shp2 <- NGA_shp2 %>% rename("ADMIN2Code" = "ADM2_PCODE")
-#join shapefile to table of HHS phases
-CH_FCG_shp <- left_join(NGA_shp2, FCSCat_table_wide, by = "ADMIN2Code")
-
-#CH color codes
-CH_colors = c("1" = "#c6ffc7", "2" = "#ffe718", "3" = "#e88400", "4" = "#e02d00", "5" = "#5e0803")
-
-mapFCG <- CH_FCG_shp %>% ggplot()  +geom_sf(aes(fill = as.factor(FCG_finalphase))) +theme_void() +coord_sf(datum=NA) +labs(fill="FCG phasing") +scale_fill_manual(values = CH_colors) +ggtitle(label= "phasing of FCG") +geom_sf(data=NGA_shp1,  lwd=1.5, fill=NA) 
-
-mapFCG
-```
-
-
-
-
-
-
-
-### Data Quality Monitoring - FCS
-
-1. Compare HHS FCG phasing by admin1 and admin2 areas
-
-```{r, eval = T, message = F}
-library(plotly)
-
-#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 not using weights
-CH_FCG_table_long <- dataFCSHDDSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
-  drop_na(FCSCat21) %>%
-  count(FCSCat21) 
-
-#make graph
-CH_FCG_admin2_bargraph <- CH_FCG_table_long %>% ggplot(aes(fill=FCSCat21, y=n, x=ADMIN2Name)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN1Name, scales = "free")  +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_y_continuous(labels = scales::percent)+ theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
-
-#add title
-CH_FCG_admin2_bargraph <- CH_FCG_admin2_bargraph +ggtitle("Food Consumption Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
-
-ggplotly(CH_FCG_admin2_bargraph)
-```
-
-
-2. Examine FCS distribution by admin2 areas and enumerators 
-
-```{r, eval = T, message = F}
-library(plotly)
-
-#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 and Operator - not using survey weights 
-CH_FCG_enumerators_tablelong <- dataFCSHDDSEng  %>% 
-  group_by(ADMIN2Name, enum_cod) %>%
-  count(FCSCat21) 
-
-
-#make graph
-CH_FCG_admin2enumerators_bargraph <- CH_FCG_enumerators_tablelong %>% ggplot(aes(fill=FCSCat21, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free")  +theme_void()
-
-#add title
-CH_FCG_admin2enumerators_bargraph  <- CH_FCG_admin2enumerators_bargraph +ggtitle("Food Consumption Groups of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
-
-ggplotly(CH_FCG_admin2enumerators_bargraph)
-
-```
-
-
-
-
 
 <!--chapter:end:04-FCSHDDS.Rmd-->
 
@@ -1045,5 +994,5 @@ library(labelled)
 dataHHSEng <- read_sav("example_datasets\\data4dataqreport.sav")
 ``
 
-<!--chapter:end:06-DataQuality.Rmd-->
+<!--chapter:end:07-DataQuality.Rmd-->
 
