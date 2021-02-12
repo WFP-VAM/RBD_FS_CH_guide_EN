@@ -1,6 +1,7 @@
 library(haven)
 library(tidyverse)
 library(labelled)
+library(readxl)
 
 NGREFSAFebruary2020_external <- read_sav("example_datasets\\datsetmaker\\NGREFSAFebruary2020_external.sav")
 
@@ -31,7 +32,7 @@ var_label(datarCSIEng$ADMIN1Name) <- "First Administrative Level"
 var_label(datarCSIEng$ADMIN2Name) <- "Second Administrative Level"
 var_label(datarCSIEng$WeightHH) <- "Survey Weights"
 
-datarCSIEng <- sample_frac(datarCSIEng, size = .5)
+datarCSIEng <- sample_n(datarCSIEng, size = 3200)
 
 #select only variables
 datarCSIEng <- datarCSIEng %>% select(uuid = `@_uuid`, ADMIN1Name, ADMIN2Name, enum_cod,
@@ -42,19 +43,24 @@ datarCSIEng <- datarCSIEng %>% select(uuid = `@_uuid`, ADMIN1Name, ADMIN2Name, e
 datarCSIEng <- datarCSIEng %>% mutate(ADMIN1Name = str_to_title(ADMIN1Name, locale = "en"),
                                     ADMIN2Name = str_to_title(ADMIN2Name, locale = "en"))
 
-library(readxl)
+
 nga_adminboundaries_tabulardata <- read_excel("example_datasets/nga_adminboundaries_tabulardata.xlsx")
-nga_adminboundaries_tabulardata <- nga_adminboundaries_tabulardata %>% select(ADMIN2Name = admin2Name_en, ADMIN2Code = admin2Pcode, ADMIN1Code = admin1Pcode)
+nga_adminboundaries_tabulardata <- nga_adminboundaries_tabulardata %>% select(ADMIN2Name = admin2Name_en, ADMIN2Code = admin2Pcode, ADMIN1Code = admin1Pcode) %>% distinct(ADMIN2Code, .keep_all = TRUE)
+
+
+
 
 #recode Kala/bage
 datarCSIEng <- datarCSIEng %>% mutate(ADMIN2Name = case_when(
   ADMIN2Name == "Kalabalge" ~ "Kala/Balge",
   TRUE ~ ADMIN2Name))
 
+
+
 #join
 sux  <- anti_join(datarCSIEng, nga_adminboundaries_tabulardata, by = "ADMIN2Name")
 sux2  <- anti_join(nga_adminboundaries_tabulardata, datarCSIEng, by = "ADMIN2Name")
-datarCSIEng <- left_join(datarCSIEng, nga_adminboundaries_tabulardata, by = "ADMIN2Name")
+datarCSIEng <- inner_join(datarCSIEng, nga_adminboundaries_tabulardata, by = "ADMIN2Name")
 
 datarCSIEng %>% write_sav("example_datasets\\datarCSIEng.sav")
 
