@@ -24,4 +24,3 @@ Chapters are listed by indicator and include:
 3. standardized syntax in SPSS and R
 4. references / official guidelines / source materials for the indicators
 
-

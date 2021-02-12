@@ -25,7 +25,6 @@ Chapters are listed by indicator and include:
 4. references / official guidelines / source materials for the indicators
 
 
-
 <!--chapter:end:index.Rmd-->
 
 # Gecodes
@@ -86,6 +85,7 @@ We recommend using the codes from the *admin1Pcode* and *admin2Pcode* columns in
 1. In some countries, the boundaries in the CODS might not correspond with the latest boundaries used by the country.  In this case, special development of a GIS boundary file and codes will need to be developed.
 
 2. Inserting the relevant pcodes in the *name* column will probably require some *vlookup* .  This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated and difficult if cascading columns and the *choice_filter* option is used at the adm3, adm4 level. 
+
 
 
 
@@ -192,7 +192,7 @@ Here is the SPSS syntax file:
 
 ### R Syntax
 
-```{r, eval = T, message = F}
+```{r, eval = F, message = F}
 library(haven)
 library(labelled)
 library(tidyverse)
@@ -265,85 +265,6 @@ CH_HHhS_table_wide <- CH_HHhS_table_wide %>% mutate(phase2345 = `Phase2` + `Phas
 Here is the R syntax file: 
 
 [RBDstandardized_RsyntaxHHS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxHHS.R) 
-
-
-## Data Quality Monitoring & Visualisation of HHS Indicator
-
-### Mapping HHS final phasing
-
-```{r, eval = T, message = F}
-library(sf)
-
-#import shapefile of Nigeria
-NGA_shp2 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm2_osgof_20190417.shp") %>% filter(ADM1_EN %in% c("Adamawa","Borno","Yobe"))
-NGA_shp1 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm1_osgof_20190417.shp") %>% filter(ADM1_REF %in% c("Adamawa","Borno","Yobe"))
-#rename 
-NGA_shp2 <- NGA_shp2 %>% rename("ADMIN2Code" = "ADM2_PCODE")
-#join shapefile to table of HHS phases
-CH_HHhS_shp <- left_join(NGA_shp2, CH_HHhS_table_wide, by = "ADMIN2Code")
-
-#CH color codes
-CH_colors = c("1" = "#c6ffc7", "2" = "#ffe718", "3" = "#e88400", "4" = "#e02d00", "5" = "#5e0803")
-
-mapHHS <- CH_HHhS_shp %>% ggplot()  +geom_sf(aes(fill = as.factor(HHS_finalphase))) +theme_void() +coord_sf(datum=NA) +labs(fill="HHS phasing") +scale_fill_manual(values = CH_colors) +ggtitle(label= "phasing of HHS") +geom_sf(data=NGA_shp1,  lwd=1.5, fill=NA) 
-
-mapHHS
-
-```
-
-### Data Quality Monitoring
-
-1. Compare HHS CH phasing by admin1 and admin2 areas
-
-```{r, eval = T, message = F}
-library(plotly)
-
-#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 not using weights
-CH_HHhS_table_long <- dataHHSEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
-  drop_na(HHhS_CH) %>%
-  count(HHhS_CH) 
-
-#make graph
-CH_HHhS_admin2_bargraph <- CH_HHhS_table_long %>% ggplot(aes(fill=HHhS_CH, y=n, x=ADMIN2Name)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN1Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_y_continuous(labels = scales::percent)+ theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
-
-#add title
-CH_HHhS_admin2_bargraph <- CH_HHhS_admin2_bargraph +ggtitle("CH Phasing of HHS Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
-
-ggplotly(CH_HHhS_admin2_bargraph)
-```
-
-
-2. Examine HHS CH phasing by admin2 areas and enumerators 
-
-```{r, eval = T, message = F}
-library(plotly)
-
-#Generate longtable of proportion of households in CH HHS phases by Adm1 and Adm2 and Operator - not using survey weights 
-CH_HHhS_enumerators_tablelong <- dataHHSEng  %>% 
-  group_by(ADMIN2Name, enum_cod) %>%
-  count(HHhS_CH) 
-
-
-#make graph
-CH_HHhS_admin2enumerators_bargraph <- CH_HHhS_enumerators_tablelong %>% ggplot(aes(fill=HHhS_CH, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_void()
-
-#add title
-CH_HHhS_admin2enumerators_bargraph  <- CH_HHhS_admin2enumerators_bargraph +ggtitle("CH Phasing of HHS of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
-
-ggplotly(CH_HHhS_admin2enumerators_bargraph)
-
-```
-
-
-
-
-
-
-
-
-
-
-
 
 <!--chapter:end:02-HHS.Rmd-->
 
@@ -431,7 +352,7 @@ Here is the SPSS syntax file:
 
 ### R Syntax
 
-```{r, eval = T, message = F}
+```{r, eval = F, message = F}
 library(haven)
 library(labelled)
 library(tidyverse)
@@ -480,73 +401,6 @@ Here is the R syntax file:
 
 [RBDstandardized_RsyntaxrCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxrCSI.R) 
 
-
-## Data Quality Monitoring & Visualisation of rCSI Indicator
-
-### Mapping rCSI final phasing
-
-```{r, eval = T, message = F}
-library(sf)
-
-#import shapefile of Nigeria
-NGA_shp2 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm2_osgof_20190417.shp") %>% filter(ADM1_EN %in% c("Adamawa","Borno","Yobe"))
-NGA_shp1 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm1_osgof_20190417.shp") %>% filter(ADM1_REF %in% c("Adamawa","Borno","Yobe"))
-#rename 
-NGA_shp2 <- NGA_shp2 %>% rename("ADMIN2Code" = "ADM2_PCODE")
-#join shapefile to table of HHS phases
-CH_rCSI_shp <- left_join(NGA_shp2, CH_rCSI_table_wide, by = "ADMIN2Code")
-
-#CH color codes
-CH_colors = c("1" = "#c6ffc7", "2" = "#ffe718", "3" = "#e88400", "4" = "#e02d00", "5" = "#5e0803")
-
-maprCSI <- CH_rCSI_shp %>% ggplot()  +geom_sf(aes(fill = as.factor(rCSI_finalphase))) +theme_void() +coord_sf(datum=NA) +labs(fill="rCSI phasing") +scale_fill_manual(values = CH_colors) +ggtitle(label= "phasing of rCSI") +geom_sf(data=NGA_shp1,  lwd=1.5, fill=NA) 
-
-maprCSI
-
-```
-
-
-### Data Quality Monitoring
-
-1. Compare rCSI CH phasing by admin1 and admin2 areas
-
-```{r, eval = T, message = F}
-library(plotly)
-
-#Generate longtable of proportion of households in CH rCSI phases by Adm1 and Adm2 not using weights
-CH_rCSI_table_long <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
-  drop_na(rCSI_CH) %>%
-  count(rCSI_CH) 
-
-#make graph
-CH_rCSI_admin2_bargraph <- CH_rCSI_table_long %>% ggplot(aes(fill=rCSI_CH, y=n, x=ADMIN2Name)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN1Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_y_continuous(labels = scales::percent)+ theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
-
-#add title
-CH_rCSI_admin2_bargraph <- CH_rCSI_admin2_bargraph +ggtitle("CH Phasing of rCSI Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
-
-ggplotly(CH_rCSI_admin2_bargraph)
-```
-
-
-2. Examine rCSI CH phasing by admin2 areas and enumerators 
-
-```{r, eval = T, message = F}
-library(plotly)
-
-#Generate longtable of proportion of households in CH rCSI phases by Adm1 and Adm2 and Operator - not using survey weights 
-CH_rCSI_enumerators_tablelong <- datarCSIEng   %>% 
-  group_by(ADMIN2Name, enum_cod) %>%
-  count(rCSI_CH) 
-
-#make graph
-CH_rCSI_admin2enumerators_bargraph <- CH_rCSI_enumerators_tablelong %>% ggplot(aes(fill=rCSI_CH, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_void()
-
-#add title
-CH_rCSI_admin2enumerators_bargraph  <- CH_rCSI_admin2enumerators_bargraph +ggtitle("CH Phasing of HHS of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
-
-ggplotly(CH_rCSI_admin2enumerators_bargraph)
-
-```
 
 <!--chapter:end:03-rCSI.Rmd-->
 
@@ -731,6 +585,13 @@ Here is the R syntax file:
 <!--chapter:end:04-FCSHDDS.Rmd-->
 
 # Livelihood Coping Strategies
+
+## References / Resources
+
+1.  Standard Livelihood Coping Strategies  - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+
+2.  ENA Livelihood Coping Strategies - https://docs.wfp.org/api/documents/WFP-0000074197/download/?
+
 
 ## Standardized Light CARI Module 
 
@@ -963,12 +824,6 @@ Here is the R syntax file:
 not available yet
 
 
-## References / Resources
-
-1.  Standard Livelihood Coping Strategies  - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
-
-2.  ENA Livelihood Coping Strategies - https://docs.wfp.org/api/documents/WFP-0000074197/download/?
-
 
 
 
@@ -978,21 +833,13 @@ not available yet
 
 <!--chapter:end:05-LHCS.Rmd-->
 
-# Calculate CH indicators and Matrice Intermediare
+# Data Quality Monitoring Report
 
-*coming real soon!*
+coming soon
 
-<!--chapter:end:06-CHindicators.Rmd-->
+<!--chapter:end:06-DQM.Rmd-->
 
-# Example of Data Quality Report
+# Calculating CH Indicators
 
-```{r, eval = F}
-library(haven)
-library(tidyverse)
-library(labelled)
-
-dataHHSEng <- read_sav("example_datasets\\data4dataqreport.sav")
-``
-
-<!--chapter:end:07-DataQuality.Rmd-->
+<!--chapter:end:07-CHviz.Rmd-->
 

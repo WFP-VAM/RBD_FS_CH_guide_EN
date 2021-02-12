@@ -82,7 +82,7 @@ Here is the SPSS syntax file:
 
 ### R Syntax
 
-```{r, eval = T, message = F}
+```{r, eval = F, message = F}
 library(haven)
 library(labelled)
 library(tidyverse)
@@ -131,70 +131,3 @@ Here is the R syntax file:
 
 [RBDstandardized_RsyntaxrCSI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxrCSI.R) 
 
-
-## Data Quality Monitoring & Visualisation of rCSI Indicator
-
-### Mapping rCSI final phasing
-
-```{r, eval = T, message = F}
-library(sf)
-
-#import shapefile of Nigeria
-NGA_shp2 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm2_osgof_20190417.shp") %>% filter(ADM1_EN %in% c("Adamawa","Borno","Yobe"))
-NGA_shp1 <- read_sf("example_datasets/NGA_shpfile/nga_admbnda_adm1_osgof_20190417.shp") %>% filter(ADM1_REF %in% c("Adamawa","Borno","Yobe"))
-#rename 
-NGA_shp2 <- NGA_shp2 %>% rename("ADMIN2Code" = "ADM2_PCODE")
-#join shapefile to table of HHS phases
-CH_rCSI_shp <- left_join(NGA_shp2, CH_rCSI_table_wide, by = "ADMIN2Code")
-
-#CH color codes
-CH_colors = c("1" = "#c6ffc7", "2" = "#ffe718", "3" = "#e88400", "4" = "#e02d00", "5" = "#5e0803")
-
-maprCSI <- CH_rCSI_shp %>% ggplot()  +geom_sf(aes(fill = as.factor(rCSI_finalphase))) +theme_void() +coord_sf(datum=NA) +labs(fill="rCSI phasing") +scale_fill_manual(values = CH_colors) +ggtitle(label= "phasing of rCSI") +geom_sf(data=NGA_shp1,  lwd=1.5, fill=NA) 
-
-maprCSI
-
-```
-
-
-### Data Quality Monitoring
-
-1. Compare rCSI CH phasing by admin1 and admin2 areas
-
-```{r, eval = T, message = F}
-library(plotly)
-
-#Generate longtable of proportion of households in CH rCSI phases by Adm1 and Adm2 not using weights
-CH_rCSI_table_long <- datarCSIEng %>% group_by(ADMIN1Name, ADMIN2Name) %>%
-  drop_na(rCSI_CH) %>%
-  count(rCSI_CH) 
-
-#make graph
-CH_rCSI_admin2_bargraph <- CH_rCSI_table_long %>% ggplot(aes(fill=rCSI_CH, y=n, x=ADMIN2Name)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN1Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_y_continuous(labels = scales::percent)+ theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
-
-#add title
-CH_rCSI_admin2_bargraph <- CH_rCSI_admin2_bargraph +ggtitle("CH Phasing of rCSI Groups of Households by Admin2 Area") +theme(plot.title = element_text(hjust = 0.5))
-
-ggplotly(CH_rCSI_admin2_bargraph)
-```
-
-
-2. Examine rCSI CH phasing by admin2 areas and enumerators 
-
-```{r, eval = T, message = F}
-library(plotly)
-
-#Generate longtable of proportion of households in CH rCSI phases by Adm1 and Adm2 and Operator - not using survey weights 
-CH_rCSI_enumerators_tablelong <- datarCSIEng   %>% 
-  group_by(ADMIN2Name, enum_cod) %>%
-  count(rCSI_CH) 
-
-#make graph
-CH_rCSI_admin2enumerators_bargraph <- CH_rCSI_enumerators_tablelong %>% ggplot(aes(fill=rCSI_CH, y=n, x=enum_cod)) +geom_bar(position="fill", stat="identity") +facet_wrap(. ~ ADMIN2Name, scales = "free") +scale_fill_manual(values=c("#c6ffc7","#ffe718","#e88400","#e02d00", "#5e0803")) +theme_void()
-
-#add title
-CH_rCSI_admin2enumerators_bargraph  <- CH_rCSI_admin2enumerators_bargraph +ggtitle("CH Phasing of HHS of Households by Admin2 Area and Enumerator") +theme(plot.title = element_text(hjust = 0.5))
-
-ggplotly(CH_rCSI_admin2enumerators_bargraph)
-
-```

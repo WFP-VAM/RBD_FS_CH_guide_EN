@@ -1,5 +1,12 @@
 # Livelihood Coping Strategies
 
+## References / Resources
+
+1.  Standard Livelihood Coping Strategies  - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+
+2.  ENA Livelihood Coping Strategies - https://docs.wfp.org/api/documents/WFP-0000074197/download/?
+
+
 ## Standardized Light CARI Module 
 
 Variable Name | Question Label | Answer Choices
@@ -230,12 +237,6 @@ Here is the R syntax file:
 
 not available yet
 
-
-## References / Resources
-
-1.  Standard Livelihood Coping Strategies  - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
-
-2.  ENA Livelihood Coping Strategies - https://docs.wfp.org/api/documents/WFP-0000074197/download/?
 
 
 
