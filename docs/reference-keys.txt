@@ -50,3 +50,5 @@ spss-syntax-4
 r-syntax-4
 data-quality-monitoring-report
 calculating-ch-indicators
+r-markdown
+including-plots
