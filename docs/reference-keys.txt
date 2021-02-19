@@ -49,10 +49,8 @@ example-data-set-4
 spss-syntax-4
 r-syntax-4
 data-quality-monitoring-report
-calculating-ch-indicators
-r-markdown
-including-plots
 overview-video
 data-quality-monitoring-tools
 example-data-set-5
 example-data-quality-report
+calculating-ch-indicators
