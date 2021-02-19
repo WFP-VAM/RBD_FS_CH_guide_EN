@@ -1,3 +1,18 @@
 # Data Quality Monitoring Report
 
-coming soon
+If survey teams are collecting data with Kobo, Ona, MoDa, ODK and sending their submissions to a server on a regular basis, then we can generate a data quality report with R to regularly track survey results and detect problems that may arise in the field with data collection.
+
+## Overview video 
+
+![](https://youtu.be/zNzZ1PfUDNk)
+
+
+## Data Quality Monitoring Tools
+
+### Example data set
+
+### Example data quality report
+
+
+
+

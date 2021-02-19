@@ -12,6 +12,9 @@ library(plotly)
 library(janitor)
 library(kableExtra)
 
+#set working directory
+setwd("C:/RBD_FS_CH_guide_EN")
+
 #import dataset and call it "dataset"
 dataset <- read_sav("example_datasets/exampledataEng.sav")
 
@@ -22,9 +25,9 @@ dataset <- to_factor(dataset)
 dataset$EnumName <- to_labelled(dataset$EnumName)
 ```
 
-## Survey Progress
+# Survey Progress
 
-# Sample Sizes by Admin1, Admin 2 
+## Sample Sizes by Admin1, Admin 2 
 
 ```{r setup, include=FALSE}
 # display a table of counts by Adm1 and Adm2
