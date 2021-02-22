@@ -1,0 +1,42 @@
+library(haven)
+library(labelled)
+library(tidyverse)
+
+#import dataset
+dataset <- read_sav("example_datasets/exampledataEng.sav")
+
+#Calculate HHS
+dataset<- to_factor(dataset)
+
+#create a variable to specify if the household used any of the strategies by severity
+#stress
+dataset <- dataset %>% mutate(stress_coping = case_when(
+  LhCSIStress1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  LhCSIStress2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  LhCSIStress3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  LhCSIStress4 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  TRUE ~ "No"))
+
+#Crisis
+dataset <- dataset %>% mutate(crisis_coping = case_when(
+  LhCSICrisis1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  LhCSICrisis2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  LhCSICrisis3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  TRUE ~ "No"))
+#Emergency
+dataset <- dataset %>% mutate(emergency_coping = case_when(
+  LhCSIEmergency1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  LhCSIEmergency2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  LhCSIEmergency3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
+  TRUE ~ "No"))
+
+#calculate Max_coping_behaviour
+dataset <- dataset %>% mutate(LhCSICat = case_when(
+  emergency_coping == "Yes" ~ "EmergencyStrategies",
+  crisis_coping == "Yes" ~ "CrisisStrategies",
+  stress_coping == "Yes" ~ "StressStrategies",
+  TRUE ~ "NoStrategies"))
+var_label(dataset$LhCSICat) <- "Livelihood Coping Strategy categories - CARI light version"
+
+
+

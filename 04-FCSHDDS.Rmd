@@ -15,13 +15,11 @@ The modules below allow you to collect and calculate FCS, FCS-N and HDDS indicat
 ### Paper Version of Questionnaire
 
 Here is the standardized module in word format:
-
 [RBDstandardized_questionnaireFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.docx) 
 
 ### Electronic Version of Questionnaire
 
 Here is the standardized module in xlsform:
-
 [RBDstandardized_questionnaireFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.xlsx)
 
 ## Calculation of FCS & HDDS Indicators  
@@ -29,149 +27,15 @@ Here is the standardized module in xlsform:
 ### Example data set
 
 Here is the example data set:
-[dataFCSHDDSEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/dataFCSHDDSEng.sav) 
+[exampledataEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasetsexampledataEng.sav) 
 
-still need to create 
 
 ### SPSS Syntax
 
-```{r, eval = F}
-
-GET
-  FILE='E:\example_datasets\dataFCSHDDSEng.sav'.
-DATASET NAME DataSet1 WINDOW=FRONT.
-
-** calculate Food Consumption Score 
-
-compute FCS = sum(FCSStap*2, FCSPulse*3, FCSDairy*4, FCSPr*4, FCSVeg, FCSFruit, FCSFat*0.5, FCSSugar*0.5).
-variable labels FCS "Food Consumption Score".
-
-** create food consumption groups from food consumption score - 21/35 and 28/42 thresholds
-
-recode FCS (0 thru 21 = 1) (21 thru 35 = 2) (35 thru highest = 3) into FCSCat21.
-variable labels FCSCat21 "Food Consumption Groups - 21/35 thresholds".
-recode FCS (0 thru 28 = 1) (28 thru 42 = 2) (42 thru highest = 3) into FCSCat28.
-variable labels FCSCat28  "Food Consumption Groups - 28/42 thresholds".
-
-VALUE LABELS FCSCat21 FCSCat28 
-1 "Poor"
-2 "Borderline"
-3 "Acceptable".
-
-** calculate Household Dietary Diversity Score
-
-compute HDDS = sum(HDDSStapCer,HDDSStapRoot,HDDSPulse,HDDSDairy,HDDSPrMeatF,HDDSPrMeatO,HDDSPrFish,
-HDDSPrEgg,HDDSVegOrg,HDDSVegGre,HDDSVegOth,HDDSFruitOrg,HDDSFruitOth,HDDSFat,HDDSSugar,HDDSCond).
-variable labels HDDS "Household Dietary Diversity Score".
-
-
-```
-
 Here is the SPSS syntax file: 
-
-[RBDstandardized_SPSSsyntaxFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxFCSHDDS.sav) 
+[RBDstandardized_SPSSsyntaxFCSHDDS_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxFCSHDDS_EN.sav) 
 
 ### R Syntax
 
-```{r, eval = F}
-library(haven)
-library(labelled)
-library(tidyverse)
-
-#import dataset
-dataFCSHDDSEng <- read_sav("example_datasets/dataFCSHDDSEng.sav")
-#convert to labels
-dataFCSHDDSEng <- to_factor(dataFCSHDDSEng)
-
-#calculate FCS
-dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(FCS = (2 * FCSStap) + (3 * FCSPulse)+ (4*FCSPr) +FCSVeg  +FCSFruit +(4*FCSDairy) + (0.5*FCSFat) + (0.5*FCSSugar))
-#create FCG groups based on 21/25 or 28/42 thresholds
-dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
-  FCSCat21 = case_when(
-  FCS <= 21 ~ "Poor", between(FCS, 21.5, 35) ~ "Borderline", FCS > 35 ~ "Acceptable"),
-  FCSCat28 = case_when(
-  FCS <= 28 ~ "Poor", between(FCS, 28.5, 42) ~ "Borderline", FCS > 42 ~ "Acceptable"))
-var_label(dataFCSHDDSEng$FCSCat21) <- "Food Consumption Group 21/35 thresholds"
-var_label(dataFCSHDDSEng$FCSCat28) <-  "Food Consumption Group 28/42 thresholds"
-
-
-
-#calculate HDDS first by creating the 12 groups based on the 16 questions 
-dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(
-    HDDSStapCer = case_when(HDDSStapCer == "Yes" ~ 1, TRUE ~ 0),
-    HDDSStapRoot = case_when(HDDSStapRoot  == "Yes" ~ 1, TRUE ~ 0),
-    HDDSVeg = case_when(HDDSVegOrg  == "Yes" | HDDSVegGre == "Yes" | HDDSVegOth == "Yes" ~ 1, TRUE ~ 0),
-    HDDSFruit = case_when(HDDSFruitOrg == "Yes" | HDDSFruitOth == "Yes" ~ 1, TRUE ~ 0),
-    HDDSPrMeat = case_when(HDDSPrMeatF == "Yes" | HDDSPrMeatO == "Yes" ~ 1, TRUE ~ 0),
-    HDDSPrEgg = case_when(HDDSPrEgg  == "Yes" ~ 1, TRUE ~ 0),
-    HDDSPrFish = case_when(HDDSPrFish == "Yes" ~ 1, TRUE ~ 0),
-    HDDSPulse = case_when(HDDSPulse == "Yes" ~ 1, TRUE ~ 0),
-    HDDSDairy = case_when(HDDSDairy == "Yes" ~ 1, TRUE ~ 0),
-    HDDSFat = case_when(HDDSFat == "Yes" ~ 1, TRUE ~ 0),
-    HDDSSugar = case_when(HDDSSugar == "Yes" ~ 1, TRUE ~ 0),
-    HDDSCond = case_when(HDDSCond == "Yes"~ 1, TRUE ~ 0))
-
-#Calculate HDDS and Cadre Harmonise Phases
-dataFCSHDDSEng <- dataFCSHDDSEng %>% mutate(HDDS = HDDSStapCer +HDDSStapRoot +HDDSVeg +HDDSFruit +HDDSPrMeat +HDDSPrEgg +HDDSPrFish +HDDSPulse +HDDSDairy +HDDSFat +HDDSSugar +HDDSCond)
-var_label(dataFCSHDDSEng$HDDS) <- "Hosehold Dietary Diversity Score"
-
-#Calucate Cadre Harmonise HDDS phasing categories 
-dataFCSHDDSEng <- dataFCSHDDSEng %>%  mutate(HDDS_CH = case_when(
-    HDDS >= 5 ~ "Phase1", 
-    HDDS == 4 ~ "Phase2",       
-    HDDS == 3 ~ "Phase3",
-    HDDS == 2 ~ "Phase4",
-    HDDS < 2 ~ "Phase5"))
-var_label(dataFCSHDDSEng$HDDS_CH) <- "Hosehold Dietary Diversity Score - CH phasing"
-
-#Generate table of proportion of households in FCG by Adm1 and Adm2 using weights 
-#Food Consumption Group 21/35 cutoff 
-FCSCat_table_wide <- dataFCSHDDSEng %>% 
-  drop_na(FCSCat21) %>%
-  group_by(ADMIN1Name, ADMIN2Name, ADMIN2Code) %>%
-  count(FCSCat21, wt = WeightHH) %>%
-  mutate(perc = 100 * n / sum(n)) %>%
-  ungroup() %>% select(-n) %>%
-  spread(key = FCSCat21, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
-
-#Calculate phasing of FCG indicator for area (applying CH 20% rules)
-FCSCat_table_wide <- FCSCat_table_wide %>%
-  mutate(PoorBorderline = Poor + Borderline, FCG_finalphase = case_when(
-  Poor < 5 ~ 1,  #if less than 5% are in the poor food group then phase 1
-  Poor >= 20 ~ 4, #if 20% or more are in the poor food group then phase 4
-  between(Poor,5,10) ~ 2, #if % of people are between 5 and 10%  then phase2
-  between(Poor,10,20) & PoorBorderline < 30 ~ 2, #if % of people in poor food group are between 20 and 20% and the % of people who are in poor and borderline is less than 30 % then phase2
-  between(Poor,10,20) & PoorBorderline >= 30 ~ 3)) %>% #if % of people in poor food group are between 20 and 20% and the % of people who are in poor and borderline is less than 30 % then phase2
-  select(ADMIN1Name, ADMIN2Name, ADMIN2Code, FCG_Poor = Poor, FCG_Borderline = Borderline, FCG_Acceptable = Acceptable, FCG_finalphase) #select only relevant variables and order in proper sequence
-
-#Generate table of proportion of households by HDDS by Adm1 and Adm2 using weights
-CH_HDDS_table_wide <- dataFCSHDDSEng %>% 
-  drop_na(HDDS_CH) %>%
-  group_by(ADMIN1Name, ADMIN2Name, ADMIN2Code) %>%
-  count(HDDS_CH, wt = WeightHH) %>%
-  mutate(perc = 100 * n / sum(n)) %>%
-  ungroup() %>% select(-n) %>%
-  spread(key = HDDS_CH, value = perc) %>% replace(., is.na(.), 0) %>% mutate_if(is.numeric, round, 1)
-
-#Calculate phasing of HDDS indicator for area (applying CH 20% rules)
-
-
-#Apply the 20% rule (if it is 20% in that phase or the sum of higher phases equals 20%) 
-CH_HDDS_table_wide <- CH_HDDS_table_wide %>% 
-    mutate(
-    phase2345 = `Phase2` + `Phase3` + `Phase4` + `Phase5`, 
-    phase345 = `Phase3` + `Phase4` + `Phase5`,
-    phase45 = `Phase4` + `Phase5`, 
-    HDDS_finalphase = case_when(
-    `Phase5` >= 20 ~ 5, 
-    `Phase4` >= 20 | phase45 >= 20 ~ 4, 
-    `Phase3` >= 20 | phase345 >= 20 ~ 3, 
-    `Phase2` >= 20 | phase2345 >= 20 ~ 2,
-     TRUE ~ 1)) %>% 
-  select(ADMIN1Name, ADMIN2Name, ADMIN2Code, HDDS_Phase1 = Phase1, HDDS_Phase2 = Phase2, HDDS_Phase3 = Phase3, HDDS_Phase4 = Phase4, HDDS_Phase5 = Phase5, HDDS_finalphase) 
-```
-
-
 Here is the R syntax file: 
-
-[RBDstandardized_RsyntaxFCSHDDS](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxFCSHDDS.R) 
+[RBDstandardized_RsyntaxFCSHDDS_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxFCSHDDS_EN.R) 

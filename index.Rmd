@@ -1,5 +1,5 @@
 --- 
-title: "A Guide to Collection & Calculation of Cadre Harmonise Food Security Indicators - beta version"
+title: "A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators"
 author: "Research, Assesment and Monitoring (RAM) Team
          Regional Bureau Dakar
          World Food Programme
@@ -23,4 +23,43 @@ Chapters are listed by indicator and include:
 2. sample data set 
 3. standardized syntax in SPSS and R
 4. references / official guidelines / source materials for the indicators
+
+# Using R & Rstudio 
+
+## Using R 
+
+To download R, go to CRAN, the comprehensive R archive network. CRAN is composed of a set of mirror servers distributed around the world and is used to distribute R and R packages. Don’t try and pick a mirror that’s close to you: instead use the cloud mirror, https://cloud.r-project.org, which automatically figures it out for you.
+A new major version of R comes out once a year, and there are 2-3 minor releases each year. It’s a good idea to update regularly. Upgrading can be a bit of a hassle, especially for major versions, which require you to reinstall all your packages, but putting it off only makes it worse.
+
+https://r4ds.had.co.nz/introduction.html
+
+## Using R Studio
+
+RStudio is an integrated development environment, or IDE, for R programming. Download and install it from http://www.rstudio.com/download. RStudio is updated a couple of times a year. When a new version is available, RStudio will let you know. It’s a good idea to upgrade regularly so you can take advantage of the latest and greatest features. For this book, make sure you have at least RStudio 1.0.0.
+When you start RStudio, you’ll see two key regions in the interface:
+
+For now, all you need to know is that you type R code in the console pane, and press enter to run it. You’ll learn more as we go along!
+
+copied from https://r4ds.had.co.nz/introduction.html (gonna figure out how to cite it)
+
+## Installing packages
+
+You’ll also need to install some R packages. An R package is a collection of functions, data, and documentation that extends the capabilities of base R. Using packages is key to the successful use of R. The majority of the packages that you will learn in this book are part of the so-called tidyverse. The packages in the tidyverse share a common philosophy of data and R programming, and are designed to work together naturally.
+You can install the complete tidyverse with a single line of code:
+
+```{r eval=FALSE}
+install.packages("tidyverse")
+```
+
+On your own computer, type that line of code in the console, and then press enter to run it. R will download the packages from CRAN and install them on to your computer. If you have problems installing, make sure that you are connected to the internet, and that https://cloud.r-project.org/ isn’t blocked by your firewall or proxy.
+You will not be able to use the functions, objects, and help files in a package until you load it with library(). Once you have installed a package, you can load it with the library() function:
+
+library(tidyverse)
+
+## Getting help in R
+
+If you get stuck, start with Google. Typically adding “R” to a query is enough to restrict it to relevant results: if the search isn’t useful, it often means that there aren’t any R-specific results available. Google is particularly useful for error messages. If you get an error message and you have no idea what it means, try googling it! Chances are that someone else has been confused by it in the past, and there will be help somewhere on the web. (If the error message isn’t in English, run Sys.setenv(LANGUAGE = "en") and re-run the code; you’re more likely to find help for English error messages.)
+If Google doesn’t help, try stackoverflow. Start by spending a little time searching for an existing answer, including [R] to restrict your search to questions and answers that use R. If you don’t find anything useful, prepare a minimal reproducible example or reprex. A good reprex makes it easier for other people to help you, and often you’ll figure out the problem yourself in the course of making it.
+
+copied from https://r4ds.had.co.nz/introduction.html (gonna figure out how to cite it)
 

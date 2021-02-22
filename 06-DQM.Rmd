@@ -1,18 +1,34 @@
 # Data Quality Monitoring Report
 
-If survey teams are collecting data with Kobo, Ona, MoDa, ODK and sending their submissions to a server on a regular basis, then we can generate a data quality report with R to regularly track survey results and detect problems that may arise in the field with data collection.
+If survey teams are collecting data with Kobo/Ona/MoDa/ODK and regularly sending their submissions to a server, then we can quickly generate a data quality report with R to regularly track survey results and detect problems that may arise in the field with data collection.
+
+The example report below has been generalized to visualize survey progress by geographic areas and calculated results of key CH indicators by geographic areas and by enumerators.
 
 ## Overview video 
 
-![](https://youtu.be/zNzZ1PfUDNk)
-
+![](https://player.vimeo.com/video/142172484)
 
 ## Data Quality Monitoring Tools
 
 ### Example data set
 
+Here is the example data set:
+[exampledataEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEng.sav) 
+
 ### Example data quality report
 
+Here is the syntax to generate the example data quality report:
+[example_dqmonitoring_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_dqmonitoring_EN.sav) 
 
 
+### Outputs of Example data quality report
+
+Here is the example data quality report:
+[example_dqmonitoring_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/example_dqmonitoring_EN.html) 
+
+## Troubleshooting & Going Further
+
+This report has been designed to work with standardized variable names and indicators illustrated earlier in this guide. Experienced R users are free to modify the report to meet their specific needs.  
+
+For any difficulties - contact rbd.vam@wfp.org
 

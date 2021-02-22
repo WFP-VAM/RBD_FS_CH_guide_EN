@@ -1,0 +1,295 @@
+---
+title: "Example Data Quality Monitoring Report"
+author: "WFP "
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=F, warning = F,  fig.width=10, fig.height=10)
+library(tidyverse)
+library(haven)
+library(labelled)
+library(plotly)
+library(janitor)
+library(kableExtra)
+
+
+#set working directory 
+setwd("C:/exampledataquality")
+
+#import dataset and call it "dataset"
+dataset <- read_sav("1_RawData/exampledataEng.sav")
+
+#convert into labels for all variables
+dataset <- to_factor(dataset)
+
+#convert enumerator name back to code - because for data security reasons you dont want to publish the name of the operator
+dataset$EnumName <- to_labelled(dataset$EnumName)
+
+
+#Survey Progress
+countsadm1table <- dataset %>% group_by(ADMIN1Name) %>%  count()
+countsadm1adm2table <- dataset %>% group_by(ADMIN1Name, ADMIN2Name) %>%  count() 
+countsenumtable <- dataset %>% group_by(ADMIN2Name, EnumName) %>%  count() %>% arrange(desc(`n`))
+
+adm1_graph <- countsadm1table %>% ggplot(aes(x = ADMIN1Name, y = n)) +geom_bar(stat = "identity", fill = "steel blue") +theme_minimal()  +labs(x = "", y = "")
+adm2_graph <- countsadm1adm2table %>% ggplot(aes(x = ADMIN2Name, y = n)) +geom_bar(stat = "identity", fill = "steel blue") +theme_minimal() +facet_wrap(. ~ ADMIN1Name, scales = "free") +theme(axis.text.x = element_text(angle = 90)) +labs(x = "", y = "")
+adm1enum_graph <- countsenumtable %>% ggplot(aes(x = as.factor(EnumName), y = n)) +geom_bar(stat = "identity", fill = "steel blue") +theme_minimal()  +facet_wrap(. ~ ADMIN2Name, scales = "free_x") +labs(x = "", y = "") +theme(axis.text.x=element_blank())
+
+#Food Consumption Score
+#calculate FCS
+dataset <- dataset %>% mutate(FCS = (2 * FCSStap) + (3 * FCSPulse)+ (4*FCSPr) +FCSVeg  +FCSFruit +(4*FCSDairy) + (0.5*FCSFat) + (0.5*FCSSugar))
+#create FCG groups based on 21/25 or 28/42 thresholds
+dataset <- dataset %>% mutate(
+  FCSCat21 = case_when(
+    FCS <= 21 ~ "Poor", between(FCS, 21.5, 35) ~ "Borderline", FCS > 35 ~ "Acceptable"),
+  FCSCat28 = case_when(
+    FCS <= 28 ~ "Poor", between(FCS, 28.5, 42) ~ "Borderline", FCS > 42 ~ "Acceptable"))
+#fcg colors
+fcg_colors = c("Acceptable" = "#27AE60","Borderline" = "#F1C40F","Poor" = "#C0392B")
+#FCG by Adm2
+FCGadm2table <- dataset %>% group_by(ADMIN1Name, ADMIN2Name) %>%  count(FCSCat28) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+FCGadm2_barplot <- FCGadm2table %>% ggplot(aes(x=ADMIN2Name, y = perc, fill = FCSCat28)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=fcg_colors) + facet_wrap(. ~ ADMIN1Name, scales = "free_x")  +labs(x = "", y = "") +scale_y_continuous(labels = scales::percent)
+#FCG by Adm2 and EnumName
+FCGEnumNametable <- dataset %>% group_by(EnumName, ADMIN1Name, ADMIN2Name) %>%  count(FCSCat28) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+FCGadm2EnumName_barplot <- FCGEnumNametable %>% ggplot(aes(x=as.factor(EnumName), y = perc, fill = FCSCat28)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=fcg_colors) + facet_wrap(ADMIN1Name ~ ADMIN2Name, scales = "free") +labs(x = "", y = "") +theme(axis.text.x=element_blank()) +scale_y_continuous(labels = scales::percent)
+
+#Household Dietary Diversity Score
+#calculate HDDS first by creating the 12 groups based on the 16 questions
+dataset <- dataset %>% mutate(
+  HDDSStapCer = case_when(HDDSStapCer == "Yes" ~ 1, TRUE ~ 0),
+  HDDSStapRoot = case_when(HDDSStapRoot  == "Yes" ~ 1, TRUE ~ 0),
+  HDDSVeg = case_when(HDDSVegOrg  == "Yes" | HDDSVegGre == "Yes" | HDDSVegOth == "Yes" ~ 1, TRUE ~ 0),
+  HDDSFruit = case_when(HDDSFruitOrg == "Yes" | HDDSFruitOth == "Yes" ~ 1, TRUE ~ 0),
+  HDDSPrMeat = case_when(HDDSPrMeatF == "Yes" | HDDSPrMeatO == "Yes" ~ 1, TRUE ~ 0),
+  HDDSPrEgg = case_when(HDDSPrEgg  == "Yes" ~ 1, TRUE ~ 0),
+  HDDSPrFish = case_when(HDDSPrFish == "Yes" ~ 1, TRUE ~ 0),
+  HDDSPulse = case_when(HDDSPulse == "Yes" ~ 1, TRUE ~ 0),
+  HDDSDairy = case_when(HDDSDairy == "Yes" ~ 1, TRUE ~ 0),
+  HDDSFat = case_when(HDDSFat == "Yes" ~ 1, TRUE ~ 0),
+  HDDSSugar = case_when(HDDSSugar == "Yes" ~ 1, TRUE ~ 0),
+  HDDSCond = case_when(HDDSCond == "Yes"~ 1, TRUE ~ 0))
+#Calculate HDDS and Cadre Harmonise Phases
+dataset <- dataset %>% mutate(HDDS = HDDSStapCer +HDDSStapRoot +HDDSVeg +HDDSFruit +HDDSPrMeat +HDDSPrEgg +HDDSPrFish +HDDSPulse +HDDSDairy +HDDSFat +HDDSSugar +HDDSCond)
+#Calucate Cadre Harmonise HDDS phasing categories
+dataset<- dataset %>%  mutate(HDDS_CH = case_when(
+  HDDS >= 5 ~ "Phase1",
+  HDDS == 4 ~ "Phase2",
+  HDDS == 3 ~ "Phase3",
+  HDDS == 2 ~ "Phase4",
+  HDDS < 2 ~ "Phase5"))
+#CH colors
+CH_colors = c("Phase1" = "#c6ffc7","Phase2" = "#ffe718","Phase3" = "#e88400","Phase4" = "#e02d00", "Phase5" = "#5e0803")
+#HDDS phases by Adm2
+HDDSphaseadm2table <- dataset %>% group_by(ADMIN1Name, ADMIN2Name) %>%  count(HDDS_CH) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+HDDSadm2_barplot <- HDDSphaseadm2table %>% ggplot(aes(x=ADMIN2Name, y = perc, fill = HDDS_CH)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=CH_colors) + facet_wrap(. ~ ADMIN1Name, scales = "free_x") +labs(x = "", y = "") +scale_y_continuous(labels = scales::percent)
+#FCG by Adm2 and EnumName
+HDDSadm2EnumNametable <- dataset %>% group_by(EnumName,  ADMIN1Name, ADMIN2Name) %>%  count(HDDS_CH) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+HDDSadm2EnumName_barplot <- HDDSadm2EnumNametable %>% ggplot(aes(x=as.factor(EnumName), y = perc, fill = HDDS_CH)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=CH_colors) + facet_wrap(ADMIN1Name ~ ADMIN2Name, scales = "free") +labs(x = "", y = "") +theme(axis.text.x=element_blank()) +scale_y_continuous(labels = scales::percent)
+
+
+
+#reduced Coping Strategy Index
+#calculate rCSI Score
+dataset <- dataset %>% mutate(rCSI = rCSILessQlty  + (2 * rCSIBorrow) + rCSIMealSize + (3 * rCSIMealAdult) + rCSIMealNb)
+var_label(dataset$rCSI) <- "rCSI"
+#Create rCSI Cadre Harmonise Categories
+dataset<- dataset %>% mutate(rCSI_CH = case_when(
+  rCSI <= 3 ~ "Phase1",
+  between(rCSI,4,18) ~ "Phase2",
+  rCSI >= 19 ~ "Phase3"))
+#rCSI colors
+rCSI_colors = c("Phase1" = "#c6ffc7","Phase2" = "#ffe718","Phase3" = "#e88400")
+#FCG by Adm2
+rCSIphaseadm2table <- dataset %>% group_by(ADMIN1Name, ADMIN2Name) %>%  count(rCSI_CH) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+rCSIadm2_barplot <- rCSIphaseadm2table %>% ggplot(aes(x=ADMIN2Name, y = perc, fill = rCSI_CH)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=rCSI_colors) + facet_wrap(. ~ ADMIN1Name, scales = "free_x") +labs(x = "", y = "") +scale_y_continuous(labels = scales::percent)
+#FCG by Adm2 and EnumName
+rCSIEnumNametable <- dataset %>% group_by(EnumName, ADMIN1Name, ADMIN2Name) %>%  count(rCSI_CH) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+rCSIadm2EnumName_barplot <- rCSIEnumNametable %>% ggplot(aes(x=as.factor(EnumName), y = perc, fill = rCSI_CH)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=rCSI_colors) + facet_wrap(ADMIN1Name ~ ADMIN2Name, scales = "free") +labs(x = "", y = "") +theme(axis.text.x=element_blank()) +scale_y_continuous(labels = scales::percent)
+
+#HHS Score 
+#Recode HHS questions into new variables with score
+dataset <- dataset %>% mutate(HHhSNoFood_FR_r = case_when(
+  HHhSNoFood_FR == "Rarely (1–2 times)" ~ 1,
+  HHhSNoFood_FR == "Sometimes (3–10 times)" ~ 1,
+  HHhSNoFood_FR == "Often (more than 10 times)" ~ 2,
+  TRUE ~ 0),
+  HHhSBedHung_FR_r = case_when(
+    HHhSBedHung_FR == "Rarely (1–2 times)" ~ 1,
+    HHhSBedHung_FR == "Sometimes (3–10 times)" ~ 1,
+    HHhSBedHung_FR == "Often (more than 10 times)" ~ 2,
+    TRUE ~ 0),
+  HHhSNotEat_FR_r = case_when(
+    HHhSNotEat_FR == "Rarely (1–2 times)" ~ 1,
+    HHhSNotEat_FR == "Sometimes (3–10 times)" ~ 1,
+    HHhSNotEat_FR == "Often (more than 10 times)" ~ 2,
+    TRUE ~ 0))
+# Calculate HHhS score
+dataset <- dataset %>% mutate(HHhS = HHhSNoFood_FR_r + HHhSBedHung_FR_r + HHhSNotEat_FR_r)
+#Convert HH Scores to CH phases
+dataset <- dataset %>% mutate(HHhS_CH = case_when(
+  HHhS == 0 ~ "Phase1",
+  HHhS == 1 ~ "Phase2",
+  HHhS %in% c(2,3) ~ "Phase3",
+  HHhS == 4 ~ "Phase4",
+  HHhS >= 5 ~ "Phase5"))
+#CH colors
+CH_colors = c("Phase1" = "#c6ffc7","Phase2" = "#ffe718","Phase3" = "#e88400","Phase4" = "#e02d00", "Phase5" = "#5e0803")
+#HHS by Adm2
+HHSphaseadm2table <- dataset %>% group_by(ADMIN1Name, ADMIN2Name) %>%  count(HHhS_CH) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+HHSadm2_barplot <- HHSphaseadm2table %>% ggplot(aes(x=ADMIN2Name, y = perc, fill = HHhS_CH)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=CH_colors) + facet_wrap(. ~ ADMIN1Name, scales = "free_x") +labs(x = "", y = "") +scale_y_continuous(labels = scales::percent)
+#FCG by Adm2 and EnumName
+HHSadm2EnumNametable <- dataset %>% group_by(EnumName,  ADMIN1Name, ADMIN2Name) %>%  count(HHhS_CH) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+HHSadm2EnumName_barplot <- HHSadm2EnumNametable %>% ggplot(aes(x=as.factor(EnumName), y = perc, fill = HHhS_CH)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=CH_colors) + facet_wrap(ADMIN1Name ~ ADMIN2Name, scales = "free") +labs(x = "", y = "") +theme(axis.text.x=element_blank()) +scale_y_continuous(labels = scales::percent)
+
+
+#Livelihood Coping Strategies (CARI)
+#create a variable to specify if the household used any of the strategies by severity
+#stress
+dataset <- dataset %>% mutate(stress_coping = case_when(
+  LhCSIStress1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
+  LhCSIStress2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
+  LhCSIStress3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
+  LhCSIStress4 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedstress",
+  TRUE ~ "notusedstress"))
+#Crisis
+dataset <- dataset %>% mutate(crisis_coping = case_when(
+  LhCSICrisis1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedcrisis",
+  LhCSICrisis2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedcrisis",
+  LhCSICrisis3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedcrisis",
+  TRUE ~ "notusedcrisis"))
+#Emergency
+dataset <- dataset %>% mutate(emergency_coping = case_when(
+  LhCSIEmergency1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedemergency",
+  LhCSIEmergency2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedemergency",
+  LhCSIEmergency3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "usedemergency",
+  TRUE ~ "noutusedemergency"))
+#calculate Max_coping_behaviour
+dataset <- dataset %>% mutate(LhCSICat = case_when(
+  emergency_coping == "usedemergency" ~ "EmergencyStrategies",
+  crisis_coping == "usedcrisis" ~ "CrisisStrategies",
+  stress_coping == "usedstress" ~ "StressStrategies",
+  TRUE ~ "NoStrategies"))
+#CH colors
+LHCS_colors = c("NoStrategies" = "#c6ffc7","StressStrategies" = "#ffe718","CrisisStrategies" = "#e88400","EmergencyStrategies" = "#e02d00")
+#change ordering
+dataset <- dataset %>%
+  mutate(LhCSICat = fct_relevel(LhCSICat, c("NoStrategies", "StressStrategies", "CrisisStrategies", "EmergencyStrategies")))
+#LHCS by Adm2
+LHCSadm2table <- dataset %>% group_by(ADMIN1Name, ADMIN2Name) %>%  count(LhCSICat) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+LHCSadm2_barplot <- LHCSadm2table %>% ggplot(aes(x=ADMIN2Name, y = perc, fill = LhCSICat)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=LHCS_colors) + facet_wrap(. ~ ADMIN1Name, scales = "free_x") +labs(x = "", y = "") +scale_y_continuous(labels = scales::percent)
+#LHCS by Adm2 and EnumName
+LHCSadm2EnumNametable <- dataset %>% group_by(EnumName,  ADMIN1Name, ADMIN2Name) %>%  count(LhCSICat) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
+LHCSadm2EnumName_barplot <- LHCSadm2EnumNametable %>% ggplot(aes(x=as.factor(EnumName), y = perc, fill = LhCSICat)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=LHCS_colors) + facet_wrap(ADMIN1Name ~ ADMIN2Name, scales = "free") +labs(x = "", y = "") +theme(axis.text.x=element_blank()) +scale_y_continuous(labels = scales::percent)
+
+```
+
+## Survey Progress
+
+### Survey Counts by Admin1
+
+```{r}
+ggplotly(adm1_graph)
+```
+
+### Survey Counts by Admin2
+
+```{r}
+ggplotly(adm2_graph)
+```
+
+### Survey Counts by Enumerator Code and Adm2
+
+```{r}
+ggplotly(adm1enum_graph)
+```
+
+
+## Food Consumption Score (FCS) / Food Consumption Groups (FCG)
+
+### Food Consumption Groups by Admin2 
+
+```{r}
+ggplotly(FCGadm2_barplot)
+```
+
+### Food Consumption Groups by Admin2 and Enumerator
+
+```{r}
+ggplotly(FCGadm2EnumName_barplot)
+```
+
+
+## Household Dietary Diversity Score (HDDS)
+
+### HDDS phases by Admin2 
+
+```{r}
+ggplotly(HDDSadm2_barplot)
+```
+
+### HDDS phases by Admin2 and Enumerator
+
+```{r}
+ggplotly(HDDSadm2EnumName_barplot)
+```
+
+## reduced Coping Strategy Index (rCSI)
+
+### rCSI (CH phases) by Admin2 
+
+```{r}
+ggplotly(rCSIadm2_barplot)
+```
+
+### rCSI (CH phases) by Admin2 and Enumerator
+
+```{r}
+ggplotly(rCSIadm2EnumName_barplot)
+```
+
+
+## Household Hunger Scale (HHS)
+
+### HHS (CH phases) by Admin2 
+
+```{r}
+ggplotly(HHSadm2_barplot)
+```
+
+### HHS (CH phases) by Admin2 and Enumerator
+
+```{r}
+ggplotly(HHSadm2EnumName_barplot)
+```
+
+
+## Livelihood Coping Strategies (LhCS)
+
+### Livelihood Coping Strategies by Admin2 
+
+```{r}
+ggplotly(LHCSadm2_barplot)
+```
+
+### Livelihood Coping Strategies by Admin2 and Enumerator
+
+```{r}
+ggplotly(LHCSadm2EnumName_barplot)
+```
+
+
+
+
+
+
+
+
+
+
+
