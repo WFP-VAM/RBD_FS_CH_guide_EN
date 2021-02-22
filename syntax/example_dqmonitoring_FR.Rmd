@@ -23,7 +23,7 @@ library(kableExtra)
 setwd("C:/exampledataquality")
 
 #import dataset and call it "dataset"
-dataset <- read_sav("1_RawData/exampledataFrancais.sav")
+dataset <- read_sav("1_RawData/exampledataFrancais_raw.sav")
 
 #convert into labels for all variables
 dataset <- to_factor(dataset)
@@ -152,34 +152,34 @@ HHSadm2EnumName_barplot <- HHSadm2EnumNametable %>% ggplot(aes(x=as.factor(EnumN
 #create a variable to specify if the household used any of the strategies by severity
 #stress
 dataset <- dataset %>% mutate(stress_coping = case_when(
-  LhCSIStress1 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedstress",
-  LhCSIStress2 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedstress",
-  LhCSIStress3 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedstress",
-  LhCSIStress4 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedstress",
-  TRUE ~ "notusedstress"))
+  LhCSIStress1 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  LhCSIStress2 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  LhCSIStress3 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  LhCSIStress4 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  TRUE ~ "No"))
 #Crisis
 dataset <- dataset %>% mutate(crisis_coping = case_when(
-  LhCSICrisis1 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedcrisis",
-  LhCSICrisis2 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedcrisis",
-  LhCSICrisis3 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedcrisis",
-  TRUE ~ "notusedcrisis"))
+  LhCSICrisis1 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  LhCSICrisis2 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  LhCSICrisis3 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  TRUE ~ "No"))
 #Emergency
 dataset <- dataset %>% mutate(emergency_coping = case_when(
-  LhCSIEmergency1 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedemergency",
-  LhCSIEmergency2 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedemergency",
-  LhCSIEmergency3 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "usedemergency",
-  TRUE ~ "noutusedemergency"))
+  LhCSIEmergency1 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  LhCSIEmergency2 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  LhCSIEmergency3 %in% c("Oui","Non, parce que j’ai déjà vendu ces actifs ou mené cette activité au cours des 12 derniers mois et je ne peux pas continuer à le faire") ~ "Oui",
+  TRUE ~ "Oui"))
 #calculate Max_coping_behaviour
 dataset <- dataset %>% mutate(LhCSICat = case_when(
-  emergency_coping == "usedemergency" ~ "StrategiesdeUrgence",
-  crisis_coping == "usedcrisis" ~ "StrategiesdeCrise",
-  stress_coping == "usedstress" ~ "StrategiesdeStress",
+  stress_coping == "Oui" ~ "StrategiesdeStress",
+  crisis_coping == "Oui" ~ "StrategiesdeCrise",
+  emergency_coping == "Oui" ~ "StrategiesdUrgence",
   TRUE ~ "Pasdestrategies"))
 #CH colors
-LHCS_colors = c("Pasdestrategies" = "#c6ffc7","StrategiesdeStress" = "#ffe718","StrategiesdeCrise" = "#e88400","StrategiesdeUrgence" = "#e02d00")
+LHCS_colors = c("Pasdestrategies" = "#c6ffc7","StrategiesdeStress" = "#ffe718","StrategiesdeCrise" = "#e88400","StrategiesdUrgence" = "#e02d00")
 #change ordering
 dataset <- dataset %>%
-  mutate(LhCSICat = fct_relevel(LhCSICat, c("Pasdestrategies", "StrategiesdeStress", "StrategiesdeCrise", "StrategiesdeUrgence")))
+  mutate(LhCSICat = fct_relevel(LhCSICat, c("Pasdestrategies", "StrategiesdeStress", "StrategiesdeCrise", "StrategiesdUrgence")))
 #LHCS by Adm2
 LHCSadm2table <- dataset %>% group_by(ADMIN1Name, ADMIN2Name) %>%  count(LhCSICat) %>% mutate(perc = 100 * n / sum(n)) %>% ungroup() %>% select(-n) %>% mutate_if(is.numeric, round, 1)
 LHCSadm2_barplot <- LHCSadm2table %>% ggplot(aes(x=ADMIN2Name, y = perc, fill = LhCSICat)) +geom_bar(position="fill", stat = "identity") +theme_minimal() +theme(axis.text.x = element_text(angle = 90)) +scale_fill_manual(values=LHCS_colors) + facet_wrap(. ~ ADMIN1Name, scales = "free_x") +labs(x = "", y = "") +scale_y_continuous(labels = scales::percent)

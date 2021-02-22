@@ -36,8 +36,7 @@ Here is the standardized module in xlsform:
 ### Example data set
 
 Here is the example data set:
-[exampledataEng](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasetsexampledataEng.sav) 
-
+[exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav) 
 
 ### SPSS Syntax
 
