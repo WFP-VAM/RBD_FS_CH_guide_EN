@@ -59,8 +59,10 @@ syntax
 example-outputs-of-matrice-intermediare
 troubleshooting-known-issues
 visualizing-ch-direct-food-security-indicators
+visualizing-ch-direct-food-security-indicators-from-matrice-intermediare
 overview-video-2
 visualizing-ch-direct-food-security-indicators-1
 example-matrice-intermediare
 syntax-1
 example-outputs-of-matrice-intermediare-1
+visualizing-ch-direct-food-security-indicators-directly-from-processed-data-set

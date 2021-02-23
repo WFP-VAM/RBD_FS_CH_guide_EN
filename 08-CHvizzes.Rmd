@@ -1,14 +1,16 @@
 # Visualizing CH Direct Food security Indicators
 
+## Visualizing CH Direct Food security Indicators from Matrice Intermediare
+
 After survey teams have generated the matrice intermediare, the R script below can be used for creating maps and tables of the Food Security Direct Evidence Indicatos.
 
-## Overview video 
+### Overview video 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen></iframe>
 
 (this video will be replaced with real one)
 
-## Visualizing CH Direct Food security Indicators
+### Visualizing CH Direct Food security Indicators
 
 ### Example matrice intermediare
 
@@ -19,9 +21,11 @@ After survey teams have generated the matrice intermediare, the R script below c
 Here is the syntax to visualize the CH Direct Food security Indicators
 [example_CH_preliminaryFSresults](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_CH_preliminaryFSresults.rmd) 
 
-
 ### Example Outputs of matrice intermediare 
 
 Here is the example data quality report:
 [example_CH_preliminaryFSresults](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/example_CH_preliminaryFSresults.html) 
 
+## Visualizing CH Direct Food security Indicators directly from processed data set 
+
+_coming real soon_
