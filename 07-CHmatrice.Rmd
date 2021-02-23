@@ -21,9 +21,9 @@ Here is the syntax to generate the matrice intermediare from processed dataset:
 [matricemaker_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/matricemaker_EN.R) 
 
 
-### Example Outputs of matrice intermediare 
+### Example of matrice intermediare 
 
-Here is the example data quality report:
+Here is the example matrice intermediare :
 [matrice_intermediaire_direct_en](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv) 
 
 ## Troubleshooting & Known issues
