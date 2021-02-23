@@ -24,7 +24,7 @@ Here is the syntax to generate the matrice intermediare from processed dataset:
 ### Example Outputs of matrice intermediare 
 
 Here is the example data quality report:
-[matrice_intermediaire_direct_en.csv](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv) 
+[matrice_intermediaire_direct_en](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv) 
 
 ## Troubleshooting & Known issues
 

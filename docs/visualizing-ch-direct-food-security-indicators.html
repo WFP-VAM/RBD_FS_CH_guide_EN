@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Calculating Matrice Intermediare (direct food security data) | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators</title>
-  <meta name="description" content="Chapter 9 Calculating Matrice Intermediare (direct food security data) | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
+  <title>Chapter 10 Visualizing CH Direct Food security Indicators | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators</title>
+  <meta name="description" content="Chapter 10 Visualizing CH Direct Food security Indicators | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Calculating Matrice Intermediare (direct food security data) | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
+  <meta property="og:title" content="Chapter 10 Visualizing CH Direct Food security Indicators | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Calculating Matrice Intermediare (direct food security data) | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
+  <meta name="twitter:title" content="Chapter 10 Visualizing CH Direct Food security Indicators | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-quality-monitoring-report.html"/>
-<link rel="next" href="visualizing-ch-direct-food-security-indicators.html"/>
+<link rel="prev" href="calculating-matrice-intermediare-direct-food-security-data.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -240,41 +240,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="calculating-matrice-intermediare-direct-food-security-data" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Calculating Matrice Intermediare (direct food security data)</h1>
-<p>After survey teams have processed the data (cleaned, calculated indicators, added survey weights), then the R syntax below can be used to generate a .csv file of the Food Security Direct evidence.</p>
-<div id="overview-video-1" class="section level2">
-<h2><span class="header-section-number">9.1</span> Overview video</h2>
+<div id="visualizing-ch-direct-food-security-indicators" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Visualizing CH Direct Food security Indicators</h1>
+<p>After survey teams have generated the matrice intermediare, the R script below can be used for creating maps and tables of the Food Security Direct Evidence Indicatos.</p>
+<div id="overview-video-2" class="section level2">
+<h2><span class="header-section-number">10.1</span> Overview video</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen>
 </iframe>
 <p>(this video will be replaced with real one)</p>
 </div>
-<div id="generating-matrice-intermediare" class="section level2">
-<h2><span class="header-section-number">9.2</span> Generating Matrice Intermediare</h2>
-<div id="example-data-set-5" class="section level3">
-<h3><span class="header-section-number">9.2.1</span> Example data set</h3>
-<p>Here is the example processed data set:
-<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav">exampledataEnglish_processed</a></p>
+<div id="visualizing-ch-direct-food-security-indicators-1" class="section level2">
+<h2><span class="header-section-number">10.2</span> Visualizing CH Direct Food security Indicators</h2>
+<div id="example-matrice-intermediare" class="section level3">
+<h3><span class="header-section-number">10.2.1</span> Example matrice intermediare</h3>
+<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv">matrice_intermediaire_direct_en.csv</a></p>
 </div>
-<div id="syntax" class="section level3">
-<h3><span class="header-section-number">9.2.2</span> Syntax</h3>
-<p>Here is the syntax to generate the matrice intermediare from processed dataset:
-<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/matricemaker_EN.R">matricemaker_EN</a></p>
+<div id="syntax-1" class="section level3">
+<h3><span class="header-section-number">10.2.2</span> Syntax</h3>
+<p>Here is the syntax to visualize the CH Direct Food security Indicators
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_CH_preliminaryFSresults.rmd">example_CH_preliminaryFSresults</a></p>
 </div>
-<div id="example-outputs-of-matrice-intermediare" class="section level3">
-<h3><span class="header-section-number">9.2.3</span> Example Outputs of matrice intermediare</h3>
+<div id="example-outputs-of-matrice-intermediare-1" class="section level3">
+<h3><span class="header-section-number">10.2.3</span> Example Outputs of matrice intermediare</h3>
 <p>Here is the example data quality report:
-<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv">matrice_intermediaire_direct_en</a></p>
-</div>
-</div>
-<div id="troubleshooting-known-issues" class="section level2">
-<h2><span class="header-section-number">9.3</span> Troubleshooting &amp; Known issues</h2>
-<ul>
-<li><p>If the country does not collect all the 5 Food Security Indicators (FCS, HDDS, rCSI, HHS, LhCS) - the modules not collecte should be removed from the code before running</p></li>
-<li><p>If the level of analysis is at the Admin 1 level only - then the variables ADMIN2Name and ADMIN2Code should be removed from the code</p></li>
-<li><p>If the ADMIN1Name and ADMIN2Name were not collected with geocodes (see Chapter 2) then the code will have to be modified</p></li>
-</ul>
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/example_CH_preliminaryFSresults.html">example_CH_preliminaryFSresults</a></p>
 
+</div>
 </div>
 </div>
             </section>
@@ -282,8 +273,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-quality-monitoring-report.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualizing-ch-direct-food-security-indicators.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="calculating-matrice-intermediare-direct-food-security-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -314,7 +305,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-CHmatrice.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-CHvizzes.Rmd",
 "text": "Edit"
 },
 "history": {
