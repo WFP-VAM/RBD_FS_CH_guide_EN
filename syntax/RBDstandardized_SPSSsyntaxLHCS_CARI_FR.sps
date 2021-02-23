@@ -48,7 +48,7 @@ value labels emergency_coping
 
 *** recode variables to compute one variable of most severe coping strategy used
 
-recode stress_coping (0=0) (1=1).
+recode stress_coping (0=0) (1=2).
 recode crisis_coping (0=0) (1=3).
 recode emergency_coping (0=0) (1=4).
 

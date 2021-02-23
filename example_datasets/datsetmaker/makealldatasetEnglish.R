@@ -195,6 +195,10 @@ names(v1) <- dictionary1$ADMIN1Name
 exampledataEng$ADMIN1Name <- labelled_spss(exampledataEng$ADMIN1Code, v1)
 
 
-exampledataEng %>% write_sav("example_datasets\\exampledataEng.sav")
+exampledataEng <- exampledataEng %>% select(-ADMIN1Code, -ADMIN2Code)
+exampledataEng %>% write_sav("example_datasets\\exampledataEnglish_raw_testy.sav")
+#get rid of ADMINCodes and weights
+exampledataEng <- exampledataEng %>% select(-WeightHH)
+exampledataEng %>% write_sav("example_datasets\\exampledataEnglish_raw.sav")
 
 

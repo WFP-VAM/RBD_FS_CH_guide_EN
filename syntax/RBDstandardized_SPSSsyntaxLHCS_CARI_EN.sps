@@ -27,11 +27,10 @@ compute crisis_coping = 1.
 ELSE.
 compute crisis_coping = 0.
 end if. 
-variable labels crisis_coping "Did the HH engage in stress coping strategies?".
+variable labels crisis_coping "Did the HH engage in crisis coping strategies?".
 value labels crisis_coping 
 0 "No"
 1 "Yes".
-
 
 *** create dummy variable to show if any emergency strategies were  "Yes" or "No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it"
 
@@ -42,14 +41,16 @@ compute emergency_coping = 1.
 ELSE.
 compute emergency_coping = 0.
 end if. 
-variable labels emergency_coping "Did the HH engage in stress coping strategies?".
+variable labels emergency_coping "Did the HH engage in emergency coping strategies?".
 value labels emergency_coping 
 0 "No"
 1 "Yes".
 
+freq emergency_coping.
+
 *** recode variables to compute one variable of most severe coping strategy used
 
-recode stress_coping (0=0) (1=1).
+recode stress_coping (0=0) (1=2).
 recode crisis_coping (0=0) (1=3).
 recode emergency_coping (0=0) (1=4).
 
@@ -57,7 +58,7 @@ compute LhCSICat=max(stress_coping, crisis_coping, emergency_coping).
 recode LhCSICat (0=1).
 
 Value labels LhCSICat 1 "NoStrategies" 2 "StressStrategies" 3 "CrisisStrategies" 4 "EmergencyStrategies".
-Variable Labels LhCSICat = "Livelihood Coping Strategy Categories - CARI light version".
+Variable Labels LhCSICat "Livelihood Coping Strategy Categories - CARI light version".
 
 
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Gecodes | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators</title>
-  <meta name="description" content="Chapter 3 Gecodes | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
+  <title>Chapter 9 Calculating Matrice Intermediare (direct food security data) | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators</title>
+  <meta name="description" content="Chapter 9 Calculating Matrice Intermediare (direct food security data) | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Gecodes | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
+  <meta property="og:title" content="Chapter 9 Calculating Matrice Intermediare (direct food security data) | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Gecodes | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
+  <meta name="twitter:title" content="Chapter 9 Calculating Matrice Intermediare (direct food security data) | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="setting-up-r-rstudio.html"/>
-<link rel="next" href="household-hunger-scale.html"/>
+<link rel="prev" href="data-quality-monitoring-report.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -232,128 +232,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="gecodes" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Gecodes</h1>
-<p>Using names as identifiers can easily lead to confusion over spelling and transliterations as well as alternative and duplicate names.</p>
-<p>As unique identifiers, P-Codes overcome the challenges of linking datasets and confirming locations.</p>
-<p>We recommend using Gecodes and Names from OCHA’s Common Operational Datasets:
-<a href="https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25" class="uri">https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25</a></p>
-<div id="a-brief-example-of-the-problem" class="section level2">
-<h2><span class="header-section-number">3.1</span> A brief example of the problem:</h2>
-<p>The geographic variables of the <em>choices</em> section of the xlsform typically look like this</p>
-<table>
-<thead>
-<tr class="header">
-<th>list_name</th>
-<th>name</th>
-<th>label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>cod_lga</td>
-<td>1</td>
-<td>ASKIRA/UBA</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>2</td>
-<td>BAYO</td>
-</tr>
-<tr class="odd">
-<td>cod_lga</td>
-<td>3</td>
-<td>CHIBOK</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>4</td>
-<td>KALABAGE</td>
-</tr>
-</tbody>
-</table>
-<p>The geographic variables in corresponding GIS dataset look like this:</p>
-<table>
-<thead>
-<tr class="header">
-<th>Shape</th>
-<th>admin2Pcode</th>
-<th>admin2RefName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Polygon</td>
-<td>NG008002</td>
-<td>Askira/Uba</td>
-</tr>
-<tr class="even">
-<td>Polygon</td>
-<td>NG008004</td>
-<td>Bayo</td>
-</tr>
-<tr class="odd">
-<td>Polygon</td>
-<td>NG008006</td>
-<td>Chibok</td>
-</tr>
-<tr class="even">
-<td>Polygon</td>
-<td>NG008015</td>
-<td>Kala/Balge</td>
-</tr>
-</tbody>
-</table>
-<p>Unfortunately, if we tried to merge the dataset and the GIS file by the name of the area, we would first have to fix the capitalization and punctuation of the names.</p>
-<p>To avoid unnecessary work, we recommend putting in the <em>Pcode</em> in the name column of the xlsform:</p>
-<table>
-<thead>
-<tr class="header">
-<th>list_name</th>
-<th>name</th>
-<th>label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>cod_lga</td>
-<td>NG008002</td>
-<td>ASKIRA/UBA</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>NG008004</td>
-<td>BAYO</td>
-</tr>
-<tr class="odd">
-<td>cod_lga</td>
-<td>NG008006</td>
-<td>CHIBOK</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>NG008015</td>
-<td>KALABAGE</td>
-</tr>
-</tbody>
-</table>
-<p>With a common, simple variable to merge both datasets, mapping and data processing will be much easier!</p>
+<div id="calculating-matrice-intermediare-direct-food-security-data" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Calculating Matrice Intermediare (direct food security data)</h1>
+<p>After survey teams have processed the data (cleaned, calculated indicators, added survey weights), then the R syntax below can be used to generate a .csv file of the Food Security Direct evidence.</p>
+<div id="overview-video-1" class="section level2">
+<h2><span class="header-section-number">9.1</span> Overview video</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen>
+</iframe>
+<p>(this video will be replaced with real one)</p>
 </div>
-<div id="where-to-find-pcodes" class="section level2">
-<h2><span class="header-section-number">3.2</span> Where to find Pcodes</h2>
-<p>Geographic data can be found <a href="https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25" class="uri">https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25</a> and searching for the appropriate country.</p>
-<p>We recommend using the codes from the <em>admin1Pcode</em> and <em>admin2Pcode</em> columns in the <em>name</em> column of the xlsform. Using the <em>admin1RefName</em> and <em>admin2RefName</em></p>
+<div id="generating-matrice-intermediare" class="section level2">
+<h2><span class="header-section-number">9.2</span> Generating Matrice Intermediare</h2>
+<div id="example-data-set-5" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Example data set</h3>
+<p>Here is the example processed data set:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav">exampledataEnglish_processed</a></p>
 </div>
-<div id="example-data-set-of-the-data-collection-sheet-for-nigeria" class="section level2">
-<h2><span class="header-section-number">3.3</span> Example data set of the data collection sheet for Nigeria:</h2>
-<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx">xlsformwithgeocodesexample</a></p>
+<div id="syntax" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Syntax</h3>
+<p>Here is the syntax to generate the matrice intermediare from processed dataset:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/matricemaker_EN.R">matricemaker_EN</a></p>
 </div>
-<div id="caveats" class="section level2">
-<h2><span class="header-section-number">3.4</span> 2 caveats</h2>
-<ol style="list-style-type: decimal">
-<li><p>In some countries, the boundaries in the CODS might not correspond with the latest boundaries used by the country. In this case, special development of a GIS boundary file and codes will need to be developed.</p></li>
-<li><p>Inserting the relevant pcodes in the <em>name</em> column will probably require some <em>vlookup</em> . This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated and difficult if cascading columns and the <em>choice_filter</em> option is used at the adm3, adm4 level.</p></li>
-</ol>
+<div id="example-outputs-of-matrice-intermediare" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Example Outputs of matrice intermediare</h3>
+<p>Here is the example data quality report:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv">matrice_intermediaire_direct_en.csv</a></p>
+</div>
+</div>
+<div id="troubleshooting-known-issues" class="section level2">
+<h2><span class="header-section-number">9.3</span> Troubleshooting &amp; Known issues</h2>
+<ul>
+<li><p>If the country does not collect all the 5 Food Security Indicators (FCS, HDDS, rCSI, HHS, LhCS) - the modules not collecte should be removed from the code before running</p></li>
+<li><p>If the level of analysis is at the Admin 1 level only - then the variables ADMIN2Name and ADMIN2Code should be removed from the code</p></li>
+<li><p>If the ADMIN1Name and ADMIN2Name were not collected with geocodes (see Chapter 2) then the code will have to be modified</p></li>
+</ul>
 
 </div>
 </div>
@@ -362,8 +274,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="setting-up-r-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="household-hunger-scale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-quality-monitoring-report.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -394,7 +306,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-Geocodes.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-CHmatrice.Rmd",
 "text": "Edit"
 },
 "history": {

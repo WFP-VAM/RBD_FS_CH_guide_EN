@@ -2,11 +2,13 @@
 
 If survey teams are collecting data with Kobo/Ona/MoDa/ODK and regularly sending their submissions to a server, then we can quickly generate a data quality report with R to regularly track survey results and detect problems that may arise in the field with data collection.
 
-The example report below has been generalized to visualize survey progress by geographic areas and calculated results of key CH indicators by geographic areas and by enumerators.
+The example report below has been generalized to visualize survey progress by geographic areas and calculated results of key CH indicators by geographic areas and by enumerators using the raw data set downloaded from the  Kobo/Ona/MoDa/ODK server.
 
 ## Overview video 
 
-![](https://player.vimeo.com/video/142172484)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen></iframe>
+
+(this video will be replaced with real one)
 
 ## Data Quality Monitoring Tools
 
@@ -18,7 +20,7 @@ Here is the example data set:
 ### Example data quality report
 
 Here is the syntax to generate the example data quality report:
-[example_dqmonitoring_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_dqmonitoring_EN.sav) 
+[example_dqmonitoring_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_dqmonitoring_EN.rmd) 
 
 
 ### Outputs of Example data quality report

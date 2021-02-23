@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Gecodes | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators</title>
-  <meta name="description" content="Chapter 3 Gecodes | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
+  <title>Chapter 2 Setting up R &amp; Rstudio | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators</title>
+  <meta name="description" content="Chapter 2 Setting up R &amp; Rstudio | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Gecodes | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
+  <meta property="og:title" content="Chapter 2 Setting up R &amp; Rstudio | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Gecodes | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
+  <meta name="twitter:title" content="Chapter 2 Setting up R &amp; Rstudio | A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="setting-up-r-rstudio.html"/>
-<link rel="next" href="household-hunger-scale.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="gecodes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -232,128 +232,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="gecodes" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Gecodes</h1>
-<p>Using names as identifiers can easily lead to confusion over spelling and transliterations as well as alternative and duplicate names.</p>
-<p>As unique identifiers, P-Codes overcome the challenges of linking datasets and confirming locations.</p>
-<p>We recommend using Gecodes and Names from OCHA’s Common Operational Datasets:
-<a href="https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25" class="uri">https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25</a></p>
-<div id="a-brief-example-of-the-problem" class="section level2">
-<h2><span class="header-section-number">3.1</span> A brief example of the problem:</h2>
-<p>The geographic variables of the <em>choices</em> section of the xlsform typically look like this</p>
-<table>
-<thead>
-<tr class="header">
-<th>list_name</th>
-<th>name</th>
-<th>label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>cod_lga</td>
-<td>1</td>
-<td>ASKIRA/UBA</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>2</td>
-<td>BAYO</td>
-</tr>
-<tr class="odd">
-<td>cod_lga</td>
-<td>3</td>
-<td>CHIBOK</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>4</td>
-<td>KALABAGE</td>
-</tr>
-</tbody>
-</table>
-<p>The geographic variables in corresponding GIS dataset look like this:</p>
-<table>
-<thead>
-<tr class="header">
-<th>Shape</th>
-<th>admin2Pcode</th>
-<th>admin2RefName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Polygon</td>
-<td>NG008002</td>
-<td>Askira/Uba</td>
-</tr>
-<tr class="even">
-<td>Polygon</td>
-<td>NG008004</td>
-<td>Bayo</td>
-</tr>
-<tr class="odd">
-<td>Polygon</td>
-<td>NG008006</td>
-<td>Chibok</td>
-</tr>
-<tr class="even">
-<td>Polygon</td>
-<td>NG008015</td>
-<td>Kala/Balge</td>
-</tr>
-</tbody>
-</table>
-<p>Unfortunately, if we tried to merge the dataset and the GIS file by the name of the area, we would first have to fix the capitalization and punctuation of the names.</p>
-<p>To avoid unnecessary work, we recommend putting in the <em>Pcode</em> in the name column of the xlsform:</p>
-<table>
-<thead>
-<tr class="header">
-<th>list_name</th>
-<th>name</th>
-<th>label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>cod_lga</td>
-<td>NG008002</td>
-<td>ASKIRA/UBA</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>NG008004</td>
-<td>BAYO</td>
-</tr>
-<tr class="odd">
-<td>cod_lga</td>
-<td>NG008006</td>
-<td>CHIBOK</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>NG008015</td>
-<td>KALABAGE</td>
-</tr>
-</tbody>
-</table>
-<p>With a common, simple variable to merge both datasets, mapping and data processing will be much easier!</p>
+<div id="setting-up-r-rstudio" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Setting up R &amp; Rstudio</h1>
+<div id="installing-r-rstudio" class="section level2">
+<h2><span class="header-section-number">2.1</span> Installing R &amp; Rstudio</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/orjLGFmx6l4" frameborder="0" allowfullscreen>
+</iframe>
+<div id="r" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> R</h3>
+<p>To download R, go to CRAN, the comprehensive R archive network. CRAN is composed of a set of mirror servers distributed around the world and is used to distribute R and R packages. Don’t try and pick a mirror that’s close to you: instead use the cloud mirror, <a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a>, which automatically figures it out for you.
+A new major version of R comes out once a year, and there are 2-3 minor releases each year. It’s a good idea to update regularly. Upgrading can be a bit of a hassle, especially for major versions, which require you to reinstall all your packages, but putting it off only makes it worse. <a href="https://r4ds.had.co.nz/introduction.html" class="uri">https://r4ds.had.co.nz/introduction.html</a></p>
 </div>
-<div id="where-to-find-pcodes" class="section level2">
-<h2><span class="header-section-number">3.2</span> Where to find Pcodes</h2>
-<p>Geographic data can be found <a href="https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25" class="uri">https://data.humdata.org/dashboards/cod?ext_geodata=1&amp;q=&amp;ext_page_size=25</a> and searching for the appropriate country.</p>
-<p>We recommend using the codes from the <em>admin1Pcode</em> and <em>admin2Pcode</em> columns in the <em>name</em> column of the xlsform. Using the <em>admin1RefName</em> and <em>admin2RefName</em></p>
+<div id="rstudio" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> RStudio</h3>
+<p>RStudio is an integrated development environment, or IDE, for R programming. Download and install it from <a href="http://www.rstudio.com/download" class="uri">http://www.rstudio.com/download</a>. RStudio is updated a couple of times a year. When a new version is available, RStudio will let you know. It’s a good idea to upgrade regularly so you can take advantage of the latest and greatest features. For this book, make sure you have at least RStudio 1.0.0.
+When you start RStudio, you’ll see two key regions in the interface:</p>
+<p>For now, all you need to know is that you type R code in the console pane, and press enter to run it. You’ll learn more as we go along!</p>
+<p>copied from <a href="https://r4ds.had.co.nz/introduction.html" class="uri">https://r4ds.had.co.nz/introduction.html</a> (gonna figure out how to cite it)</p>
 </div>
-<div id="example-data-set-of-the-data-collection-sheet-for-nigeria" class="section level2">
-<h2><span class="header-section-number">3.3</span> Example data set of the data collection sheet for Nigeria:</h2>
-<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx">xlsformwithgeocodesexample</a></p>
 </div>
-<div id="caveats" class="section level2">
-<h2><span class="header-section-number">3.4</span> 2 caveats</h2>
-<ol style="list-style-type: decimal">
-<li><p>In some countries, the boundaries in the CODS might not correspond with the latest boundaries used by the country. In this case, special development of a GIS boundary file and codes will need to be developed.</p></li>
-<li><p>Inserting the relevant pcodes in the <em>name</em> column will probably require some <em>vlookup</em> . This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated and difficult if cascading columns and the <em>choice_filter</em> option is used at the adm3, adm4 level.</p></li>
-</ol>
+<div id="installing-packages" class="section level2">
+<h2><span class="header-section-number">2.2</span> Installing packages</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-wTcDqJWSzA" frameborder="0" allowfullscreen>
+</iframe>
+<p>You’ll also need to install some R packages. An R package is a collection of functions, data, and documentation that extends the capabilities of base R. Using packages is key to the successful use of R. The majority of the packages that you will learn in this book are part of the so-called tidyverse. The packages in the tidyverse share a common philosophy of data and R programming, and are designed to work together naturally.
+You can install the complete tidyverse with a single line of code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="setting-up-r-rstudio.html#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<p>On your own computer, type that line of code in the console, and then press enter to run it. R will download the packages from CRAN and install them on to your computer. If you have problems installing, make sure that you are connected to the internet, and that <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a> isn’t blocked by your firewall or proxy.
+You will not be able to use the functions, objects, and help files in a package until you load it with library(). Once you have installed a package, you can load it with the library() function:</p>
+<p>library(tidyverse)</p>
 
 </div>
 </div>
@@ -362,8 +269,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="setting-up-r-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="household-hunger-scale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gecodes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -394,7 +301,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-Geocodes.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
 "text": "Edit"
 },
 "history": {

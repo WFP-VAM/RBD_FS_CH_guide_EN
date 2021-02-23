@@ -1,9 +1,9 @@
 purpose-how-to-use-this-guide
-using-r-rstudio
-using-r
-using-r-studio
+setting-up-r-rstudio
+installing-r-rstudio
+r
+rstudio
 installing-packages
-getting-help-in-r
 gecodes
 a-brief-example-of-the-problem
 where-to-find-pcodes
@@ -51,4 +51,10 @@ example-data-set-4
 example-data-quality-report
 outputs-of-example-data-quality-report
 troubleshooting-going-further
-calculating-ch-indicators
+calculating-matrice-intermediare-direct-food-security-data
+overview-video-1
+generating-matrice-intermediare
+example-data-set-5
+syntax
+example-outputs-of-matrice-intermediare
+troubleshooting-known-issues

@@ -3,10 +3,11 @@ library(labelled)
 library(tidyverse)
 
 #import dataset
-dataset <- read_sav("example_datasets/exampledataEng.sav")
-
-#Calculate HHS
+dataset <- read_sav("example_datasets/exampledataEnglish_raw.sav")
 dataset<- to_factor(dataset)
+
+#Calculate lhCS
+
 
 #create a variable to specify if the household used any of the strategies by severity
 #stress
