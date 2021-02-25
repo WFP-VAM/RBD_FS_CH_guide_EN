@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
 <link rel="next" href="setting-up-r-rstudio.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -143,6 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.2" data-path="setting-up-r-rstudio.html"><a href="setting-up-r-rstudio.html#rstudio"><i class="fa fa-check"></i><b>2.1.2</b> RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="setting-up-r-rstudio.html"><a href="setting-up-r-rstudio.html#installing-packages"><i class="fa fa-check"></i><b>2.2</b> Installing packages</a></li>
+<li class="chapter" data-level="2.3" data-path="setting-up-r-rstudio.html"><a href="setting-up-r-rstudio.html#using-rmarkdown"><i class="fa fa-check"></i><b>2.3</b> Using Rmarkdown</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="gecodes.html"><a href="gecodes.html"><i class="fa fa-check"></i><b>3</b> Gecodes</a><ul>
 <li class="chapter" data-level="3.1" data-path="gecodes.html"><a href="gecodes.html#a-brief-example-of-the-problem"><i class="fa fa-check"></i><b>3.1</b> A brief example of the problem:</a></li>
@@ -262,21 +263,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 1</span> Purpose &amp; How to use this Guide</h1>
 <p>This guide proposes a uniform set of tools for the collection, processing, analysis and visualization of key food security direct evidence indicators and technical variables used in the Cadre Harmonise process.</p>
 <p>Briefly summarized, this guide introduces questionnaires, electronic data colection forms and syntax to collect and calculate standardized data. Standardized data improves comparability across and allows for faster and greater use of data tools and visualizations.</p>
-<p>A brief overview of the chapters in this guide:</p>
-<ol style="list-style-type: decimal">
-<li><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/setting-up-r-rstudio.html">Chapter 2 Setting up R &amp; Rstudio</a> - how to install R &amp; Rstudio software ; how to add require packages an overview on how to use Rmarkdown</li>
-</ol>
-<p><strong>Chapter 1 Purpose &amp; How to use this Guide</strong> - where you are now, reading through could help you find the right place to go
-<strong>Chapter 2 Setting up R &amp; Rstudio</strong> - how to install R &amp; Rstudio software ; how to add require packages an overview on how to use Rmarkdown
-<strong>Chapter 3 Geocodes</strong> - explains how/why to put geo-codes into the data collection sheets to speed up mapping and data processing
-<strong>Chapter 4 Household Hunger Scale</strong> - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Household Hunger Scale indicator
-<strong>Chapter 5 reduced Coping Strategy Index</strong> - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the reduced Coping Strategy Index indicator
-<strong>Chapter 6 Food Consumption Score &amp; Household Dietary Diversity Score</strong> - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score.
-<strong>Chapter 7 Livelihood Coping Strategies</strong> - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating maximum coping strategy used for CARI light version and ENA version of the Livelihood Coping Strategies module.
-<strong>Chapter 8 Combined Questionnaires and Syntaxes</strong> - puts the questionnaires and syntaxes from chapter 4 - 7 together
-<strong>Chapter 9 Data Quality Monitoring Report</strong> provides instruction and generic data quality report syntax which can be run using R and the survey raw data in spss format
-<strong>Chapter 10 Calculating Matrice Intermediare</strong> provides instruction and a generic syntax to produce a matrice intermediare of direct food security indicators and geocodes from the processed dataset in spss format
-<strong>Chapter 11 Visualizing CH Direct Food security Indicators</strong> using the matrice intermediare or processed dataset - make maps and tables of the phasing of areas by indicator</p>
+<p><strong>A brief overview of the chapters in this guide:</strong></p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/setting-up-r-rstudio.html">Chapter 2 Setting up R &amp; Rstudio</a> - how to install R &amp; Rstudio software ; how to add require packages an overview on how to use Rmarkdown</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/gecodes.html">Chapter 3 Gecodes</a> - explains how/why to put geo-codes into the data collection sheets to speed up mapping and data processing</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/household-hunger-scale.html">Chapter 4 Household Hunger Scale</a> - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Household Hunger Scale indicator</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/reduced-coping-strategy-index.html">Chapter 5 reduced Coping Strategy Index</a> - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the reduced Coping Strategy Index indicator</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/food-consumption-score-household-dietary-diversity.html">Chapter 6 Food Consumption Score &amp; Household Dietary Diversity</a> - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score.</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/livelihood-coping-strategies.html">Chapter 7 Livelihood Coping Strategies</a> - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating maximum coping strategy used for CARI light version and ENA version of the Livelihood Coping Strategies module.</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/combined-questionnaire-syntaxes-for-all-5-indicators.html">Chapter 8 Combined Questionnaire &amp; Syntaxes for all 5 indicators</a> -
+- puts the questionnaires and syntaxes from chapter 4 - 7 together</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/data-quality-monitoring-report.html">Chapter 9 Data Quality Monitoring Report</a> provides instruction and generic data quality report syntax which can be run using R and the survey raw data in spss format</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/calculating-matrice-intermediare-direct-food-security-data.html">Chapter 10 Calculating Matrice Intermediare</a> provides instruction and a generic syntax to produce a matrice intermediare of direct food security indicators and geocodes from the processed dataset in spss format</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/visualizing-ch-direct-food-security-indicators.html">Chapter 11 Visualizing CH Direct Food security Indicators</a>**** using the matrice intermediare or processed dataset - make maps and tables of the phasing of areas by indicator</p>
 <p><em>About software</em> - while use of the software R &amp; Rstudio is necessary to produce the outputs in chapters 7, 8 and 9, users do not need to disrupt their normal analysis processes - most commonly in SPSS. The R syntax used for the data quality management is compatible with the “raw data” that is downloaded from data collection servers. The R syntax used to produce the <code>matrice intermediare</code> is compatible with the “processed data” (calculated indicators and in spss format.</p>
 <p><em>About the example datasets</em> - for this guide, two “semi-fictitious” datasets were created by randomly selecting and de-identifiying respondent answers from surveys from two countries. The results are “safe” datasets that serve as an example:</p>
 <ol style="list-style-type: decimal">
@@ -334,7 +332,7 @@ gitbook.start({
 },
 "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

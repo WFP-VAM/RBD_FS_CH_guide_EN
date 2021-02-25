@@ -4,6 +4,7 @@ installing-r-rstudio
 r
 rstudio
 installing-packages
+using-rmarkdown
 gecodes
 a-brief-example-of-the-problem
 where-to-find-pcodes

@@ -11,6 +11,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
+favicon: images/favicon.ico
 ---
 
 # Purpose & How to use this Guide
@@ -19,22 +20,28 @@ This guide proposes a uniform set of tools for the collection, processing, analy
 
 Briefly summarized, this guide introduces questionnaires, electronic data colection forms and syntax to collect and calculate standardized data.  Standardized data improves comparability across and allows for faster and greater use of data tools and visualizations.
 
-A brief overview of the chapters in this guide:
+**A brief overview of the chapters in this guide:**
 
-1. [Chapter 2 Setting up R & Rstudio](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/setting-up-r-rstudio.html) - how to install R & Rstudio software ; how to add require packages an overview on how to use Rmarkdown
+[Chapter 2 Setting up R & Rstudio](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/setting-up-r-rstudio.html) - how to install R & Rstudio software ; how to add require packages an overview on how to use Rmarkdown
 
+[Chapter 3 Gecodes](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/gecodes.html) - explains how/why to put geo-codes into the data collection sheets to speed up mapping and data processing
 
-**Chapter 1 Purpose & How to use this Guide** - where you are now, reading through could help you find the right place to go
-**Chapter 2 Setting up R & Rstudio** - how to install R & Rstudio software ; how to add require packages an overview on how to use Rmarkdown
-**Chapter 3 Geocodes** - explains how/why to put geo-codes into the data collection sheets to speed up mapping and data processing
-**Chapter 4 Household Hunger Scale** - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Household Hunger Scale indicator
-**Chapter 5 reduced Coping Strategy Index** - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the reduced Coping Strategy Index indicator
-**Chapter 6 Food Consumption Score & Household Dietary Diversity Score**  - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score.
-**Chapter 7  Livelihood Coping Strategies** - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating maximum coping strategy used for CARI light version and ENA version of the Livelihood Coping Strategies module.
-**Chapter 8 Combined Questionnaires and Syntaxes** - puts the questionnaires and syntaxes from chapter 4 - 7 together 
-**Chapter 9 Data Quality Monitoring Report** provides instruction and generic data quality report syntax which can be run using R and the survey raw data in spss format
-**Chapter 10 Calculating Matrice Intermediare** provides instruction and a generic syntax to produce a matrice intermediare of direct food security indicators and geocodes from the processed dataset in spss format
-**Chapter 11 Visualizing CH Direct Food security Indicators** using the matrice intermediare or processed dataset - make maps and tables of the phasing of areas by indicator 
+[Chapter 4 Household Hunger Scale](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/household-hunger-scale.html) - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Household Hunger Scale indicator
+
+[Chapter 5 reduced Coping Strategy Index](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/reduced-coping-strategy-index.html) - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the reduced Coping Strategy Index indicator
+
+[Chapter 6 Food Consumption Score & Household Dietary Diversity](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/food-consumption-score-household-dietary-diversity.html) - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score.
+
+[Chapter 7 Livelihood Coping Strategies](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/livelihood-coping-strategies.html) - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating maximum coping strategy used for CARI light version and ENA version of the Livelihood Coping Strategies module.
+
+[Chapter 8 Combined Questionnaire & Syntaxes for all 5 indicators](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/combined-questionnaire-syntaxes-for-all-5-indicators.html) - 
+- puts the questionnaires and syntaxes from chapter 4 - 7 together 
+
+[Chapter 9 Data Quality Monitoring Report](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/data-quality-monitoring-report.html) provides instruction and generic data quality report syntax which can be run using R and the survey raw data in spss format
+
+[Chapter 10 Calculating Matrice Intermediare](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/calculating-matrice-intermediare-direct-food-security-data.html) provides instruction and a generic syntax to produce a matrice intermediare of direct food security indicators and geocodes from the processed dataset in spss format
+
+[Chapter 11 Visualizing CH Direct Food security Indicators](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/visualizing-ch-direct-food-security-indicators.html)**** using the matrice intermediare or processed dataset - make maps and tables of the phasing of areas by indicator 
 
 *About software* - while use of the software R & Rstudio is necessary to produce the outputs in chapters 7, 8 and 9, users do not need to disrupt their normal analysis processes - most commonly in SPSS.  The R syntax used for the data quality management is compatible with the "raw data" that is downloaded from data collection servers.  The R syntax used to produce the `matrice intermediare` is compatible with the "processed data" (calculated indicators and in spss format.  
 
@@ -84,3 +91,4 @@ You will not be able to use the functions, objects, and help files in a package 
 
 library(tidyverse)
 
+## Using Rmarkdown
