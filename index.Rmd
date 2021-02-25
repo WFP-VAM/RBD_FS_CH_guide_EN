@@ -1,9 +1,9 @@
 --- 
-title: "A Guide to Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators"
-author: "Research, Assesment and Monitoring (RAM) Team
-         Regional Bureau Dakar
-         World Food Programme
-         rbd.vam@wfp.org"
+title: "A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonise Food Security Indicators"
+author:
+  - Research, Assesment and Monitoring (RAM) Unit
+  - Regional Bureau for West & Central Africa, World Food Programme
+  - rbd.vam@wfp.org
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -15,14 +15,37 @@ link-citations: yes
 
 # Purpose & How to use this Guide
 
-This guide proposes a uniform way of collecting and analyzing key food security indicators for the Cadre Harmonise process.
+This guide proposes a uniform set of tools for the collection, processing, analysis and visualization of key food security direct evidence indicators and technical variables used in the Cadre Harmonise process.  
 
-Chapters are listed by indicator and include:
+Briefly summarized, this guide introduces questionnaires, electronic data colection forms and syntax to collect and calculate standardized data.  Standardized data improves comparability across and allows for faster and greater use of data tools and visualizations.
 
-1. standardized data collection modules and ODK compliant xlsforms
-2. sample data set 
-3. standardized syntax in SPSS and R
-4. references / official guidelines / source materials for the indicators
+A brief overview of the chapters in this guide:
+
+1. [Chapter 2 Setting up R & Rstudio](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/setting-up-r-rstudio.html) - how to install R & Rstudio software ; how to add require packages an overview on how to use Rmarkdown
+
+
+**Chapter 1 Purpose & How to use this Guide** - where you are now, reading through could help you find the right place to go
+**Chapter 2 Setting up R & Rstudio** - how to install R & Rstudio software ; how to add require packages an overview on how to use Rmarkdown
+**Chapter 3 Geocodes** - explains how/why to put geo-codes into the data collection sheets to speed up mapping and data processing
+**Chapter 4 Household Hunger Scale** - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Household Hunger Scale indicator
+**Chapter 5 reduced Coping Strategy Index** - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the reduced Coping Strategy Index indicator
+**Chapter 6 Food Consumption Score & Household Dietary Diversity Score**  - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score.
+**Chapter 7  Livelihood Coping Strategies** - paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating maximum coping strategy used for CARI light version and ENA version of the Livelihood Coping Strategies module.
+**Chapter 8 Combined Questionnaires and Syntaxes** - puts the questionnaires and syntaxes from chapter 4 - 7 together 
+**Chapter 9 Data Quality Monitoring Report** provides instruction and generic data quality report syntax which can be run using R and the survey raw data in spss format
+**Chapter 10 Calculating Matrice Intermediare** provides instruction and a generic syntax to produce a matrice intermediare of direct food security indicators and geocodes from the processed dataset in spss format
+**Chapter 11 Visualizing CH Direct Food security Indicators** using the matrice intermediare or processed dataset - make maps and tables of the phasing of areas by indicator 
+
+*About software* - while use of the software R & Rstudio is necessary to produce the outputs in chapters 7, 8 and 9, users do not need to disrupt their normal analysis processes - most commonly in SPSS.  The R syntax used for the data quality management is compatible with the "raw data" that is downloaded from data collection servers.  The R syntax used to produce the `matrice intermediare` is compatible with the "processed data" (calculated indicators and in spss format.  
+
+*About the example datasets* - for this guide, two "semi-fictitious" datasets were created by randomly selecting and de-identifiying respondent answers from surveys from two countries.  The results are "safe" datasets that serve as an example:
+
+1. [exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav) - is what a "raw" data looks like when downloaded from ODK server in spss format.  
+
+2. [exampledataEnglish_processed](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav) - mirrors what a processed data looks like - i.e. calculated indicators and a weight variable.  
+
+
+
 
 # Setting up R & Rstudio 
 

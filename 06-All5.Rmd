@@ -1,0 +1,26 @@
+# Combined Questionnaire & Syntaxes for all 5 indicators
+
+### Paper Version of Questionnaire
+
+Here is comibined standardized module in word format:
+[RBDstandardized_questionnaireLHCS_CARI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_CARI.docx) 
+
+### Electronic Version of Questionnaire
+
+Here is comibined standardized module in xlsform:
+
+[RBDstandardized_questionnaireLHCS_CARI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_CARI.xlsx) 
+
+### Example data set
+
+Here is the example data set:
+[exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav) 
+
+### SPSS Syntax
+
+Here is the combined SPSS syntax file: 
+[RBDstandardized_SPSSsyntaxLHCS_CARI_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxLHCS_CARI_EN.sav) 
+
+### R Syntax
+Here is the combined SPSS syntax file: 
+[RBDstandardized_RsyntaxLHCS_CARI_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxLHCS_CARI_EN.sav) 
