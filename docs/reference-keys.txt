@@ -1,4 +1,7 @@
 purpose-how-to-use-this-guide
+a-brief-overview-of-the-chapters-in-this-guide
+about-software
+about-the-example-datasets
 setting-up-r-rstudio
 installing-r-rstudio
 r
