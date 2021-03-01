@@ -16,43 +16,43 @@ favicon: images/favicon.ico
 
 # Purpose & How to use this Guide
 
-This guide proposes a uniform set of tools for the collection, processing, analysis and visualization of key food security direct evidence indicators and technical variables used in the Cadre Harmonise process.  
-
-Briefly summarized, this guide introduces questionnaires, electronic data colection forms and syntax to collect and calculate standardized data.  Standardized data improves comparability across and allows for faster and greater use of data tools and visualizations.
+This guide proposes a uniform set of tools for the collection, processing, analysis and visualization of food security direct evidence indicators and technical variables used in the Cadre Harmonise process.  
 
 ### A brief overview of the chapters in this guide:
 
-[Chapter 2 Setting up R & Rstudio](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/setting-up-r-rstudio.html) how to install R & Rstudio software ; how to add require packages an overview on how to use Rmarkdown
+[Chapter 2 Setting up R & Rstudio](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/setting-up-r-rstudio.html) how to install R & Rstudio software, how to add require packages and an overview on Rmarkdown (used to generate reports).
 
-[Chapter 3 Gecodes](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/gecodes.html) explains how/why to put geo-codes into the data collection sheets to speed up mapping and data processing
+[Chapter 3 Gecodes](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/gecodes.html) explains how/why to put geo-codes into the data collection (xlsforms) to speed up mapping and data processing.
 
-[Chapter 4 Household Hunger Scale](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/household-hunger-scale.html) paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Household Hunger Scale indicator
+[Chapter 4 Household Hunger Scale](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/household-hunger-scale.html) paper and electronic versions of standardized questionnaire and syntax in SPSS/R for calculating the Household Hunger Scale indicator.
 
-[Chapter 5 reduced Coping Strategy Index](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/reduced-coping-strategy-index.html) paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the reduced Coping Strategy Index indicator
+[Chapter 5 reduced Coping Strategy Index](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/reduced-coping-strategy-index.html) paper and electronic versions of standardized questionnaire and syntax in SPSS/R for calculating the reduced Coping Strategy Index indicator.
 
-[Chapter 6 Food Consumption Score & Household Dietary Diversity](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/food-consumption-score-household-dietary-diversity.html) paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score.
+[Chapter 6 Food Consumption Score & Household Dietary Diversity](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/food-consumption-score-household-dietary-diversity.html) paper and electronic versions of standardized questionnaire and syntax in SPSS/R for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score indicators.
 
-[Chapter 7 Livelihood Coping Strategies](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/livelihood-coping-strategies.html) paper and electronic versions of standardized questionnaire and syntax in SPSS and R for calculating maximum coping strategy used for CARI light version and ENA version of the Livelihood Coping Strategies module.
+[Chapter 7 Livelihood Coping Strategies](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/livelihood-coping-strategies.html) paper and electronic versions of standardized questionnaire and syntax in SPSS/R for calculating the maximum coping strategy used for CARI light version and ENA version of the Livelihood Coping Strategies module.
 
-[Chapter 8 Combined Questionnaire & Syntaxes for all 5 indicators](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/combined-questionnaire-syntaxes-for-all-5-indicators.html) puts the questionnaires and syntaxes from chapter 4 - 7 together 
+[Chapter 8 Combined Questionnaire & Syntaxes for all 5 indicators](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/combined-questionnaire-syntaxes-for-all-5-indicators.html) combines the questionnaires and syntaxes from chapter 4 - 7 for calculation of indicators.
 
-[Chapter 9 Data Quality Monitoring Report](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/data-quality-monitoring-report.html) provides instruction and generic data quality report syntax which can be run using R and the survey raw data in spss format
+[Chapter 9 Data Quality Monitoring Report](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/data-quality-monitoring-report.html) provides instructions and syntax for an example data quality report which can be run using R and is compatible with standardized variable names 
 
-[Chapter 10 Calculating Matrice Intermediare](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/calculating-matrice-intermediare-direct-food-security-data.html) provides instruction and a generic syntax to produce a matrice intermediare of direct food security indicators and geocodes from the processed dataset in spss format
+[Chapter 10 Calculating Matrice Intermediare](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/calculating-matrice-intermediare-direct-food-security-data.html) provides instructions and a generic syntax to produce a matrice intermediare of direct food security indicators and geocodes from the processed data set in spss format
 
-[Chapter 11 Visualizing CH Direct Food security Indicators](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/visualizing-ch-direct-food-security-indicators.html) using the matrice intermediare or processed dataset - make maps and tables of the phasing of areas by indicator 
+[Chapter 11 Visualizing CH Direct Food security Indicators](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/visualizing-ch-direct-food-security-indicators.html) provides instructions and a generic syntax for make maps and tables of the phasing of CH direct evdience indicators from the matrice intermediare or processed data set 
 
 ### About software
 
-While use of the software R & Rstudio is necessary to produce the outputs in chapters 7, 8 and 9, users do not need to disrupt their normal analysis processes - most commonly in SPSS.  The R syntax used for the data quality management is compatible with the "raw data" that is downloaded from data collection servers.  The R syntax used to produce the `matrice intermediare` is compatible with the "processed data" (calculated indicators and in spss format.  
+While use of the software R & Rstudio is necessary to produce the outputs in chapters 9, 10 and 11, users do not need to disrupt their normal data processing steps in SPSS.  Syntax for calculating indicators in SPSS is provided in chapters  4 - 8 and countries.
+
+The R syntax used for the data quality monitoring report is compatible with the "raw data" that is downloaded from data collection servers (Kobo/MoDA etc.) and the R syntax used to produce the matrice intermediare is compatible with the "processed data" in spss format.  
 
 ### About the example datasets
 
-For this guide, two "semi-fictitious" datasets were created by randomly selecting and de-identifiying respondent answers from surveys from two countries.  The results are "safe" datasets that serve as an example for the syntaxes in this guide:
+For this guide, two "semi-fictitious" data sets were created by randomly selecting and de-identifying surveys.  The results are "safe" data sets that serve as a working examples for the syntaxes and processes illustrated in this guide:
 
-[exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav) - is what a "raw" data looks like when downloaded from ODK server in spss format.  
+[exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav) - is what a  "raw" data set should look like when downloaded from a ODK server in spss format.
 
-[exampledataEnglish_processed](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav) - mirrors what a processed data looks like - i.e. calculated indicators and a weight variable.  
+[exampledataEnglish_processed](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav) - is what a "processed data" typically looks like (i.e. with calculated variables, weights, and other data processing).  
 
 
 
@@ -65,33 +65,41 @@ For this guide, two "semi-fictitious" datasets were created by randomly selectin
 
 ### R
 
-To download R, go to CRAN, the comprehensive R archive network. CRAN is composed of a set of mirror servers distributed around the world and is used to distribute R and R packages. Don’t try and pick a mirror that’s close to you: instead use the cloud mirror, https://cloud.r-project.org, which automatically figures it out for you.
-A new major version of R comes out once a year, and there are 2-3 minor releases each year. It’s a good idea to update regularly. Upgrading can be a bit of a hassle, especially for major versions, which require you to reinstall all your packages, but putting it off only makes it worse. https://r4ds.had.co.nz/introduction.html
-
+To download R, go to CRAN, the comprehensive R archive network https://cloud.r-project.org
 
 ### RStudio 
 
-RStudio is an integrated development environment, or IDE, for R programming. Download and install it from http://www.rstudio.com/download. RStudio is updated a couple of times a year. When a new version is available, RStudio will let you know. It’s a good idea to upgrade regularly so you can take advantage of the latest and greatest features. For this book, make sure you have at least RStudio 1.0.0.
-When you start RStudio, you’ll see two key regions in the interface:
-
-For now, all you need to know is that you type R code in the console pane, and press enter to run it. You’ll learn more as we go along!
-
-copied from https://r4ds.had.co.nz/introduction.html (gonna figure out how to cite it)
+RStudio is an integrated development environment, or IDE, for R programming.  Download and install it from http://www.rstudio.com/download. 
 
 ## Installing packages
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-wTcDqJWSzA" frameborder="0" allowfullscreen></iframe>
 
-You’ll also need to install some R packages. An R package is a collection of functions, data, and documentation that extends the capabilities of base R. Using packages is key to the successful use of R. The majority of the packages that you will learn in this book are part of the so-called tidyverse. The packages in the tidyverse share a common philosophy of data and R programming, and are designed to work together naturally.
-You can install the complete tidyverse with a single line of code:
+After you install R & Rstuidio , you will also need to install some R packages. 
 
-```{r eval=FALSE}
+The above video, covers the topic but re-stated, to do what we need to do in this guide we'll need to install and load certain packages.
+
+To install a package (tidyverse is an example, but it's a good example because it's a big pacakage that we will use a lot):
+
+```{r, eval=FALSE}
 install.packages("tidyverse")
 ```
 
-On your own computer, type that line of code in the console, and then press enter to run it. R will download the packages from CRAN and install them on to your computer. If you have problems installing, make sure that you are connected to the internet, and that https://cloud.r-project.org/ isn’t blocked by your firewall or proxy.
-You will not be able to use the functions, objects, and help files in a package until you load it with library(). Once you have installed a package, you can load it with the library() function:
+To load a package (tidyverse example), you can type the syntax below.
 
+```{r, eval=FALSE}
 library(tidyverse)
+```
 
 ## Using Rmarkdown
+
+We'll use R Markdown to generate the reports in Chapter 9 and 11.  The video below, gives a nice introduction and overview of R markdown.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v=DNS7i2m4sB0" frameborder="0" allowfullscreen></iframe>
+
+
+
+
+
+
+

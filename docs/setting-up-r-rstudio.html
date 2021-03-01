@@ -26,7 +26,7 @@
 <meta name="author" content="rbd.vam@wfp.org" />
 
 
-<meta name="date" content="2021-02-26" />
+<meta name="date" content="2021-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -264,30 +264,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </iframe>
 <div id="r" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> R</h3>
-<p>To download R, go to CRAN, the comprehensive R archive network. CRAN is composed of a set of mirror servers distributed around the world and is used to distribute R and R packages. Don’t try and pick a mirror that’s close to you: instead use the cloud mirror, <a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a>, which automatically figures it out for you.
-A new major version of R comes out once a year, and there are 2-3 minor releases each year. It’s a good idea to update regularly. Upgrading can be a bit of a hassle, especially for major versions, which require you to reinstall all your packages, but putting it off only makes it worse. <a href="https://r4ds.had.co.nz/introduction.html" class="uri">https://r4ds.had.co.nz/introduction.html</a></p>
+<p>To download R, go to CRAN, the comprehensive R archive network <a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a></p>
 </div>
 <div id="rstudio" class="section level3">
 <h3><span class="header-section-number">2.1.2</span> RStudio</h3>
-<p>RStudio is an integrated development environment, or IDE, for R programming. Download and install it from <a href="http://www.rstudio.com/download" class="uri">http://www.rstudio.com/download</a>. RStudio is updated a couple of times a year. When a new version is available, RStudio will let you know. It’s a good idea to upgrade regularly so you can take advantage of the latest and greatest features. For this book, make sure you have at least RStudio 1.0.0.
-When you start RStudio, you’ll see two key regions in the interface:</p>
-<p>For now, all you need to know is that you type R code in the console pane, and press enter to run it. You’ll learn more as we go along!</p>
-<p>copied from <a href="https://r4ds.had.co.nz/introduction.html" class="uri">https://r4ds.had.co.nz/introduction.html</a> (gonna figure out how to cite it)</p>
+<p>RStudio is an integrated development environment, or IDE, for R programming. Download and install it from <a href="http://www.rstudio.com/download" class="uri">http://www.rstudio.com/download</a>.</p>
 </div>
 </div>
 <div id="installing-packages" class="section level2">
 <h2><span class="header-section-number">2.2</span> Installing packages</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-wTcDqJWSzA" frameborder="0" allowfullscreen>
 </iframe>
-<p>You’ll also need to install some R packages. An R package is a collection of functions, data, and documentation that extends the capabilities of base R. Using packages is key to the successful use of R. The majority of the packages that you will learn in this book are part of the so-called tidyverse. The packages in the tidyverse share a common philosophy of data and R programming, and are designed to work together naturally.
-You can install the complete tidyverse with a single line of code:</p>
+<p>After you install R &amp; Rstuidio , you will also need to install some R packages.</p>
+<p>The above video, covers the topic but re-stated, to do what we need to do in this guide we’ll need to install and load certain packages.</p>
+<p>To install a package (tidyverse is an example, but it’s a good example because it’s a big pacakage that we will use a lot):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="setting-up-r-rstudio.html#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
-<p>On your own computer, type that line of code in the console, and then press enter to run it. R will download the packages from CRAN and install them on to your computer. If you have problems installing, make sure that you are connected to the internet, and that <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a> isn’t blocked by your firewall or proxy.
-You will not be able to use the functions, objects, and help files in a package until you load it with library(). Once you have installed a package, you can load it with the library() function:</p>
-<p>library(tidyverse)</p>
+<p>To load a package (tidyverse example), you can type the syntax below.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="setting-up-r-rstudio.html#cb2-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="using-rmarkdown" class="section level2">
 <h2><span class="header-section-number">2.3</span> Using Rmarkdown</h2>
+<p>We’ll use R Markdown to generate the reports in Chapter 9 and 11. The video below, gives a nice introduction and overview of R markdown.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v=DNS7i2m4sB0" frameborder="0" allowfullscreen>
+</iframe>
 
 </div>
 </div>
@@ -342,7 +341,8 @@ gitbook.start({
 "download": ["standardizer.pdf", "standardizer.epub"],
 "toc": {
 "collapse": "section"
-}
+},
+"number_sections": false
 });
 });
 </script>
