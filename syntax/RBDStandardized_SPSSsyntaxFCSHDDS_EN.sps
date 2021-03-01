@@ -21,8 +21,15 @@ VALUE LABELS FCSCat21 FCSCat28
 
 ** Calculate Household Dietary Diversity Score
 
+*combine Vegetable questions 
+compute HDDSVeg = sum(HDDSVegOrg,HDDSVegGre,HDDSVegOth).
+recode HDDSVeg (0=0) (1 thru highest = 1).
+
+compute HDDSFruit = sum(HDDSFruitOrg,HDDSFruitOth).
+recode HDDSFruit (0=0) (1 thru highest = 1).
+
 compute HDDS = sum(HDDSStapCer,HDDSStapRoot,HDDSPulse,HDDSDairy,HDDSPrMeatF,HDDSPrMeatO,HDDSPrFish,
-HDDSPrEgg,HDDSVegOrg,HDDSVegGre,HDDSVegOth,HDDSFruitOrg,HDDSFruitOth,HDDSFat,HDDSSugar,HDDSCond).
+HDDSPrEgg,HDDSVeg,HDDSFruit,HDDSFat,HDDSSugar,HDDSCond).
 variable labels HDDS "Household Dietary Diversity Score".
 
 
