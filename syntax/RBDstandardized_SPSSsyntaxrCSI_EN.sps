@@ -1,4 +1,4 @@
-GET  FILE='exampledataEng.sav'.
+GET  FILE='exampledataEnglish_raw.sav'.
 DATASET NAME DataSet1 WINDOW=FRONT.
 
 *** calculate rCSI
