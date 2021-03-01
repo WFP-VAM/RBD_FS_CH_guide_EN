@@ -8,7 +8,7 @@
 ## Standardized Questionnaire
 
 Variable Name | Question Label | Answer Choices
----- | ------------- |---- 
+---- | ------------- |------
 HHhSNoFood_YN | In the past [4 weeks/30 days], was there ever no food to eat of any kind in your house because of lack of resources to get food? | 1) Yes 0) No
 HHhSNoFood_FR | How often did this happen in the past [4 weeks/30 days]? | 1) Rarely (1–2 times) 2) Sometimes (3–10 times)  3) Often (more than 10 times)
 HHhSBedHung_YN | In the past [4 weeks/30 days], did you or any household member go to sleep at night hungry because there was not enough food? | 1) Yes 0) No
@@ -31,7 +31,7 @@ Here is the standardized module in xlsform format:
 
 ### Example data set
 
-Here is the example data set: 
+Here is the example raw data set: 
 [exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav) 
 
 ### SPSS Syntax

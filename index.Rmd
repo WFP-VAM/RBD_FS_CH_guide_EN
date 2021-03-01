@@ -93,7 +93,7 @@ library(tidyverse)
 
 ## Using Rmarkdown
 
-We'll use R Markdown to generate the reports in Chapter 9 and 11.  The video below, gives a nice introduction and overview of R markdown.
+We'll use R Markdown to generate the reports in Chapter 9 and 11.  The video below gives a nice introduction and overview of R markdown.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/v=DNS7i2m4sB0" frameborder="0" allowfullscreen></iframe>
 

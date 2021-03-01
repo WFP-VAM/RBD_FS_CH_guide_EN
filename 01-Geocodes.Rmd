@@ -1,15 +1,17 @@
 # Gecodes
 
-Using names as identifiers can easily lead to confusion over spelling and transliterations as well as alternative and duplicate names.
+Names of geographic areas often create some clean up work in data processing as its not common for there to be issues and confusion over spelling, transliterations as well as alternative and duplicate names of areas.
 
-As unique identifiers, P-Codes overcome the challenges of linking datasets and confirming locations.
+Using standardized geographic codes rather than geographic names helps overcome the challenges of processing geographic information.  
 
-We recommend using Gecodes and Names from OCHA's Common Operational Datasets: 
-https://data.humdata.org/dashboards/cod?ext_geodata=1&q=&ext_page_size=25
+To this end, we  recommend using Gecodes and Names from OCHA's Common Operational Datasets (CODs): 
 
-## A brief example of the problem:
+https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels
 
-The geographic variables of the *choices* section of the  xlsform typically look like this
+
+## A simple example of the problem:
+
+The geographic variables of the *choices* section of the xlsform typically look like this.  The *name* values are usually sequentially assigned.  
 
 list_name | name | label
 ---- | --- |---- 
@@ -18,7 +20,7 @@ cod_lga | 2 | BAYO
 cod_lga | 3 | CHIBOK
 cod_lga | 4 | KALABAGE
 
-The geographic variables in corresponding GIS dataset look like this:
+The geographic variables in corresponding GIS data set look like this:
 
 Shape | admin2Pcode | admin2RefName
 ---- | --- |---- 
@@ -27,9 +29,9 @@ Polygon |NG008004 | Bayo
 Polygon |NG008006 | Chibok
 Polygon |NG008015 | Kala/Balge
 
-Unfortunately, if we tried to merge the dataset and the GIS file by the name of the area, we would first have to fix the capitalization and punctuation of the names.
+Unfortunately, if we tried to merge the data set and the GIS file by the name of the area (this seems to be the variable to join on), we would first have to fix the capitalization and punctuation of the names.
 
-To avoid unnecessary work, we recommend putting in the *Pcode* in the name column of the xlsform:
+To avoid unnecessary work, we recommend putting in the *Pcode* in the name column of the xlsform.  
 
 list_name | name | label
 ---- | --- |---- 
@@ -38,24 +40,37 @@ cod_lga | NG008004 | BAYO
 cod_lga | NG008006 | CHIBOK
 cod_lga | NG008015 | KALABAGE
 
-With a common, simple variable to merge both datasets, mapping and data processing will be much easier!
+Even better would be to use standardized name and label.  
 
-## Where to find Pcodes
+list_name | name | label
+---- | --- |---- 
+cod_lga | NG008002 | Askira/Uba
+cod_lga | NG008004 | Bayo
+cod_lga | NG008006 | Chibok
+cod_lga | NG008015 | Kala/Balge
 
-Geographic data can be found https://data.humdata.org/dashboards/cod?ext_geodata=1&q=&ext_page_size=25 and searching for the appropriate country.
+With a common, simple variable to merge both datasets, mapping and data processing should be faster and easier.
 
-We recommend using the codes from the *admin1Pcode* and *admin2Pcode* columns in the *name* column of the xlsform.  Using the *admin1RefName* and *admin2RefName*
+## Where to find Pcodes and more details
+
+Geographic data for West and Central Africa can be found at  https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels or users can search for the appropriate country in
+https://data.humdata.org/dashboards/cod
+
+We recommend using the codes from the *admin1Pcode* and *admin2Pcode* columns in the *name* column of the xlsform.  Using the *admin1RefName* and *admin2RefName* is also recommended in the *label* column of the xlsform
 
 ## Example data set of the data collection sheet for Nigeria:
+
+Here is an example dataset with names and labels matching the Common Operation Datasets.
+
 [xlsformwithgeocodesexample](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx) 
 
 
 
 ## 2 caveats
 
-1. In some countries, the boundaries in the CODS might not correspond with the latest boundaries used by the country.  In this case, special development of a GIS boundary file and codes will need to be developed.
+1. In some countries, the boundaries in the CODs might not correspond with the latest boundaries used by the country.  In this case, special development of a GIS boundary file and codes will need to be developed.  
 
-2. Inserting the relevant pcodes in the *name* column will probably require some *vlookup* .  This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated and difficult if cascading columns and the *choice_filter* option is used at the adm3, adm4 level. 
+2. Inserting the relevant pcodes in the *name* column will probably require some excel *vlookup* work.  This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated and difficult if cascading columns and the *choice_filter* option is used at the adm3, adm4 level. 
 
 
 

@@ -9,8 +9,8 @@ rstudio
 installing-packages
 using-rmarkdown
 gecodes
-a-brief-example-of-the-problem
-where-to-find-pcodes
+a-simple-example-of-the-problem
+where-to-find-pcodes-and-more-details
 example-data-set-of-the-data-collection-sheet-for-nigeria
 caveats
 household-hunger-scale
