@@ -48,6 +48,7 @@ electronic-version-of-questionnaire-3
 example-data-set-3
 spss-syntax-3
 r-syntax-3
+standardized-ena-livehihood-coping-strategy-module
 combined-questionnaire-syntaxes-for-all-5-indicators
 paper-version-of-questionnaire-4
 electronic-version-of-questionnaire-4

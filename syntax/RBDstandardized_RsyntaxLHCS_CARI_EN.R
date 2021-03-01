@@ -17,6 +17,7 @@ dataset <- dataset %>% mutate(stress_coping = case_when(
   LhCSIStress3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   LhCSIStress4 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   TRUE ~ "No"))
+var_label(dataset$stress_coping) <- "Did the HH engage in stress coping strategies"
 
 #Crisis
 dataset <- dataset %>% mutate(crisis_coping = case_when(
@@ -24,12 +25,15 @@ dataset <- dataset %>% mutate(crisis_coping = case_when(
   LhCSICrisis2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   LhCSICrisis3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   TRUE ~ "No"))
+var_label(dataset$crisis_coping) <- "Did the HH engage in crisis coping strategies"
+
 #Emergency
 dataset <- dataset %>% mutate(emergency_coping = case_when(
   LhCSIEmergency1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   LhCSIEmergency2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   LhCSIEmergency3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   TRUE ~ "No"))
+var_label(dataset$emergency_coping) <- "Did the HH engage in emergency coping strategies"
 
 #calculate Max_coping_behaviour
 dataset <- dataset %>% mutate(LhCSICat = case_when(
