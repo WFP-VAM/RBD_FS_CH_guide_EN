@@ -1,5 +1,5 @@
 GET
-  FILE='E:\example_datasets\dataFCSHDDSEng.sav'.
+  FILE='exampledataEnglish_raw.sav'.
 DATASET NAME DataSet1 WINDOW=FRONT.
 
 ** Calculate Food Consumption Score
@@ -12,7 +12,7 @@ variable labels FCS "Food Consumption Score".
 recode FCS (0 thru 21 = 1) (21 thru 35 = 2) (35 thru highest = 3) into FCSCat21.
 variable labels FCSCat21 "Food Consumption Groups - 21/35 thresholds".
 recode FCS (0 thru 28 = 1) (28 thru 42 = 2) (42 thru highest = 3) into FCSCat28.
-variable labels FCSCat28  "Food Consumption Groups - 21/35 thresholds".
+variable labels FCSCat28  "Food Consumption Groups - 28/42 thresholds".
 
 VALUE LABELS FCSCat21 FCSCat28 
 1 "Poor"
@@ -23,7 +23,7 @@ VALUE LABELS FCSCat21 FCSCat28
 
 compute HDDS = sum(HDDSStapCer,HDDSStapRoot,HDDSPulse,HDDSDairy,HDDSPrMeatF,HDDSPrMeatO,HDDSPrFish,
 HDDSPrEgg,HDDSVegOrg,HDDSVegGre,HDDSVegOth,HDDSFruitOrg,HDDSFruitOth,HDDSFat,HDDSSugar,HDDSCond).
-variable labels HDDS "Househould Dietary Diversity Score".
+variable labels HDDS "Household Dietary Diversity Score".
 
 
 
