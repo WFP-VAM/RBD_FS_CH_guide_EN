@@ -1,6 +1,6 @@
 
 GET
-  FILE='exampledataEng.sav'.
+  FILE='exampledataEnglish_raw.sav'.
 DATASET NAME DataSet3 WINDOW=FRONT.
 
 *** create dummy variable to show if any stress strategies were  "Yes" or "No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it"
