@@ -21,9 +21,17 @@ VALUE LABELS FCSCat21 FCSCat28
 
 ** Calculate Household Dietary Diversity Score
 
+*combine Meat questions 
+
+compute HDDSMeat = sum(HDDSPrMeatF,HDDSPrMeatO).
+recode HDDSMeat (0=0) (1 thru highest = 1).
+
 *combine Vegetable questions 
+
 compute HDDSVeg = sum(HDDSVegOrg,HDDSVegGre,HDDSVegOth).
 recode HDDSVeg (0=0) (1 thru highest = 1).
+
+*combine Fruit questions 
 
 compute HDDSFruit = sum(HDDSFruitOrg,HDDSFruitOth).
 recode HDDSFruit (0=0) (1 thru highest = 1).
