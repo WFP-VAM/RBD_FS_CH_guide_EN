@@ -60,8 +60,8 @@ VALUE LABELS FCSCat21 FCSCat28
 
 *combine Meat questions 
 
-compute HDDSMeat = sum(HDDSPrMeatF,HDDSPrMeatO).
-recode HDDSMeat (0=0) (1 thru highest = 1).
+compute HDDSPrMeat = sum(HDDSPrMeatF,HDDSPrMeatO).
+recode HDDSPrMeat (0=0) (1 thru highest = 1).
 
 *combine Vegetable questions 
 
