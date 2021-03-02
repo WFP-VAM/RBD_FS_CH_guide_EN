@@ -4,7 +4,12 @@ library(tidyverse)
 
 #import dataset
 dataset <- read_sav("example_datasets/exampledataEnglish_raw.sav")
-dataset  <- to_factor(dataset)
+
+#2 - convert all variables to the labelled version - but first create ADMINCodes
+dataset <- dataset %>% mutate(ADMIN1Code = as.character(ADMIN1Name))
+dataset <- dataset %>% mutate(ADMIN2Code = as.character(ADMIN2Name))
+dataset <- to_factor(dataset)
+
 
 ##Calculate HHS
 #Recode HHS questions into new variables with score
@@ -79,18 +84,21 @@ dataset <- dataset %>% mutate(stress_coping = case_when(
   LhCSIStress3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   LhCSIStress4 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   TRUE ~ "No"))
+var_label(dataset$stress_coping) <- "Did the HH engage in stress coping strategies"
 #Crisis
 dataset <- dataset %>% mutate(crisis_coping = case_when(
   LhCSICrisis1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   LhCSICrisis2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   LhCSICrisis3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   TRUE ~ "No"))
+var_label(dataset$crisis_coping) <- "Did the HH engage in crisis coping strategies"
 #Emergency
 dataset <- dataset %>% mutate(emergency_coping = case_when(
   LhCSIEmergency1 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   LhCSIEmergency2 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   LhCSIEmergency3 %in% c("Yes","No; because I already sold those assets or did this activity in the last 12 months and cannot continue to do it") ~ "Yes",
   TRUE ~ "No"))
+var_label(dataset$emergency_coping) <- "Did the HH engage in emergency coping strategies"
 #calculate Max_coping_behaviour
 dataset <- dataset %>% mutate(LhCSICat = case_when(
   emergency_coping == "Yes" ~ "EmergencyStrategies",
@@ -99,7 +107,4 @@ dataset <- dataset %>% mutate(LhCSICat = case_when(
   TRUE ~ "NoStrategies"))
 var_label(dataset$LhCSICat) <- "Livelihood Coping Strategy categories - CARI light version"
 
-#important to note that this datset doesnt have weights
-
-dataset <- write_sav("example_datasets/exampledataEnglish_processed.sav")
 
