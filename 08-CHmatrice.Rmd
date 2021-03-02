@@ -1,10 +1,10 @@
 # Calculating Matrice Intermediare (direct food security data)
 
-After survey teams have processed the data (cleaned, calculated indicators, added survey weights), then the R syntax below can be used to generate a .csv file of the Food Security Direct evidence.
+After survey teams have processed the data (cleaned, calculated indicators and added survey weights), then the R syntax below can be used to generate a .csv file of the Food Security Direct evidence that can be pasted into the matrice intermediare
 
 ## Overview video 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://drive.google.com/file/d/13PJrPIxfG6EBo5Ff7E5NilNhXcVqowma" frameborder="0" allowfullscreen></iframe>
 
 (this video will be replaced with real one)
 
@@ -28,7 +28,7 @@ Here is the example matrice intermediare :
 
 ## Troubleshooting & Known issues
 
-- If the country does not collect all the 5 Food Security Indicators (FCS, HDDS, rCSI, HHS, LhCS) - the modules not collecte should be removed from the code before running
+- If the country does not collect all the 5 Food Security Indicators (FCS, HDDS, rCSI, HHS, LhCS) - the modules not collected should be removed from the code before running
 
 - If the level of analysis is at the Admin 1 level only - then the variables ADMIN2Name and ADMIN2Code should be removed from the code
 

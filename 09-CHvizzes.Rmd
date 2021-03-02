@@ -1,8 +1,8 @@
 # Visualizing CH Direct Food security Indicators
 
-## Visualizing CH Direct Food security Indicators from Matrice Intermediare
+## Visualizing CH Direct Food security Indicators from Matrice Intermediare (.csv file)
 
-After survey teams have generated the matrice intermediare, the R script below can be used for creating maps and tables of the Food Security Direct Evidence Indicatos.
+After survey teams have generated the .csv for the  matrice intermediare, the R script below can be used for creating maps and tables of the Food Security Direct Evidence.
 
 ### Overview video 
 
@@ -12,20 +12,30 @@ After survey teams have generated the matrice intermediare, the R script below c
 
 ### Visualizing CH Direct Food security Indicators
 
-### Example matrice intermediare
+### Example matrice intermediare (.csv file)
 
 [matrice_intermediaire_direct_en.csv](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv) 
 
 ### Syntax
 
 Here is the syntax to visualize the CH Direct Food security Indicators
-[example_CH_preliminaryFSresults](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_CH_preliminaryFSresults.rmd) 
+[example_CH_preliminaryFSresults_fromcsv](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_CH_preliminaryFSresults_fromcsv.Rmd) 
 
-### Example Outputs of matrice intermediare 
-
-Here is the example data quality report:
-[example_CH_preliminaryFSresults](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/example_CH_preliminaryFSresults.html) 
 
 ## Visualizing CH Direct Food security Indicators directly from processed data set 
 
-_coming real soon_
+Alternatively, teams can use the R script below to create maps and tables of the Food Security Direct Evidence directly from the processed dataset.  
+
+### Example matrice intermediare (.csv file)
+
+[matrice_intermediaire_direct_en.csv](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv) 
+
+### Syntax
+
+Here is the syntax to visualize the CH Direct Food security Indicators
+[example_CH_preliminaryFSresults_fromspss](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_CH_preliminaryFSresults_fromcsv.Rmd) 
+
+
+
+
+
