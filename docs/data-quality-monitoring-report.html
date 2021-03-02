@@ -281,6 +281,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-quality-monitoring-report.html#cb3-1"></a><span class="co">#convert enumerator name back to code - because for data security reasons you dont want to publish the name of the operator</span></span>
 <span id="cb3-2"><a href="data-quality-monitoring-report.html#cb3-2"></a>dataset<span class="op">$</span>EnumName &lt;-<span class="st"> </span><span class="kw">to_character</span>(dataset<span class="op">$</span>EnumName)</span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
+<li>Modify the <code>tile</code> and author <code>fields</code> to your survey.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-quality-monitoring-report.html#cb4-1"></a>title<span class="op">:</span><span class="st"> &quot;Example Data Quality Monitoring Report&quot;</span></span>
+<span id="cb4-2"><a href="data-quality-monitoring-report.html#cb4-2"></a>author<span class="op">:</span><span class="st"> &quot;WFP &quot;</span></span></code></pre></div>
+<p>title: “Example Data Quality Monitoring Report”
+author: “WFP”</p>
+<ol start="6" style="list-style-type: decimal">
 <li>Finally, click the Knit button and the report should generate (it might take a few minutes)</li>
 </ol>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen>

@@ -36,6 +36,15 @@ before this code:
 dataset$EnumName <- to_character(dataset$EnumName)
 ```
 
+6. Modify the `tile` and author `fields` to your survey. 
+
+```{r, eval = F}
+title: "Example Data Quality Monitoring Report"
+author: "WFP "
+```
+title: "Example Data Quality Monitoring Report"
+author: "WFP "
+
 6. Finally, click the Knit button and the report should generate (it might take a few minutes)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen></iframe>
