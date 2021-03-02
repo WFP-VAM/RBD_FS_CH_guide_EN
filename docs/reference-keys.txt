@@ -70,10 +70,11 @@ syntax
 example-of-matrice-intermediare
 troubleshooting-known-issues
 visualizing-ch-direct-food-security-indicators
-visualizing-ch-direct-food-security-indicators-from-matrice-intermediare
+visualizing-ch-direct-food-security-indicators-from-matrice-intermediare-.csv-file
 overview-video-1
 visualizing-ch-direct-food-security-indicators-1
-example-matrice-intermediare
+example-matrice-intermediare-.csv-file
 syntax-1
-example-outputs-of-matrice-intermediare
 visualizing-ch-direct-food-security-indicators-directly-from-processed-data-set
+example-matrice-intermediare-.csv-file-1
+syntax-2
