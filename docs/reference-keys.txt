@@ -59,14 +59,13 @@ data-quality-monitoring-report
 overview-of-the-steps
 video-example
 data-quality-monitoring-tools
-example-data-set-5
-example-data-quality-report
+example-data-set-syntax
 outputs-of-example-data-quality-report
 troubleshooting-going-further
 calculating-matrice-intermediare-direct-food-security-data
 overview-video
 generating-matrice-intermediare
-example-data-set-6
+example-data-set-5
 syntax
 example-of-matrice-intermediare
 troubleshooting-known-issues

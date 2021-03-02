@@ -214,16 +214,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.1" data-path="data-quality-monitoring-report.html"><a href="data-quality-monitoring-report.html#video-example"><i class="fa fa-check"></i><b>9.1.1</b> Video Example</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="data-quality-monitoring-report.html"><a href="data-quality-monitoring-report.html#data-quality-monitoring-tools"><i class="fa fa-check"></i><b>9.2</b> Data Quality Monitoring Tools</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="data-quality-monitoring-report.html"><a href="data-quality-monitoring-report.html#example-data-set-5"><i class="fa fa-check"></i><b>9.2.1</b> Example data set</a></li>
-<li class="chapter" data-level="9.2.2" data-path="data-quality-monitoring-report.html"><a href="data-quality-monitoring-report.html#example-data-quality-report"><i class="fa fa-check"></i><b>9.2.2</b> Example data quality report</a></li>
-<li class="chapter" data-level="9.2.3" data-path="data-quality-monitoring-report.html"><a href="data-quality-monitoring-report.html#outputs-of-example-data-quality-report"><i class="fa fa-check"></i><b>9.2.3</b> Outputs of Example data quality report</a></li>
+<li class="chapter" data-level="9.2.1" data-path="data-quality-monitoring-report.html"><a href="data-quality-monitoring-report.html#example-data-set-syntax"><i class="fa fa-check"></i><b>9.2.1</b> Example data set &amp; Syntax</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-quality-monitoring-report.html"><a href="data-quality-monitoring-report.html#outputs-of-example-data-quality-report"><i class="fa fa-check"></i><b>9.2.2</b> Outputs of Example data quality report</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="data-quality-monitoring-report.html"><a href="data-quality-monitoring-report.html#troubleshooting-going-further"><i class="fa fa-check"></i><b>9.3</b> Troubleshooting &amp; Going Further</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="calculating-matrice-intermediare-direct-food-security-data.html"><a href="calculating-matrice-intermediare-direct-food-security-data.html"><i class="fa fa-check"></i><b>10</b> Calculating Matrice Intermediare (direct food security data)</a><ul>
 <li class="chapter" data-level="10.1" data-path="calculating-matrice-intermediare-direct-food-security-data.html"><a href="calculating-matrice-intermediare-direct-food-security-data.html#overview-video"><i class="fa fa-check"></i><b>10.1</b> Overview video</a></li>
 <li class="chapter" data-level="10.2" data-path="calculating-matrice-intermediare-direct-food-security-data.html"><a href="calculating-matrice-intermediare-direct-food-security-data.html#generating-matrice-intermediare"><i class="fa fa-check"></i><b>10.2</b> Generating Matrice Intermediare</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="calculating-matrice-intermediare-direct-food-security-data.html"><a href="calculating-matrice-intermediare-direct-food-security-data.html#example-data-set-6"><i class="fa fa-check"></i><b>10.2.1</b> Example data set</a></li>
+<li class="chapter" data-level="10.2.1" data-path="calculating-matrice-intermediare-direct-food-security-data.html"><a href="calculating-matrice-intermediare-direct-food-security-data.html#example-data-set-5"><i class="fa fa-check"></i><b>10.2.1</b> Example data set</a></li>
 <li class="chapter" data-level="10.2.2" data-path="calculating-matrice-intermediare-direct-food-security-data.html"><a href="calculating-matrice-intermediare-direct-food-security-data.html#syntax"><i class="fa fa-check"></i><b>10.2.2</b> Syntax</a></li>
 <li class="chapter" data-level="10.2.3" data-path="calculating-matrice-intermediare-direct-food-security-data.html"><a href="calculating-matrice-intermediare-direct-food-security-data.html#example-of-matrice-intermediare"><i class="fa fa-check"></i><b>10.2.3</b> Example of matrice intermediare</a></li>
 </ul></li>
@@ -267,8 +266,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.1</span> Overview of the steps</h2>
 <p>Download a .sav (spss) version of the dataset from Kobo/Ona/MoDa/ODK - use <a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav">exampledataEnglish_raw</a> as an example.</p>
 <p>Create a folder on your machine (“C:” is recommended but not required) with the name of the survey (i.e. NGA_022021_EFSA) and create a sub-folder “1_RawData” - save your SPSS dataset in the “1_RawData” folder.</p>
-<p>Save the <a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_dqmonitoring_EN.Rmd">example_dqmonitoring_EN</a>
-in the main survey folder</p>
 <p>Open up <a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_dqmonitoring_EN.Rmd">example_dqmonitoring_EN</a>
 and verify the code (below) refers to the correct name of file and folder location.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-quality-monitoring-report.html#cb3-1"></a><span class="co">#set working directory </span></span>
@@ -296,20 +293,15 @@ author: “WFP”</p>
 </div>
 <div id="data-quality-monitoring-tools" class="section level2">
 <h2><span class="header-section-number">9.2</span> Data Quality Monitoring Tools</h2>
-<div id="example-data-set-5" class="section level3">
-<h3><span class="header-section-number">9.2.1</span> Example data set</h3>
-<p>Here is the example data set:
-<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav">exampledataEnglish_raw</a></p>
-</div>
-<div id="example-data-quality-report" class="section level3">
-<h3><span class="header-section-number">9.2.2</span> Example data quality report</h3>
-<p>Here is the syntax to generate the example data quality report:
-<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_dqmonitoring_EN.Rmd">example_dqmonitoring_EN</a></p>
+<div id="example-data-set-syntax" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Example data set &amp; Syntax</h3>
+<p>Here is the zipped file with the raw example data set and syntax:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/exampledq_monitoring_EN.zip">exampledq_monitoring_EN</a></p>
 </div>
 <div id="outputs-of-example-data-quality-report" class="section level3">
-<h3><span class="header-section-number">9.2.3</span> Outputs of Example data quality report</h3>
-<p>Here is the example data quality report:
-<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/example_dqmonitoring_EN.html">example_dqmonitoring_EN</a></p>
+<h3><span class="header-section-number">9.2.2</span> Outputs of Example data quality report</h3>
+<p>Here is the example data quality report (zipped):
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/example_dqmonitoring_EN.zip">example_dqmonitoring_EN</a></p>
 </div>
 </div>
 <div id="troubleshooting-going-further" class="section level2">
