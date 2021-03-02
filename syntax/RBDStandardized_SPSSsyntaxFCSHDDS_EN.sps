@@ -36,7 +36,7 @@ recode HDDSVeg (0=0) (1 thru highest = 1).
 compute HDDSFruit = sum(HDDSFruitOrg,HDDSFruitOth).
 recode HDDSFruit (0=0) (1 thru highest = 1).
 
-compute HDDS = sum(HDDSStapCer,HDDSStapRoot,HDDSPulse,HDDSDairy,HDDSPrMeatF,HDDSPrMeatO,HDDSPrFish,
+compute HDDS = sum(HDDSStapCer,HDDSStapRoot,HDDSPulse,HDDSDairy,HDDSPrMeat,HDDSPrFish,
 HDDSPrEgg,HDDSVeg,HDDSFruit,HDDSFat,HDDSSugar,HDDSCond).
 variable labels HDDS "Household Dietary Diversity Score".
 
