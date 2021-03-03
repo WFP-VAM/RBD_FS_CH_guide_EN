@@ -11,12 +11,18 @@ After survey teams have generated the .csv for the  matrice intermediare, the R 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen></iframe>
 
 
-
 ### Example matrice intermediare (.csv file)
 
 Here is the example matrice intermediare (.csv) generated from processes in the last chapter:
 
 [matrice_intermediaire_direct_en.csv](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv) 
+
+### Example shapefiles 
+
+Here are shape files for Nigeria which will be used to make maps in our example:
+
+[NGA_shpfile](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/NGA_shpfile.zip) 
+
 
 ### Syntax
 
@@ -36,11 +42,20 @@ Alternatively, teams can use the R script below to create maps and tables of the
 ### Example processed data set
 
 Here is the example processed data set:
+
 [exampledataEnglish_processed](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav) 
+
+
+### Example shapefiles 
+
+Here are shape files for Nigeria which will be used to make maps in our example:
+
+[NGA_shpfile](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/NGA_shpfile.zip) 
 
 ### Syntax
 
-Here is the syntax to visualize the CH Direct Food security Indicators from the processed dataset
+Here is the syntax to visualize the CH Direct Food security Indicators from the processed dataset:
+
 [example_CH_preliminaryFSresults_fromspss](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_CH_preliminaryFSresults_fromspss.zip) 
 
 

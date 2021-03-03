@@ -72,8 +72,10 @@ visualizing-ch-direct-food-security-indicators
 visualizing-ch-direct-food-security-indicators-from-matrice-intermediare-.csv-file
 overview-video-1
 example-matrice-intermediare-.csv-file
+example-shapefiles
 syntax-1
 visualizing-ch-direct-food-security-indicators-directly-from-processed-data-set
 overview-video-2
 example-processed-data-set-1
+example-shapefiles-1
 syntax-2
