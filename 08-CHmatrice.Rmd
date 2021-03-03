@@ -4,9 +4,8 @@ After survey teams have processed the data (cleaned, calculated indicators and a
 
 ## Overview video 
 
-<iframe width="560" height="315" src="https://drive.google.com/file/d/13PJrPIxfG6EBo5Ff7E5NilNhXcVqowma" frameborder="0" allowfullscreen></iframe>
+<iframe width="750" height="400" src="https://www.youtube.com/embed/MfELnjz2G8E" frameborder="0" allowfullscreen></iframe>
 
-(this video will be replaced with real one)
 
 ## Generating Matrice Intermediare
 
@@ -23,7 +22,7 @@ Here is the syntax to generate the matrice intermediare from processed dataset:
 
 ### Example of matrice intermediare 
 
-Here is the example matrice intermediare :
+Here is the example matrice intermediare (.csv) generated from processes above:
 [matrice_intermediaire_direct_en](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv) 
 
 ## Troubleshooting & Known issues

@@ -49,7 +49,7 @@ Finally, click the Knit button and the report should generate (it might take a f
 
 ### Video Example 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-hvUzqojk9c" frameborder="0" allowfullscreen></iframe>
+<iframe width="750" height="400" src="https://www.youtube.com/embed/-hvUzqojk9c" frameborder="0" allowfullscreen></iframe>
 
 ## Data Quality Monitoring Tools
 
@@ -58,10 +58,6 @@ Finally, click the Knit button and the report should generate (it might take a f
 Here is the zipped file with the raw example data set and syntax:
 [exampledq_monitoring_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/exampledq_monitoring_EN.zip) 
 
-### Outputs of Example data quality report
-
-Here is the example data quality report (zipped):
-[example_dqmonitoring_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/example_dqmonitoring_EN.zip) 
 
 ## Troubleshooting & Going Further
 
