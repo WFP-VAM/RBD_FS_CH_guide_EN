@@ -1,8 +1,10 @@
 # Data Quality Monitoring Report
 
-If survey teams are collecting data with Kobo/Ona/MoDa/ODK and regularly sending their submissions to a server, then they can quickly generate a data quality report with Rmarkdown to regularly track survey results and detect problems that may arise in the field with data collection.
+If survey teams collect data with Kobo/Ona/MoDa/ODK and regularly send submissions to a server, then analysts can quickly generate a data quality report with Rmarkdown to regularly track survey results and detect problems that may arise in the field with data collection.
 
 The example report below has been generalized to visualize survey progress by geographic areas and calculated results of key CH indicators by geographic areas and by enumerators using the raw data set downloaded from the  Kobo/Ona/MoDa/ODK server.
+
+For privacy/data security, the code of the enumerator should be used rather than the operators actuall name.  If a particular operator nees to be identified contacted - you can refer to the .xls data collection form. 
 
 ## Overview of the steps
 
@@ -36,7 +38,7 @@ before this code:
 dataset$EnumName <- to_character(dataset$EnumName)
 ```
 
- Modify the `tile` and author `fields` to your survey. 
+Modify the `tile` and author `fields` to your survey. 
 
 ```{r, eval = F}
 title: "Example Data Quality Monitoring Report"
@@ -45,7 +47,9 @@ author: "WFP "
 title: "Example Data Quality Monitoring Report"
 author: "WFP "
 
-Finally, click the Knit button and the report should generate (it might take a few minutes)
+Click the Knit button and the report should generate (it might take a few minutes)
+
+An .html file is produced in the survey folder - you can hover the cursor over the figures for more information.
 
 ### Video Example 
 
@@ -61,7 +65,8 @@ Here is the zipped file with the raw example data set and syntax:
 
 ## Troubleshooting & Going Further
 
-This report has been designed to work with standardized variable names and indicators illustrated earlier in this guide.  Experienced R users are free to modify the report to meet their specific needs.  
+This report has been designed to work with standardized variable names and indicators illustrated earlier in this guide. 
 
-For any difficulties - contact rbd.vam@wfp.org
+Experienced R users are free to modify the report to meet their specific needs.  Share what you create!  
+
 

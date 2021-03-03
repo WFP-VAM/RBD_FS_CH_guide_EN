@@ -1,6 +1,6 @@
 # Visualizing CH Direct Food security Indicators
 
-Visualizing the phasing of areas in maps and tables  according to the different food security indicators can give users a chance to view contemplate/synthesize the results.  The resources below, illustrate two methods for visualizing the results: via the Matrice Intermediare (.csv file) from the processed survey file itself.
+Visualizing the phasing of areas in maps and tables  according to the different food security indicators can give users a chance to better contemplate/synthesize the results.  The resources below, illustrate two methods for visualizing the results: via the Matrice Intermediare (.csv file) via the processed survey (.sav) file .
 
 ## Visualizing CH Direct Food security Indicators from Matrice Intermediare (.csv file)
 
@@ -8,14 +8,14 @@ After survey teams have generated the .csv for the  matrice intermediare, the R 
 
 ### Overview video 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen></iframe>
+<iframe width="750" height="400" src="https://www.youtube.com/embed/BdORJYlOEQU" frameborder="0" allowfullscreen></iframe>
 
 
 ### Example matrice intermediare (.csv file)
 
 Here is the example matrice intermediare (.csv) generated from processes in the last chapter:
 
-[matrice_intermediaire_direct_en.csv](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/outputs/matrice_intermediaire_direct_en.csv) 
+[matrice_intermediaire_direct_en.csv](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/matrice_intermediaire_direct_en.csv) 
 
 ### Example shapefiles 
 
@@ -37,7 +37,7 @@ Alternatively, teams can use the R script below to create maps and tables of the
 
 ### Overview video 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen></iframe>
+<iframe width="750" height="400" src="https://www.youtube.com/embed/SStPXUETQxY" frameborder="0" allowfullscreen></iframe>
 
 ### Example processed data set
 

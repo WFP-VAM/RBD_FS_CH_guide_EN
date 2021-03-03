@@ -2,11 +2,13 @@
 
 The following resources illustrate how to collect and calculate the CARI light version of the Livelihood Coping Strategy Module.
 
-Users can substitute the stress, crisis and emergency coping strategy strategies according to their context , preferable from the list of strategies on page 47 of the CARI Manual (below).
+Note = Users can substitute the stress, crisis and emergency coping strategy strategies according to their context , preferable from the list of strategies on page 47 of the CARI Manual (below).  Developing a standardized list of strategies for CH purposes is future work.
 
 ## References / Resources
 
 1.  CARI Manual - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+
+2.  ENA Guidelines - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
 
 ## Standardized Light CARI Module 
 
@@ -51,8 +53,18 @@ Here is the R syntax file:
 
 ## Standardized ENA Livehihood Coping Strategy Module
 
+### Paper Version of Questionnaire
+
+Here is the standardized module in word format:
+[RBDstandardized_questionnaireLHCS_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_ENA.docx) 
+
+### Electronic Version of Questionnaire
+
+Here is the standardized module in xlsform:
+
+[RBDstandardized_questionnaireLHCS_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_ENA.xlsx) 
 
 
-Standardized data collection form and syntax for the ENA Livelihood Coping Strategy Module is forthcoming.
+### Example Data & Syntax
 
-https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+Example data and syntax for ENA version of the livelihood coping strategies is forthcoming.
