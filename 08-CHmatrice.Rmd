@@ -9,7 +9,7 @@ After survey teams have processed the data (cleaned, calculated indicators and a
 
 ## Generating Matrice Intermediare
 
-### Example data set
+### Example processed data set
 
 Here is the example processed data set:
 [exampledataEnglish_processed](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav) 
