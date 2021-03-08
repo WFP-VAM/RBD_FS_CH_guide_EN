@@ -1,10 +1,10 @@
 # Visualizing CH Direct Food security Indicators
 
-Visualizing the phasing of areas in maps and tables  according to the different food security indicators can give users a chance to better contemplate/synthesize the results.  The resources below, illustrate two methods for visualizing the results: via the Matrice Intermediare (.csv file) via the processed survey (.sav) file .
+Visualizing the phasing of areas in maps and tables  according to the different food security indicators can give users a chance to better contemplate/synthesize results during the analysis process.  The resources below, offer two methods for visualizing the results: via the Matrice Intermediare (.csv file) or via the processed survey (.sav) file .
 
 ## Visualizing CH Direct Food security Indicators from Matrice Intermediare (.csv file)
 
-After survey teams have generated the .csv for the  matrice intermediare, the R script below can be used for creating maps and tables of the Food Security Direct Evidence.
+After survey teams have generated the .csv for thematrice intermediare, the R script below can be used for creating maps and tables of the Food Security Direct Evidence.
 
 ### Overview video 
 
@@ -13,9 +13,9 @@ After survey teams have generated the .csv for the  matrice intermediare, the R 
 
 ### Example matrice intermediare (.csv file)
 
-Here is the example matrice intermediare (.csv) generated from processes in the last chapter:
+Here is the zipped example matrice intermediare (.csv) generated from processes in the last chapter:
 
-[matrice_intermediaire_direct_en.csv](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/matrice_intermediaire_direct_en.csv?raw=true) 
+[matrice_intermediaire_direct_en](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/matrice_intermediaire_direct_en.zip?raw=true) 
 
 ### Example shapefiles 
 
