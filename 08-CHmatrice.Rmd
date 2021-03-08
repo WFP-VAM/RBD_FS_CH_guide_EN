@@ -12,18 +12,18 @@ After survey teams have processed the data (cleaned, calculated indicators and a
 ### Example processed data set
 
 Here is the example processed data set:
-[exampledataEnglish_processed](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav) 
+[exampledataEnglish_processed](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav?raw=true) 
 
 ### Syntax
 
 Here is the syntax to generate the matrice intermediare from processed dataset:
-[matricemaker_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/matricemaker_EN.R) 
+[matricemaker_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/matricemaker_EN.R?raw=true) 
 
 
 ### Example of matrice intermediare 
 
 Here is the example matrice intermediare (.csv) generated from processes above:
-[matrice_intermediaire_direct_en](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/matrice_intermediaire_direct_en.csv) 
+[matrice_intermediaire_direct_en](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/matrice_intermediaire_direct_en.csv?raw=true) 
 
 ## Troubleshooting & Known issues
 

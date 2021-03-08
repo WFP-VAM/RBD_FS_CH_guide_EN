@@ -60,7 +60,7 @@ An .html file is produced in the survey folder - you can hover the cursor over t
 ### Example data set & Syntax
 
 Here is the zipped file with the raw example data set and syntax:
-[exampledq_monitoring_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/exampledq_monitoring_EN.zip) 
+[exampledq_monitoring_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/exampledq_monitoring_EN.zip?raw=true) 
 
 
 ## Troubleshooting & Going Further

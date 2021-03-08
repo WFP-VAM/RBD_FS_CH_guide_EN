@@ -23,10 +23,10 @@
 
 <meta name="author" content="Research, Assesment and Monitoring (RAM) Unit" />
 <meta name="author" content="Regional Bureau for West &amp; Central Africa, World Food Programme" />
-<meta name="author" content="rbd.vam@wfp.org" />
+<meta name="author" content="rbd.ram@wfp.org" />
 
 
-<meta name="date" content="2021-03-03" />
+<meta name="date" content="2021-03-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -272,8 +272,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonisé Food Security Indicators</h1>
 <p class="author"><em>Research, Assesment and Monitoring (RAM) Unit</em></p>
 <p class="author"><em>Regional Bureau for West &amp; Central Africa, World Food Programme</em></p>
-<p class="author"><em><a href="mailto:rbd.vam@wfp.org" class="email">rbd.vam@wfp.org</a></em></p>
-<p class="date"><em>2021-03-03</em></p>
+<p class="author"><em><a href="mailto:rbd.ram@wfp.org" class="email">rbd.ram@wfp.org</a></em></p>
+<p class="date"><em>2021-03-08</em></p>
 </div>
 <div id="purpose-how-to-use-this-guide" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Purpose &amp; How to use this Guide</h1>
@@ -287,30 +287,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/food-consumption-score-household-dietary-diversity.html">Chapter 6 Food Consumption Score &amp; Household Dietary Diversity</a> paper and electronic versions of standardized questionnaire and SPSS/R syntax for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score indicators.</p>
 <p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/livelihood-coping-strategies.html">Chapter 7 Livelihood Coping Strategies</a> paper and electronic versions of standardized questionnaire and SPSS/R syntax for calculating the maximum coping strategy used for CARI light version and ENA version of the Livelihood Coping Strategies module.</p>
 <p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/combined-questionnaire-syntaxes-for-all-5-indicators.html">Chapter 8 Combined Questionnaire &amp; Syntaxes for all 5 indicators</a> combines the questionnaires and syntaxes from chapter 4 - 7.</p>
-<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/data-quality-monitoring-report.html">Chapter 9 Data Quality Monitoring Report</a> provides instructions and R syntax for a data quality monitoring report.</p>
+<p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/data-quality-monitoring-report.html">Chapter 9 Data Quality Monitoring Report</a> provides instructions and R syntax for a data quality monitoring report, using raw survey data.</p>
 <p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/calculating-matrice-intermediare-direct-food-security-data.html">Chapter 10 Calculating Matrice Intermediare</a> provides instructions and a generic R syntax to produce from a processed spss file the direct food security indicators and geocodes which can be copied into the matrice intermediare.</p>
 <p><a href="https://wfp-vam.github.io/RBD_FS_CH_guide_EN/visualizing-ch-direct-food-security-indicators.html">Chapter 11 Visualizing CH Direct Food security Indicators</a> provides instructions and generic R syntax for visualizing maps and tables of the phasing of CH direct evidence indicators from the matrice intermediare or a processed data set.</p>
 </div>
 <div id="about-software" class="section level3">
 <h3><span class="header-section-number">1.0.2</span> About software</h3>
-<p>While use of the software R &amp; Rstudio is necessary to produce the outputs in chapters 9, 10 and 11, users who aren’t ready to fully adopt R for their survey processes do not need to disrupt their normal data processing steps - this can remain in SPSS. Syntax for calculating indicators in SPSS is provided in chapters 4 - 8 .</p>
+<p>While use of the software R &amp; Rstudio is necessary to produce the outputs in chapters 9, 10 and 11, users who aren’t ready to fully replace SPPS with R for their survey processes do not need to disrupt their normal data processing steps (cleaning, calculating, indicators, adding weights, etc) - this can remain in SPSS. Syntax for calculating indicators in SPSS is provided in chapters 4 - 8 .</p>
 <p>The R syntax used for the data quality monitoring report is compatible with the “raw data” that is downloaded from data collection servers (Kobo/MoDA etc.) and the R syntax used to produce the matrice intermediare is compatible with the “processed data” in spss format.</p>
 </div>
 <div id="about-the-example-datasets" class="section level3">
 <h3><span class="header-section-number">1.0.3</span> About the example datasets</h3>
-<p>For this guide, two “semi-fictitious” data sets were created by randomly selecting and de-identifying several surveys. The results are “safe-ish” data sets that serve as examples for the syntax and processes illustrated in this guide:</p>
-<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav">exampledataEnglish_raw</a> - is what a “raw” data set typically should look like when collecting with standardized modules and downloaded from a ODK server in spss format.</p>
-<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav">exampledataEnglish_processed</a> - is what a “processed data” typically should look like when applying standardized syntax to calculate indicators and adding survey weights.</p>
+<p>For this guide, two “semi-fictitious” data sets were created by randomly selecting and de-identifying several surveys. The results are “safe” data sets that serve as examples for the syntax and processes illustrated in this guide:</p>
+<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav?raw=true">exampledataEnglish_raw</a> - is what a “raw” data set typically should look like when collecting with standardized modules and downloaded from a ODK server in spss format.</p>
+<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav?raw=true">exampledataEnglish_processed</a> - is what a “processed data” typically should look like when applying standardized syntax to calculate indicators and adding survey weights.</p>
 </div>
 <div id="about-the-questionnaires-and-variable-names" class="section level3">
 <h3><span class="header-section-number">1.0.4</span> About the questionnaires and variable names</h3>
-<p>The standardized questionnaires were developed from official guidelines/references listed in the chapters and were adapted reflecting after consultation with several food security analysts. While many questions in this guide were taken are verbatim from the official references, this wording of some question modules follow the belief that repeating the content of a question such as recall period (i.e. in the last 7 days…) and qualifier (…because lack of food or lack of money to buy food) explicitly within the question text is better practice than having an introductory text (i.e. In the last 7 days, because of lack of food did you have to use the following strategies…) and then reading off a list of food items/strategies.</p>
+<p>The standardized questionnaires were developed from official guidelines/references listed in the chapters and were adapted reflecting after consultation with several food security analysts. While many questions in this guide were taken verbatim from the official references, the wording of some question modules follow the opinion that instructing enumerators to repeat the content of a question such as recall period (i.e. in the last 7 days…) and qualifier (…because lack of food or lack of money to buy food) explicitly within the question text is better practice than having enumerators read introductory text (i.e. In the last 7 days, because of lack of food did you have to use the following strategies…) and then read off a list of food items/strategies.</p>
 <p>The variable names in this guide were largely copied from a draft master codebook which is forthcoming.</p>
 </div>
 <div id="about-coding-style" class="section level3">
 <h3><span class="header-section-number">1.0.5</span> About coding style</h3>
 <p>Most of the code in this guide uses the tidyverse, but it might not be elegant or efficient. It gets the job done but future work will be to try to make it comply with the tidyverse style code: <a href="https://style.tidyverse.org/" class="uri">https://style.tidyverse.org/</a>.</p>
-<p>For now, one key thing to note. Most of the time, the code refers to the label (i.e. “Yes”) rather than the value (i.e. “1”). There are trade-offs with this. The advantage of using a label is that it’s easier to read what the code is trying to do and troubleshoot a problem. The disadvantage is it makes the code more long winded and it makes it more fussy because the labels (and sometimes they can be long) must match exactly the code.</p>
+<p>For now, one key thing to note. Most of the time, the code refers to the label (i.e. “Yes”) rather than the value (i.e. “1”). There are trade-offs with this approach. Using a label makes it easier to read what the code is trying to do and troubleshoot a problem. The disadvantage is it makes the code more long winded and it makes it more fussy because the labels (and sometimes they can be long) must exactly match the code.</p>
 </div>
 <div id="on-last-about-about-proposing-fixes-and-suggestions" class="section level3">
 <h3><span class="header-section-number">1.0.6</span> On last about, About proposing fixes and suggestions</h3>

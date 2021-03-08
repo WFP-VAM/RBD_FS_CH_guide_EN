@@ -3,7 +3,7 @@ title: "A Guide to Standardized Collection, Processing and Visualization of Cadr
 author:
   - Research, Assesment and Monitoring (RAM) Unit
   - Regional Bureau for West & Central Africa, World Food Programme
-  - rbd.vam@wfp.org
+  - rbd.ram@wfp.org
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -34,7 +34,7 @@ This guide presents standardized tools for collection, processing, analysis and 
 
 [Chapter 8 Combined Questionnaire & Syntaxes for all 5 indicators](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/combined-questionnaire-syntaxes-for-all-5-indicators.html) combines the questionnaires and syntaxes from chapter 4 - 7.
 
-[Chapter 9 Data Quality Monitoring Report](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/data-quality-monitoring-report.html) provides instructions and R syntax for a data quality monitoring report.
+[Chapter 9 Data Quality Monitoring Report](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/data-quality-monitoring-report.html) provides instructions and R syntax for a data quality monitoring report, using raw survey data.
 
 [Chapter 10 Calculating Matrice Intermediare](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/calculating-matrice-intermediare-direct-food-security-data.html) provides instructions and a generic R syntax to produce from a processed spss file the direct food security indicators and geocodes which can be copied into the matrice intermediare.
 
@@ -42,21 +42,21 @@ This guide presents standardized tools for collection, processing, analysis and 
 
 ### About software
 
-While use of the software R & Rstudio is necessary to produce the outputs in chapters 9, 10 and 11, users who aren't ready to fully adopt R for their survey processes do not need to disrupt their normal data processing steps - this can remain in SPSS.  Syntax for calculating indicators in SPSS is provided in chapters  4 - 8 .
+While use of the software R & Rstudio is necessary to produce the outputs in chapters 9, 10 and 11, users who aren't ready to fully replace SPPS with R for their survey processes do not need to disrupt their normal data processing steps (cleaning, calculating, indicators, adding weights, etc) - this can remain in SPSS.  Syntax for calculating indicators in SPSS is provided in chapters  4 - 8 .
 
 The R syntax used for the data quality monitoring report is compatible with the "raw data" that is downloaded from data collection servers (Kobo/MoDA etc.) and the R syntax used to produce the matrice intermediare is compatible with the "processed data" in spss format.  
 
 ### About the example datasets
 
-For this guide, two "semi-fictitious" data sets were created by randomly selecting and de-identifying several surveys.  The results are "safe-ish" data sets that serve as examples for the syntax and processes illustrated in this guide:
+For this guide, two "semi-fictitious" data sets were created by randomly selecting and de-identifying several surveys.  The results are "safe" data sets that serve as examples for the syntax and processes illustrated in this guide:
 
-[exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav) - is what a  "raw" data set typically should look like when collecting with standardized modules and downloaded from a ODK server in spss format.
+[exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav?raw=true) - is what a  "raw" data set typically should look like when collecting with standardized modules and downloaded from a ODK server in spss format.
 
-[exampledataEnglish_processed](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav) - is what a "processed data" typically should look like when applying standardized syntax to calculate indicators and adding survey weights.   
+[exampledataEnglish_processed](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_processed.sav?raw=true) - is what a "processed data" typically should look like when applying standardized syntax to calculate indicators and adding survey weights.   
 
 ### About the questionnaires and variable names 
 
-The standardized questionnaires were developed from official guidelines/references listed in the chapters and were adapted reflecting after consultation with several food security analysts.  While many questions in this guide were taken are verbatim from the official references, this wording of some question modules follow the belief that repeating the content of a question such as recall period (i.e. in the last 7 days...) and qualifier (...because lack of food or lack of money to buy food) explicitly within the question text is better practice than having an introductory text (i.e. In the last 7 days, because of lack of food did you have to use the following strategies...) and then reading off a list of food items/strategies.
+The standardized questionnaires were developed from official guidelines/references listed in the chapters and were adapted reflecting after consultation with several food security analysts.  While many questions in this guide were taken verbatim from the official references, the wording of some question modules follow the opinion that instructing enumerators to repeat the content of a question such as recall period (i.e. in the last 7 days...) and qualifier (...because lack of food or lack of money to buy food) explicitly within the question text is better practice than having enumerators read introductory text (i.e. In the last 7 days, because of lack of food did you have to use the following strategies...) and then read off a list of food items/strategies.
 
 The variable names in this guide were largely copied from a draft master codebook which is forthcoming.   
 
@@ -64,7 +64,7 @@ The variable names in this guide were largely copied from a draft master codeboo
 
 Most of the code in this guide uses the tidyverse, but it might not be elegant or efficient.  It gets the job done but future work will be to try to make it comply with the tidyverse style code: https://style.tidyverse.org/.  
 
-For now, one key thing to note.  Most of the time, the code refers to the label (i.e. "Yes") rather than the value (i.e. "1").  There are trade-offs with this. The advantage of using a label is that it's easier to read what the code is trying to do and troubleshoot a problem.  The disadvantage is it makes the code more long winded and it makes it more fussy because the labels (and sometimes they can be long) must match exactly the code.  
+For now, one key thing to note.  Most of the time, the code refers to the label (i.e. "Yes") rather than the value (i.e. "1").  There are trade-offs with this approach. Using a label makes it easier to read what the code is trying to do and troubleshoot a problem.  The disadvantage is it makes the code more long winded and it makes it more fussy because the labels (and sometimes they can be long) must exactly match the code.  
 
 
 ### On last about, About proposing fixes and suggestions
@@ -84,7 +84,7 @@ To download R, go to CRAN, the comprehensive R archive network https://cloud.r-p
 
 ### RStudio 
 
-RStudio is an integrated development environment, or IDE, for R programming.  Download and install it from http://www.rstudio.com/download. 
+RStudio is an integrated development environment, or IDE, for R programming. If R is the engine, Rstudio is the steering wheel. Download and install it from http://www.rstudio.com/download. 
 
 ## Installing packages
 
@@ -92,9 +92,9 @@ RStudio is an integrated development environment, or IDE, for R programming.  Do
 
 After you install R & Rstuidio , you will also need to install some R packages. 
 
-The above video, covers the topic but re-stated, to do what we need to do in this guide we'll need to install and load certain packages.
+The above video covers the topic but re-stated, to do what we need to do in this guide we'll need to install and load certain packages.
 
-To install a package (tidyverse is an example, but it's a good example because it's a big pacakage that we will use a lot):
+To install a package (tidyverse is an example, but it's a good example because it's a big packaage that we will use a lot):
 
 ```{r, eval=FALSE}
 install.packages("tidyverse")
@@ -105,6 +105,7 @@ To load a package (tidyverse example), you can type the syntax below.
 ```{r, eval=FALSE}
 library(tidyverse)
 ```
+
 
 ## Using Rmarkdown
 

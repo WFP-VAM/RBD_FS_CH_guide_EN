@@ -62,7 +62,7 @@ We recommend using the codes from the *admin1Pcode* and *admin2Pcode* columns in
 
 Here is an example dataset with names and labels matching the Common Operation Datasets.
 
-[xlsformwithgeocodesexample](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx) 
+[xlsformwithgeocodesexample](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx?raw=true) 
 
 ## 2 caveats
 

@@ -28,41 +28,41 @@ LhCSIEmergency3 | During the past 30 days, did anyone in your household have to:
 ### Paper Version of Questionnaire
 
 Here is the standardized module in word format:
-[RBDstandardized_questionnaireLHCS_CARI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_CARI.docx) 
+[RBDstandardized_questionnaireLHCS_CARI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_CARI.docx?raw=true) 
 
 ### Electronic Version of Questionnaire
 
 Here is the standardized module in xlsform:
 
-[RBDstandardized_questionnaireLHCS_CARI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_CARI.xlsx) 
+[RBDstandardized_questionnaireLHCS_CARI](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_CARI.xlsx?raw=true) 
 
 ### Example data set
 
 Here is the example data set:
-[exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav) 
+[exampledataEnglish_raw](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav?raw=true) 
 
 ### SPSS Syntax
 
 Here is the SPSS syntax file: 
-[RBDstandardized_SPSSsyntaxLHCS_CARI_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxLHCS_CARI_EN.sps) 
+[RBDstandardized_SPSSsyntaxLHCS_CARI_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_SPSSsyntaxLHCS_CARI_EN.sps?raw=true) 
 
 ### R Syntax
 
 Here is the R syntax file: 
-[RBDstandardized_RsyntaxLHCS_CARI_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxLHCS_CARI_EN.R) 
+[RBDstandardized_RsyntaxLHCS_CARI_EN](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxLHCS_CARI_EN.R?raw=true) 
 
 ## Standardized ENA Livehihood Coping Strategy Module
 
 ### Paper Version of Questionnaire
 
 Here is the standardized module in word format:
-[RBDstandardized_questionnaireLHCS_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_ENA.docx) 
+[RBDstandardized_questionnaireLHCS_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_ENA.docx?raw=true) 
 
 ### Electronic Version of Questionnaire
 
 Here is the standardized module in xlsform:
 
-[RBDstandardized_questionnaireLHCS_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_ENA.xlsx) 
+[RBDstandardized_questionnaireLHCS_ENA](https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireLHCS_ENA.xlsx?raw=true) 
 
 
 ### Example Data & Syntax
