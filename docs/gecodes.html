@@ -142,7 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.0.3" data-path="index.html"><a href="index.html#about-the-example-datasets"><i class="fa fa-check"></i><b>1.0.3</b> About the example datasets</a></li>
 <li class="chapter" data-level="1.0.4" data-path="index.html"><a href="index.html#about-the-questionnaires-and-variable-names"><i class="fa fa-check"></i><b>1.0.4</b> About the questionnaires and variable names</a></li>
 <li class="chapter" data-level="1.0.5" data-path="index.html"><a href="index.html#about-coding-style"><i class="fa fa-check"></i><b>1.0.5</b> About coding style</a></li>
-<li class="chapter" data-level="1.0.6" data-path="index.html"><a href="index.html#on-last-about-about-proposing-fixes-and-suggestions"><i class="fa fa-check"></i><b>1.0.6</b> On last about, About proposing fixes and suggestions</a></li>
+<li class="chapter" data-level="1.0.6" data-path="index.html"><a href="index.html#one-last-about---about-proposing-fixes-and-suggestions"><i class="fa fa-check"></i><b>1.0.6</b> One last about - About proposing fixes and suggestions</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="setting-up-r-rstudio.html"><a href="setting-up-r-rstudio.html"><i class="fa fa-check"></i><b>2</b> Setting up R &amp; Rstudio</a><ul>
 <li class="chapter" data-level="2.1" data-path="setting-up-r-rstudio.html"><a href="setting-up-r-rstudio.html#installing-r-rstudio"><i class="fa fa-check"></i><b>2.1</b> Installing R &amp; Rstudio</a><ul>
@@ -270,13 +270,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="gecodes" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Gecodes</h1>
-<p>Names of geographic areas often create some clean up work in data processing as its not common for there to be issues and confusion over spelling, transliterations as well as alternative and duplicate names of areas.</p>
-<p>Using standardized geographic codes rather than geographic names helps bound over these typical challenges of processing geographic information.</p>
-<p>To this end, this guide recommends using Gecodes and Names from OCHA’s Common Operational Datasets (CODs):</p>
+<p>Names of geographic areas, while simple enough to put in a data collection tool, often require some clean up work in data processing for the results to match GIS files. It’s very common for there to be issues and confusion over spelling, transliterations,alternative and duplicate names of areas.</p>
+<p>Using standardized geographic codes rather than geographic names helps bound over some of these typical challenges of processing geographic information.</p>
+<p>To this end, this guide recommends using Geocodes and Names from OCHA’s Common Operational Data sets (CODs):</p>
 <p><a href="https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels" class="uri">https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels</a></p>
 <div id="a-simple-example-of-the-problem" class="section level2">
 <h2><span class="header-section-number">3.1</span> A simple example of the problem:</h2>
-<p>The geographic variables of the <em>choices</em> section of the xlsform typically look like this. The <em>name</em> values are usually sequentially assigned.</p>
+<p>The geographic variables of the <em>choices</em> section of a xlsform typically look like this. The <em>name</em> values are usually sequentially assigned.</p>
 <table>
 <thead>
 <tr class="header">
@@ -308,7 +308,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>The geographic variables in corresponding GIS data set look like this:</p>
+<p>The geographic variables in a corresponding GIS data set look like this:</p>
 <table>
 <thead>
 <tr class="header">
@@ -340,8 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Unfortunately, if we tried to merge the data set and the GIS file by the name of the area (this seems to be the variable to join on), we would first have to fix the capitalization and punctuation of the names.</p>
-<p>To avoid unnecessary work, we recommend putting in the <em>Pcode</em> in the name column of the xlsform.</p>
+<p>Unfortunately, if we tried to merge the data set and the GIS file by the name of the area (this seems to be the variable to join on), we would first have to fix the capitalization and punctuation of the names. To avoid unnecessary work, we recommend putting in the <em>Pcode</em> in the name column of the xlsform.</p>
 <table>
 <thead>
 <tr class="header">
@@ -405,24 +404,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>With a common, simple variable to merge both datasets, mapping and data processing should be faster and easier.</p>
+<p>With a common, simple variable to merge both data sets, mapping and data processing can become faster and easier.</p>
 </div>
 <div id="where-to-find-pcodes-and-more-details" class="section level2">
 <h2><span class="header-section-number">3.2</span> Where to find Pcodes and more details</h2>
-<p>Geographic data for West and Central Africa can be found at <a href="https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels" class="uri">https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels</a> or users can search for the appropriate country information in
-<a href="https://data.humdata.org/dashboards/cod" class="uri">https://data.humdata.org/dashboards/cod</a></p>
+<p>Geographic data for West and Central Africa can be found at <a href="https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels" class="uri">https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels</a> or users can search for the appropriate country information in <a href="https://data.humdata.org/dashboards/cod" class="uri">https://data.humdata.org/dashboards/cod</a></p>
 <p>We recommend using the codes from the <em>admin1Pcode</em> and <em>admin2Pcode</em> columns in the <em>name</em> column of the xlsform. Using the <em>admin1RefName</em> and <em>admin2RefName</em> is also recommended in the <em>label</em> column of the xlsform.</p>
 </div>
 <div id="example-data-set-of-the-data-collection-sheet-for-nigeria" class="section level2">
 <h2><span class="header-section-number">3.3</span> Example data set of the data collection sheet for Nigeria:</h2>
-<p>Here is an example dataset with names and labels matching the Common Operation Datasets.</p>
+<p>Here is an example data set with names and labels matching the Common Operation Datasets.</p>
 <p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx?raw=true">xlsformwithgeocodesexample</a></p>
 </div>
 <div id="caveats" class="section level2">
 <h2><span class="header-section-number">3.4</span> 2 caveats</h2>
 <ol style="list-style-type: decimal">
-<li><p>In some countries, the boundaries in the CODs might not correspond with the boundaries used by the country. In this case, special development of a GIS boundary file and codes will need to be developed.</p></li>
-<li><p>Inserting the relevant pcodes in the <em>name</em> column will probably require some excel <em>vlookup</em> work. This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated if cascading columns and the <em>choice_filter</em> option is used at the adm3, adm4 level.</p></li>
+<li><p>In a few countries, the boundaries in the CODs might not correspond with the boundaries used by the country. In this case, special development of a GIS boundary file and codes will need to be developed.</p></li>
+<li><p>Inserting the relevant pcodes in the <em>name</em> column to an existing xlsform will probably require some excel <em>vlookup</em> work. This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated if cascading columns and the <em>choice_filter</em> option is used at the adm3, adm4 level.</p></li>
 </ol>
 
 </div>

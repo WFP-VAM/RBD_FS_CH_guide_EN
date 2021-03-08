@@ -4,7 +4,7 @@ about-software
 about-the-example-datasets
 about-the-questionnaires-and-variable-names
 about-coding-style
-on-last-about-about-proposing-fixes-and-suggestions
+one-last-about---about-proposing-fixes-and-suggestions
 setting-up-r-rstudio
 installing-r-rstudio
 r

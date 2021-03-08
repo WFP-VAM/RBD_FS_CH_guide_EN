@@ -67,7 +67,7 @@ Most of the code in this guide uses the tidyverse, but it might not be elegant o
 For now, one key thing to note.  Most of the time, the code refers to the label (i.e. "Yes") rather than the value (i.e. "1").  There are trade-offs with this approach. Using a label makes it easier to read what the code is trying to do and troubleshoot a problem.  The disadvantage is it makes the code more long winded and it makes it more fussy because the labels (and sometimes they can be long) must exactly match the code.  
 
 
-### On last about, About proposing fixes and suggestions
+### One last about - About proposing fixes and suggestions
 
 Finally, this guide is just a start.  If you spot an error, find something confusing, have a suggestion or a better way of doing something - don't be a stranger.  You can create an issue https://docs.github.com/en/github/managing-your-work-on-github/creating-an-issue on the github repository of this guide https://github.com/WFP-VAM/RBD_FS_CH_guide_EN
 
