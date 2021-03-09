@@ -1,5 +1,5 @@
 GET
-  FILE='exampledataFrancais.sav'.
+  FILE='exampledataFrancais_raw.sav'.
 DATASET NAME DataSet1 WINDOW=FRONT.
 
 ** calculer le Score de Consommation Alimentaire
