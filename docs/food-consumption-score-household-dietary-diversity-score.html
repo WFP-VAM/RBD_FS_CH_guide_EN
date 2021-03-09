@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Gecodes | A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonisé Food Security Indicators</title>
-  <meta name="description" content="Chapter 3 Gecodes | A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonisé Food Security Indicators" />
+  <title>Chapter 6 Food Consumption Score &amp; Household Dietary Diversity Score | A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonisé Food Security Indicators</title>
+  <meta name="description" content="Chapter 6 Food Consumption Score &amp; Household Dietary Diversity Score | A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonisé Food Security Indicators" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Gecodes | A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonisé Food Security Indicators" />
+  <meta property="og:title" content="Chapter 6 Food Consumption Score &amp; Household Dietary Diversity Score | A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonisé Food Security Indicators" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Gecodes | A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonisé Food Security Indicators" />
+  <meta name="twitter:title" content="Chapter 6 Food Consumption Score &amp; Household Dietary Diversity Score | A Guide to Standardized Collection, Processing and Visualization of Cadre Harmonisé Food Security Indicators" />
   
   
   
@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="setting-up-r-rstudio.html"/>
-<link rel="next" href="household-hunger-scale.html"/>
+<link rel="prev" href="reduced-coping-strategy-index.html"/>
+<link rel="next" href="livelihood-coping-strategies.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -268,161 +268,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="gecodes" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Gecodes</h1>
-<p>Names of geographic areas, while simple enough to put in a data collection tool, often require some clean up work in data processing for the results to match GIS files. It’s very common for there to be issues and confusion over spelling, transliterations,alternative and duplicate names of areas.</p>
-<p>Using standardized geographic codes rather than geographic names helps bound over some of these typical challenges of processing geographic information.</p>
-<p>To this end, this guide recommends using Geocodes and Names from OCHA’s Common Operational Data sets (CODs):</p>
-<p><a href="https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels" class="uri">https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels</a></p>
-<div id="a-simple-example-of-the-problem" class="section level2">
-<h2><span class="header-section-number">3.1</span> A simple example of the problem:</h2>
-<p>The geographic variables of the <em>choices</em> section of a xlsform typically look like this. The <em>name</em> values are usually sequentially assigned.</p>
-<table>
-<thead>
-<tr class="header">
-<th>list_name</th>
-<th>name</th>
-<th>label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>cod_lga</td>
-<td>1</td>
-<td>ASKIRA/UBA</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>2</td>
-<td>BAYO</td>
-</tr>
-<tr class="odd">
-<td>cod_lga</td>
-<td>3</td>
-<td>CHIBOK</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>4</td>
-<td>KALABAGE</td>
-</tr>
-</tbody>
-</table>
-<p>The geographic variables in a corresponding GIS data set look like this:</p>
-<table>
-<thead>
-<tr class="header">
-<th>Shape</th>
-<th>admin2Pcode</th>
-<th>admin2RefName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Polygon</td>
-<td>NG008002</td>
-<td>Askira/Uba</td>
-</tr>
-<tr class="even">
-<td>Polygon</td>
-<td>NG008004</td>
-<td>Bayo</td>
-</tr>
-<tr class="odd">
-<td>Polygon</td>
-<td>NG008006</td>
-<td>Chibok</td>
-</tr>
-<tr class="even">
-<td>Polygon</td>
-<td>NG008015</td>
-<td>Kala/Balge</td>
-</tr>
-</tbody>
-</table>
-<p>Unfortunately, if we tried to merge the data set and the GIS file by the name of the area (this seems to be the variable to join on), we would first have to fix the capitalization and punctuation of the names. To avoid unnecessary work, we recommend putting in the <em>Pcode</em> in the name column of the xlsform.</p>
-<table>
-<thead>
-<tr class="header">
-<th>list_name</th>
-<th>name</th>
-<th>label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>cod_lga</td>
-<td>NG008002</td>
-<td>ASKIRA/UBA</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>NG008004</td>
-<td>BAYO</td>
-</tr>
-<tr class="odd">
-<td>cod_lga</td>
-<td>NG008006</td>
-<td>CHIBOK</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>NG008015</td>
-<td>KALABAGE</td>
-</tr>
-</tbody>
-</table>
-<p>Even better, also use standardized names and labels.</p>
-<table>
-<thead>
-<tr class="header">
-<th>list_name</th>
-<th>name</th>
-<th>label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>cod_lga</td>
-<td>NG008002</td>
-<td>Askira/Uba</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>NG008004</td>
-<td>Bayo</td>
-</tr>
-<tr class="odd">
-<td>cod_lga</td>
-<td>NG008006</td>
-<td>Chibok</td>
-</tr>
-<tr class="even">
-<td>cod_lga</td>
-<td>NG008015</td>
-<td>Kala/Balge</td>
-</tr>
-</tbody>
-</table>
-<p>With a common, simple variable to merge both data sets, mapping and data processing can become faster and easier.</p>
-</div>
-<div id="where-to-find-pcodes-and-more-details" class="section level2">
-<h2><span class="header-section-number">3.2</span> Where to find Pcodes and more details</h2>
-<p>Geographic data for West and Central Africa can be found at <a href="https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels" class="uri">https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels</a> or users can search for the appropriate country information in <a href="https://data.humdata.org/dashboards/cod" class="uri">https://data.humdata.org/dashboards/cod</a></p>
-<p>We recommend using the codes from the <em>admin1Pcode</em> and <em>admin2Pcode</em> columns in the <em>name</em> column of the xlsform. Using the <em>admin1RefName</em> and <em>admin2RefName</em> is also recommended in the <em>label</em> column of the xlsform.</p>
-</div>
-<div id="example-data-set-of-the-data-collection-sheet-for-nigeria" class="section level2">
-<h2><span class="header-section-number">3.3</span> Example data set of the data collection sheet for Nigeria:</h2>
-<p>Here is an example data set with names and labels matching the Common Operation Datasets.</p>
-<p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/xlsformwithgeocodesexample.xlsx?raw=true">xlsformwithgeocodesexample</a></p>
-</div>
-<div id="caveats" class="section level2">
-<h2><span class="header-section-number">3.4</span> 2 caveats</h2>
+<div id="food-consumption-score-household-dietary-diversity-score" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Food Consumption Score &amp; Household Dietary Diversity Score</h1>
+<p>The module below allows you to collect and calculate FCS, FCS-N and HDDS indicators.</p>
+<div id="references-resources-2" class="section level2">
+<h2><span class="header-section-number">6.1</span> References / Resources</h2>
 <ol style="list-style-type: decimal">
-<li><p>In a few countries, the boundaries in the CODs might not correspond with the boundaries used by the country. In this case, special development of a GIS boundary file and codes will need to be developed.</p></li>
-<li><p>Inserting the relevant pcodes in the <em>name</em> column to an existing xlsform will probably require some excel <em>vlookup</em> work. This might be relatively straightforward when only replacing codes at the admin1 and admin2 level, however things might get more complicated if cascading columns and the <em>choice_filter</em> option is used at the adm3, adm4 level.</p></li>
+<li><p>FCS - <a href="https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf" class="uri">https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf</a></p></li>
+<li><p>FCS_N - <a href="https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp277333.pdf" class="uri">https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp277333.pdf</a></p></li>
+<li><p>HDDS - <a href="http://www.fao.org/fileadmin/user_upload/wa_workshop/docs/FAO-guidelines-dietary-diversity2011.pdf" class="uri">http://www.fao.org/fileadmin/user_upload/wa_workshop/docs/FAO-guidelines-dietary-diversity2011.pdf</a></p></li>
 </ol>
+</div>
+<div id="standardized-questionnaire-2" class="section level2">
+<h2><span class="header-section-number">6.2</span> Standardized Questionnaire</h2>
+<div id="paper-version-of-questionnaire-2" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Paper Version of Questionnaire</h3>
+<p>Here is the standardized module in word format:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.docx?raw=true">RBDstandardized_questionnaireFCSHDDS</a></p>
+</div>
+<div id="electronic-version-of-questionnaire-2" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Electronic Version of Questionnaire</h3>
+<p>Here is the standardized module in xlsform:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/questionnaires/RBDstandardized_questionnaireFCSHDDS.xlsx?raw=true">RBDstandardized_questionnaireFCSHDDS</a></p>
+</div>
+</div>
+<div id="calculation-of-fcs-hdds-indicators" class="section level2">
+<h2><span class="header-section-number">6.3</span> Calculation of FCS &amp; HDDS Indicators</h2>
+<div id="example-data-set-2" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Example data set</h3>
+<p>Here is the example data set:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/example_datasets/exampledataEnglish_raw.sav?raw=true">exampledataEnglish_raw</a></p>
+</div>
+<div id="spss-syntax-2" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> SPSS Syntax</h3>
+<p>Here is the SPSS syntax file:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDStandardized_SPSSsyntaxFCSHDDS_EN.sps?raw=true">RBDStandardized_SPSSsyntaxFCSHDDS_EN</a></p>
+</div>
+<div id="r-syntax-2" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> R Syntax</h3>
+<p>Here is the R syntax file:
+<a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/RBDstandardized_RsyntaxFCSHDDS_EN.R?raw=true">RBDstandardized_RsyntaxFCSHDDS_EN</a></p>
 
+</div>
 </div>
 </div>
             </section>
@@ -430,8 +317,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="setting-up-r-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="household-hunger-scale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reduced-coping-strategy-index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="livelihood-coping-strategies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -462,7 +349,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-Geocodes.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-FCSHDDS.Rmd",
 "text": "Edit"
 },
 "history": {

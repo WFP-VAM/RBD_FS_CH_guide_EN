@@ -4,7 +4,7 @@ If survey teams collect data with Kobo/Ona/MoDa/ODK and regularly send submissio
 
 The example report below has been generalized to visualize survey progress by geographic areas and calculated results of key CH indicators by geographic areas and by enumerators using the raw data set downloaded from the  Kobo/Ona/MoDa/ODK server.
 
-For privacy/data security, the code of the enumerator should be used rather thanreporting the enumerators name.  If a particular operator needs to be identified or contacted - you can refer to the data collection form to match the enumerator code with the enumerator name. 
+For privacy/data security, the code of the enumerator should be used rather than reporting the enumerators name.  If a particular operator needs to be identified or contacted - you can refer to the data collection form to match the enumerator code with the enumerator name. 
 
 ## Overview of the steps
 
@@ -31,12 +31,6 @@ Also, if the variable name of the Enumerators is not `EnumName`, insert the foll
 dataset <- dataset %>% rename(EnumName = OLDNAMEOFENUMERATORVARIABLE) 
 ```
 
-before this code:
-
-```{r, eval = F}
-#convert enumerator name back to code - because for data security reasons you dont want to publish the name of the operator
-dataset$EnumName <- to_character(dataset$EnumName)
-```
 
 Modify the `title` and author `fields` to your survey. 
 

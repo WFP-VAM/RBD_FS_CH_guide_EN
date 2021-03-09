@@ -1,4 +1,4 @@
-# Food Consumption Score & Household Dietary Diversity
+# Food Consumption Score & Household Dietary Diversity Score
 
 The module below allows you to collect and calculate FCS, FCS-N and HDDS indicators.
 

@@ -28,7 +28,7 @@ This guide presents standardized tools for collection, processing, analysis and 
 
 [Chapter 5 reduced Coping Strategy Index](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/reduced-coping-strategy-index.html) paper and electronic versions of standardized questionnaire and SPSS/R syntax for calculating the reduced Coping Strategy Index indicator.
 
-[Chapter 6 Food Consumption Score & Household Dietary Diversity](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/food-consumption-score-household-dietary-diversity.html) paper and electronic versions of standardized questionnaire and SPSS/R syntax for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score indicators.
+[Chapter 6 Food Consumption Score & Household Dietary Diversity Score](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/food-consumption-score-household-dietary-diversity-score.html) paper and electronic versions of standardized questionnaire and SPSS/R syntax for calculating the Food Consumption Score/Groups and Household Dietary Diversity Score indicators.
 
 [Chapter 7 Livelihood Coping Strategies](https://wfp-vam.github.io/RBD_FS_CH_guide_EN/livelihood-coping-strategies.html) paper and electronic versions of standardized questionnaire and SPSS/R syntax for calculating the maximum coping strategy used for CARI light version and ENA version of the Livelihood Coping Strategies module.
 
@@ -94,7 +94,7 @@ After you install R & Rstuidio , you will also need to install some R packages.
 
 The above video covers the topic but re-stated, to do what we need to do in this guide we'll need to install and load certain packages.
 
-To install a package (tidyverse is an example, but it's a good example because it's a big packaage that we will use a lot):
+To install a package (tidyverse is an example, but it's a good example because it's a big package that we will use a lot):
 
 ```{r, eval=FALSE}
 install.packages("tidyverse")

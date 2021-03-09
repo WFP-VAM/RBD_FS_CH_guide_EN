@@ -36,7 +36,7 @@ dataset <- dataset %>% mutate(
   HDDSSugar = case_when(HDDSSugar == "Oui" ~ 1, TRUE ~ 0),
   HDDSCond = case_when(HDDSCond == "Oui"~ 1, TRUE ~ 0))
 
-#Calculate HDDS and Cadre Harmonise Phases
+#Calculate HDDS
 dataset <- dataset %>% mutate(HDDS = HDDSStapCer +HDDSStapRoot +HDDSVeg +HDDSFruit +HDDSPrMeat +HDDSPrEgg +HDDSPrFish +HDDSPulse +HDDSDairy +HDDSFat +HDDSSugar +HDDSCond)
 var_label(dataset$HDDS) <- "Score de la diversité alimentaire des ménages"
 

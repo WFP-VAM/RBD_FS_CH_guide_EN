@@ -34,7 +34,7 @@ calculation-of-rcsi-indicator
 example-data-set-1
 spss-syntax-1
 r-syntax-1
-food-consumption-score-household-dietary-diversity
+food-consumption-score-household-dietary-diversity-score
 references-resources-2
 standardized-questionnaire-2
 paper-version-of-questionnaire-2
