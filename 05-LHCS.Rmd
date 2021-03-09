@@ -8,7 +8,7 @@ Users can substitute the stress, crisis and emergency coping strategy strategies
 
 1.  CARI Manual - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
 
-2.  ENA Guidelines - https://documents.wfp.org/stellent/groups/public/documents/manual_guide_proced/wfp271449.pdf
+2.  ENA Guidelines - https://docs.wfp.org/api/documents/WFP-0000074197/download/
 
 ## Standardized Light CARI Module 
 
