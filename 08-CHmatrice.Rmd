@@ -30,3 +30,5 @@ Here is a zipped file of the example matrice intermediare (.csv) generated from 
 - If the country did not collect all the 5 Food Security Indicators (FCS, HDDS, rCSI, HHS, LhCS) - the modules not collected should be removed from the code 
 - If the level of analysis is at the Admin 1 level only - then the variables ADMIN2Name and ADMIN2Code should be removed from the code
 - If the ADMIN1Name and ADMIN2Name were not collected with geocodes (see Chapter 2) then the code will have to be modified 
+- If survey weights are used, the variable should be renamed to `Weight_HH`, if survey weights are not used then the code `wt = WeightHH` should be removed from the syntax
+- For calculations of the Food Consumption Groups - modify the code to use `FCSCat21` for 21/35 thresholds  or `FCSCat28` for 28/42 thresholds as appropriate.

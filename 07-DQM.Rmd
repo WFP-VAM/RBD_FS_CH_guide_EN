@@ -31,6 +31,7 @@ Also, if the variable name of the Enumerators is not `EnumName`, insert the foll
 dataset <- dataset %>% rename(EnumName = OLDNAMEOFENUMERATORVARIABLE) 
 ```
 
+For calculations of the Food Consumption Groups - modify the code to use `FCSCat21` for 21/35 thresholds  or `FCSCat28` for 28/42 thresholds as appropriate.
 
 Modify the `title` and author `fields` to your survey. 
 

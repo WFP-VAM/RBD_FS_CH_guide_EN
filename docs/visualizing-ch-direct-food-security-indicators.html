@@ -26,7 +26,7 @@
 <meta name="author" content="rbd.ram@wfp.org" />
 
 
-<meta name="date" content="2021-03-09" />
+<meta name="date" content="2021-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -247,6 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.2.3" data-path="visualizing-ch-direct-food-security-indicators.html"><a href="visualizing-ch-direct-food-security-indicators.html#example-shapefiles-1"><i class="fa fa-check"></i><b>11.2.3</b> Example shapefiles</a></li>
 <li class="chapter" data-level="11.2.4" data-path="visualizing-ch-direct-food-security-indicators.html"><a href="visualizing-ch-direct-food-security-indicators.html#syntax-2"><i class="fa fa-check"></i><b>11.2.4</b> Syntax</a></li>
 </ul></li>
+<li class="chapter" data-level="11.3" data-path="visualizing-ch-direct-food-security-indicators.html"><a href="visualizing-ch-direct-food-security-indicators.html#troubleshooting-known-issues-1"><i class="fa fa-check"></i><b>11.3</b> Troubleshooting &amp; Known issues</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -317,8 +318,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">11.2.4</span> Syntax</h3>
 <p>Here is the syntax to visualize the CH Direct Food security Indicators from the processed dataset:</p>
 <p><a href="https://github.com/WFP-VAM/RBD_FS_CH_guide_EN/blob/master/syntax/example_CH_preliminaryFSresults_fromspss.zip?raw=true">example_CH_preliminaryFSresults_fromspss</a></p>
-
 </div>
+</div>
+<div id="troubleshooting-known-issues-1" class="section level2">
+<h2><span class="header-section-number">11.3</span> Troubleshooting &amp; Known issues</h2>
+<ul>
+<li>If the country did not collect all the 5 Food Security Indicators (FCS, HDDS, rCSI, HHS, LhCS) - the modules not collected should be removed from the code</li>
+<li>If the level of analysis is at the Admin 1 level only - then the variables ADMIN2Name and ADMIN2Code should be removed from the code</li>
+<li>If the ADMIN1Name and ADMIN2Name were not collected with geocodes (see Chapter 2) then the code will have to be modified</li>
+<li>If survey weights are used, the variable should be renamed to <code>Weight_HH</code>, if survey weights are not used then the code <code>wt = WeightHH</code> should be removed from the syntax</li>
+<li>For calculations of the Food Consumption Groups - modify the code to use <code>FCSCat21</code> for 21/35 thresholds or <code>FCSCat28</code> for 28/42 thresholds as appropriate.</li>
+</ul>
+
 </div>
 </div>
             </section>
