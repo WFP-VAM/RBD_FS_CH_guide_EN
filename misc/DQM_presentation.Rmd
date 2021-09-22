@@ -1,0 +1,28 @@
+---
+title: "Data Quality Monitoring"
+author: "RBD RAM"
+date: "22/09/2021"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Outline
+
+-   Why do this?
+-   How to do this?
+-   What is in the report and how to interpret it?
+-   Some suggestions on how to treat data quality issues.
+-   Demonstration of Nigeria's data quality monitoring tool
+
+## Why do this?
+
+-   Why do this?
+-   How to do this?
+-   What is in the report and how to interpret it?
+-   Some suggestions on how to treat data quality issues.
+-   Demonstration of Nigeria's data quality monitoring tool
+
+## 
